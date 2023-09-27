@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Unlock&display=swap');
+
+h1 {
+    font-family: 'Unlock', cursive;
+    text-align: center;
+    color: rgb(0, 183, 255);
+    font-size: 70px;
+}
+
+div {
+    margin: 5px;
+}
+
+.colorTexto {
+    color: rgb(0, 183, 255);
+}
