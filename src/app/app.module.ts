@@ -5,25 +5,25 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import {StyleClassModule} from 'primeng/styleclass';
+import { StyleClassModule } from 'primeng/styleclass';
 import { RegisterComponent } from './register/register.component';
 import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent
-  ],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserModule,
     ButtonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     StyleClassModule,
-    ImageModule
+    ImageModule,
+    InputTextModule,
+    PasswordModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
