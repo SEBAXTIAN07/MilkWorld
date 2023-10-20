@@ -1,0 +1,44 @@
+  <div id="login-box">
+    <div class="text-center">
+      <div class="col-12">
+        <div class="text-center,margen-div">
+          <h1>Inicia Sesión</h1>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="col-12">
+          <input
+            type="text"
+            pInputText
+            formControlName="text"
+            placeholder="Tipo Documento"
+          />
+        </div>
+        <div class="col-6">
+          <input
+            type="text"
+            pInputText
+            formControlName="text"
+            placeholder="Cedula"
+          />
+        </div>
+        <div class="col-6">
+          <button
+            pButton
+            pRipple
+            label="Iniciar"
+            class="p-button-success"
+          ></button>
+        </div>
+        <div class="col-12">
+          <button
+            pButton
+            pRipple
+            label="Volver"
+            class="p-button-danger"
+            (click)="volverInicio()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>

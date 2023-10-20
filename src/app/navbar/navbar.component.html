@@ -1,0 +1,31 @@
+<nav class="navbar bg-light">
+  <div class="grid">
+    <div class="col-10">
+      <div class="text-center">
+        <h1>MILK WORLD</h1>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="text-center">
+        <p-image
+          src="https://cdn.icon-icons.com/icons2/1465/PNG/512/455cowface_100996.png"
+          alt="Image"
+          width="50"
+        ></p-image>
+      </div>
+      <p-sidebar [(visible)]="sidebarVisible">
+        <h3>Sidebar</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </p-sidebar>
+      <p-button
+        (click)="sidebarVisible = true"
+        icon="pi pi-arrow-right"
+      ></p-button>
+    </div>
+  </div>
+</nav>

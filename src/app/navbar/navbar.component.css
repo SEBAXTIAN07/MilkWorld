@@ -1,0 +1,12 @@
+nav{
+    background-color: white; 
+    border-bottom: 2px solid rgb(0, 200, 255);       
+}
+
+h1 {
+    font-family: 'Unlock', cursive;
+    text-align: center;
+    color: rgb(0, 183, 255);
+    font-size: 30px;
+    margin: 0;
+}

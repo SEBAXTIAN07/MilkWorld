@@ -1,60 +1,64 @@
-<div id="login-box">
-  <div class="text-center">
-    <div class="col-12">
-      <div class="text-center,margen-div">
-        <h1>REGISTRO</h1>
-      </div>
-    </div>
-    <div class="grid">
+<form [formGroup]="form">
+  <div id="login-box">
+    <div class="text-center">
       <div class="col-12">
-        <input
-          type="text"
-          pInputText
-          formControlName="text"
-          placeholder="Nombres"
-        />
+        <div class="text-center,margen-div">
+          <h1>REGISTRO</h1>
+        </div>
       </div>
-      <div class="col-12">
-        <input
-          type="text"
-          pInputText
-          formControlName="text"
-          placeholder="Apellidos"
-        />
-      </div>
-      <div class="col-12">
-        <input
-          type="text"
-          pInputText
-          formControlName="text"
-          placeholder="Correo Electronico"
-        />
-      </div>
-
-      <div class="col-12">
-        <p-password
-          placeholder="Contraseña"
-          [feedback]="false"
-          [toggleMask]="true"
-        ></p-password>
-      </div>
-      <div class="col-12">
-        <button
-          pButton
-          pRipple
-          label="Registrar"
-          class="p-button-success"
-        ></button>
-      </div>
-      <div class="col-12">
-        <button
-          pButton
-          pRipple
-          label="Volver"
-          class="p-button-danger"
-          (click)="volverInicio()"
-        ></button>
+      <div class="grid">
+        <div class="col-12">
+          <input
+            type="text"
+            pInputText
+            formControlName="nombres"
+            placeholder="nombres"
+          />
+        </div>
+        <div class="col-12">
+          <input
+            type="text"
+            pInputText
+            formControlName="apellidos"
+            placeholder="Apellidos"
+          />
+        </div>
+        <div class="col-12">
+          <div class="col-12">
+            <!-- <p-dropdown [options]="cities" formControlName="tipoDocumento" optionLabel="name"></p-dropdown> -->
+            <p-dropdown
+              [options]="cities"
+              formControlName="tipoDocumento"
+              optionLabel="name"
+            ></p-dropdown>
+            <input
+              class="mi-input"
+              type="text"
+              pInputText
+              formControlName="cedula"
+              placeholder="Cedula"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <button
+            pButton
+            pRipple
+            label="Registrar"
+            class="p-button-success"
+            (click)="registroUsuario()"
+          ></button>
+        </div>
+        <div class="col-12">
+          <button
+            pButton
+            pRipple
+            label="Volver"
+            class="p-button-danger"
+            (click)="volverInicio()"
+          ></button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

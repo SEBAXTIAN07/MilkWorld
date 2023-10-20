@@ -10,9 +10,22 @@ import { RegisterComponent } from './register/register.component';
 import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { SesionComponent } from './sesion/sesion.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    NavbarComponent,
+    SesionComponent,
+  ],
+
   imports: [
     BrowserModule,
     ButtonModule,
@@ -22,6 +35,10 @@ import { PasswordModule } from 'primeng/password';
     ImageModule,
     InputTextModule,
     PasswordModule,
+    SidebarModule,
+    DropdownModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

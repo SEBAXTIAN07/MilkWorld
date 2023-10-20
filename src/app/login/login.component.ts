@@ -7,11 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private router: Router) {} 
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   registrarUsuario() {
-    this.router.navigate(['/register']); 
+    this.router.navigate(['/register']);
+  }
+
+  iniciarSesion() {
+    this.router.navigate(['/sesion']);
   }
 }

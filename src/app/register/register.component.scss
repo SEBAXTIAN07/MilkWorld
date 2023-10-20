@@ -3,7 +3,7 @@
   outline: none;
 }
 
-#login-box {
+/* #login-box {
   position: relative;
   margin: 5% auto;
   width: 600px;
@@ -11,4 +11,13 @@
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
+} */
+
+::ng-deep {
+  .mi-input .p-inputtext {
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    padding: 4px; /* Espaciado más pequeño */
+    height: 24px; /* Altura más pequeña */
+  }
+
+ }
