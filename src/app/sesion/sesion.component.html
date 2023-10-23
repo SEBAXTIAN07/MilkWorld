@@ -1,44 +1,129 @@
-  <div id="login-box">
-    <div class="text-center">
-      <div class="col-12">
-        <div class="text-center,margen-div">
-          <h1>Inicia Sesión</h1>
-        </div>
+<!-- <div id="login-box">
+  <div class="text-center">
+    <div class="col-12">
+      <div class="text-center,margen-div">
+        <h1>Inicia Sesión</h1>
       </div>
-      <div class="grid">
-        <div class="col-12">
-          <input
-            type="text"
-            pInputText
-            formControlName="text"
-            placeholder="Tipo Documento"
-          />
-        </div>
-        <div class="col-6">
-          <input
-            type="text"
-            pInputText
-            formControlName="text"
-            placeholder="Cedula"
-          />
-        </div>
-        <div class="col-6">
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <input
+          type="text"
+          pInputText
+          formControlName="text"
+          placeholder="Tipo Documento"
+        />
+      </div>
+      <div class="col-6">
+        <input
+          type="text"
+          pInputText
+          formControlName="text"
+          placeholder="Cedula"
+        />
+      </div>
+      <div class="col-6">
+        <button
+          pButton
+          pRipple
+          label="Iniciar"
+          class="p-button-success"
+        ></button>
+      </div>
+      <div class="col-12">
+        <button
+          pButton
+          pRipple
+          label="Volver"
+          class="p-button-danger"
+          (click)="volverInicio()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<app-spinner *ngIf="spinnerVisible"></app-spinner>
+<br />
+<form [formGroup]="form" *ngIf="formularioVisible">
+  <div class="card">
+    <p-messages
+      [(value)]="messages"
+      [enableService]="false"
+      [closable]="false"
+    ></p-messages>
+  </div>
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center">
+      <img
+        src="https://cdn.icon-icons.com/icons2/1465/PNG/512/455cowface_100996.png"
+        alt="Image"
+        height="50"
+      />
+      <div>
+        <h2>Iniciar Sesion</h2>
+      </div>
+      <br />
+
+      <span class="text-600 font-medium line-height-3"
+        >¿No tienes Cuenta?</span
+      >
+      <br />
+      <a
+        routerLink="/register"
+        class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+        >Registrate</a
+      >
+    </div>
+    <div>
+      <br />
+      <label for="email1" class="block text-900 font-medium mb-2"
+        >Tipo Documento</label
+      >
+      <p-dropdown
+        [options]="cities"
+        formControlName="tipoDocumento"
+        optionLabel="name"
+        class="w-full mb-3"
+      >
+      </p-dropdown>
+      <br />
+      <br />
+
+      <label for="email1" class="block text-900 font-medium mb-2">Cedula</label>
+      <input
+        id="email1"
+        type="text"
+        placeholder="Digite su Documento"
+        pInputText
+        class="w-full mb-3"
+      />
+      <div class="flex justify-content-center flex-wrap">
+        <div
+          class="flex align-items-center justify-content-center font-bold border-round m-2"
+        >
           <button
             pButton
             pRipple
-            label="Iniciar"
-            class="p-button-success"
+            type="button"
+            label="Volver"
+            class="p-button-outlined"
+            routerLink="/"
           ></button>
         </div>
-        <div class="col-12">
+        <div
+          class="flex align-items-center justify-content-center font-bold border-round m-2"
+        >
           <button
             pButton
             pRipple
-            label="Volver"
-            class="p-button-danger"
-            (click)="volverInicio()"
+            type="button"
+            label="Siguiente"
+            class="p-button-outlined p-button-success"
+            (click)="mostrarSpinner()"
           ></button>
         </div>
       </div>
     </div>
   </div>
+</form>

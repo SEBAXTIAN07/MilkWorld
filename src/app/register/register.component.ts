@@ -85,7 +85,16 @@ export class RegisterComponent implements OnInit {
       this.spinnerVisible = !this.spinnerVisible;
       this.messages = [
         { severity: 'error', summary: 'Error Creando el Usuario', detail: '' },
-        { severity: 'info', summary: 'El Usuario ya se Encuentra Registrado', detail: '' },
+        {
+          severity: 'info',
+          summary: 'El Usuario ya se Encuentra Registrado',
+          detail: '',
+        },
+        {
+          severity: 'warn',
+          summary: 'Digite los Campos Requeridos',
+          detail: '',
+        },
       ];
     }, 3000);
   }

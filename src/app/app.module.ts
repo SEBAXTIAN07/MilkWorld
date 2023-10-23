@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { BotonesComponent } from './botones/botones.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {MessageModule} from 'primeng/message';
     RegisterComponent,
     NavbarComponent,
     SesionComponent,
+    SpinnerComponent,
+    BotonesComponent,
   ],
 
   imports: [

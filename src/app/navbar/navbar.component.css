@@ -3,10 +3,21 @@ nav{
     border-bottom: 2px solid rgb(0, 200, 255);       
 }
 
-h1 {
+h2 {
     font-family: 'Unlock', cursive;
     text-align: center;
     color: rgb(0, 183, 255);
     font-size: 30px;
     margin: 0;
 }
+
+#miBoton {
+    padding: 10px 20px; /* Relleno del botón */
+    border: none; /* Eliminar el borde del botón si es necesario */
+  }
+  
+  #miBoton img {
+    width: 20px; /* Ancho del icono */
+    height: 20px; /* Alto del icono */
+    margin-right: 10px; /* Espacio entre el icono y el texto del botón */
+  }

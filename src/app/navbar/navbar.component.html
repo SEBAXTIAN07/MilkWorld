@@ -1,9 +1,17 @@
 <nav class="navbar bg-light">
   <div class="grid">
-    <div class="col-10">
-      <div class="text-center">
-        <h1>MILK WORLD</h1>
-      </div>
+    <div class="col-2">
+      <button
+        pButton
+        pRipple
+        type="button"
+        class="p-button-outlined p-button-info"
+        (click)="sidebarVisible = true"
+        icon="pi pi-align-justify"
+      ></button>
+    </div>
+    <div class="col-8">
+      <h2>MILK WORLD</h2>
     </div>
     <div class="col-2">
       <div class="text-center">
@@ -13,19 +21,97 @@
           width="50"
         ></p-image>
       </div>
-      <p-sidebar [(visible)]="sidebarVisible">
-        <h3>Sidebar</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-      </p-sidebar>
-      <p-button
-        (click)="sidebarVisible = true"
-        icon="pi pi-arrow-right"
-      ></p-button>
     </div>
   </div>
+
+  <p-sidebar [(visible)]="sidebarVisible">
+    <div class="grid">
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <h3>Finca</h3>
+          <hr />
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Potreros"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
+              alt="Ícono"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <h3>Ganado</h3>
+          <hr />
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Registro Animal"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+            style="margin-bottom: 5px"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4496/4496184.png"
+              alt="Ícono"
+            />
+          </button>
+
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Registro Consumo"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+            style="margin-bottom: 5px"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2151/2151531.png"
+              alt="Ícono"
+            />
+          </button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Registro Produccion"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3394/3394010.png"
+              alt="Ícono"
+            />
+          </button>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <h3>Huella Hídrica</h3>
+          <hr />
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Calculadora"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1076/1076877.png"
+              alt="Ícono"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </p-sidebar>
 </nav>

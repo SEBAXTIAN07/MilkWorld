@@ -18,3 +18,11 @@ h2 {
     font-size: 40px;
     margin: 0;
 }
+
+h3 {
+    font-family: 'Unlock', cursive;
+    text-align: center;
+    color: rgb(19, 122, 163);
+    font-size: 20px;
+    margin: 0;
+}

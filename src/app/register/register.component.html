@@ -68,10 +68,8 @@
     </div>
   </div>
 </form> -->
-<div class="content" *ngIf="spinnerVisible">
-  <div class="spinner"></div>
-</div>
 
+<app-spinner *ngIf="spinnerVisible"></app-spinner>
 <br />
 <form [formGroup]="form" *ngIf="formularioVisible">
   <div class="card">
@@ -81,7 +79,7 @@
       [closable]="false"
     ></p-messages>
   </div>
-  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+  <div >
     <div class="text-center">
       <img
         src="https://cdn.icon-icons.com/icons2/1465/PNG/512/455cowface_100996.png"
