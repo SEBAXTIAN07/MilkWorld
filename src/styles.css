@@ -10,3 +10,11 @@ h1 {
     color: rgb(0, 183, 255);
     font-size: 70px;
 }
+
+h2 {
+    font-family: 'Unlock', cursive;
+    text-align: center;
+    color: rgb(0, 183, 255);
+    font-size: 40px;
+    margin: 0;
+}

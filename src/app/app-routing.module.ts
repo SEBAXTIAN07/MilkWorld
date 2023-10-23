@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './inicio/incio.component';
 import { RegisterComponent } from './register/register.component';
 import { SesionComponent } from './sesion/sesion.component';
 
