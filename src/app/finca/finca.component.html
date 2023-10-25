@@ -1,0 +1,222 @@
+<!-- <app-navbar></app-navbar> -->
+<br>
+<div class="card"></div>
+<div>
+  <div *ngIf="stpe1">
+    <div class="text-center">
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+            alt="Imagen del botón"
+          />
+        </button>
+      </div>
+      <hr />
+      <div>
+        <h2>Registrar Finca</h2>
+      </div>
+      <br />
+    </div>
+    <div>
+      <br />
+      <div class="field">
+        <label for="firstname1">Nombre de la Finca</label>
+        <input
+          id="firstname1"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="lastname1">Numero de Celular</label>
+        <input
+          id="lastname1"
+          maxlength="10"
+          type="number"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="lastname1">Departamento</label>
+        <input
+          id="lastname1"
+          maxlength="10"
+          type="number"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="lastname1">Municipio</label>
+        <input
+          id="lastname1"
+          maxlength="10"
+          type="number"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="flex justify-content-center flex-wrap">
+        <div
+          class="flex align-items-center justify-content-center font-bold border-round m-2"
+        >
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Volver"
+            class="p-button-outlined"
+            routerLink="/botones"
+          ></button>
+        </div>
+        <div
+          class="flex align-items-center justify-content-center font-bold border-round m-2"
+        >
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Siguiente"
+            class="p-button-outlined p-button-success"
+            (click)="validarStpe(2)"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="stpe2">
+    <div class="text-center">
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+            alt="Imagen del botón"
+          />
+        </button>
+      </div>
+      <hr />
+      <div>
+        <h2>Registrar Finca</h2>
+      </div>
+      <br />
+    </div>
+    <div class="field">
+      <label for="lastname1">N° de la Vereda</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="field">
+      <label for="lastname1">Tipo de Ordeño</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="field">
+      <label for="lastname1">N° de Ordeño Diario</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="flex justify-content-center flex-wrap">
+      <div
+        class="flex align-items-center justify-content-center font-bold border-round m-2"
+      >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Volver"
+          class="p-button-outlined"
+          (click)="validarStpe(1)"
+        ></button>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold border-round m-2"
+      >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Siguiente"
+          class="p-button-outlined p-button-success"
+          (click)="validarStpe(3)"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="stpe3">
+    <div class="text-center">
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+            alt="Imagen del botón"
+          />
+        </button>
+      </div>
+      <hr />
+      <div>
+        <h2>Registrar Finca</h2>
+      </div>
+      <br />
+    </div>
+    <div class="field">
+      <label for="lastname1">Area Total</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <div class="field">
+      <label for="lastname1">¿Usa Suplemento?</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div>
+    <br />
+
+    <div class="flex justify-content-center flex-wrap">
+      <div
+        class="flex align-items-center justify-content-center font-bold border-round m-2"
+      >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Volver"
+          class="p-button-outlined"
+          (click)="validarStpe(2)"
+        ></button>
+      </div>
+      <div
+        class="flex align-items-center justify-content-center font-bold border-round m-2"
+      >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Siguiente"
+          class="p-button-outlined p-button-success"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-footer></app-footer> -->

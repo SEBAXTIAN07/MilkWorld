@@ -21,6 +21,10 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { BotonesComponent } from './botones/botones.component';
+import { FincaComponent } from './finca/finca.component';
+import { StepsModule } from 'primeng/steps';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { BotonesComponent } from './botones/botones.component';
     SesionComponent,
     SpinnerComponent,
     BotonesComponent,
+    FincaComponent,
+    FooterComponent,
   ],
 
   imports: [
@@ -48,7 +54,9 @@ import { BotonesComponent } from './botones/botones.component';
     ReactiveFormsModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    StepsModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent],
