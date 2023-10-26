@@ -6,6 +6,9 @@ import { RegisterComponent } from './register/register.component';
 import { SesionComponent } from './sesion/sesion.component';
 import { BotonesComponent } from './botones/botones.component';
 import { FincaComponent } from './finca/finca.component';
+import { RegistroInicialComponent } from './registro-inicial/registro-inicial.component';
+import { PotreroComponent } from './potrero/potrero.component';
+import { AnimalComponent } from './animal/animal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'sesion', component: SesionComponent },
   { path: 'botones', component: BotonesComponent },
+  { path: 'registro-inicial', component: RegistroInicialComponent },
   { path: 'finca', component: FincaComponent },
+  { path: 'potrero', component: PotreroComponent },
+  { path: 'animal', component: AnimalComponent },
 ];
 
 @NgModule({

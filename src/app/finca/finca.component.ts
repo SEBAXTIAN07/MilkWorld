@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 
+interface Column {
+  field: string;
+  header: string;
+}
+
+export interface Product {
+  id?: string;
+  name?: string;
+}
+
 @Component({
   selector: 'app-finca',
   templateUrl: './finca.component.html',
@@ -8,27 +18,37 @@ import { MenuItem, MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class FincaComponent implements OnInit {
+  products!: Product[];
+
+  cols!: Column[];
   items: MenuItem[] = [];
   stpe1: boolean = true; // Inicialmente visible
   stpe2: boolean = false; // Inicialmente visible
-  stpe3: boolean = false; // Inicialmente visible
-  stpe4: boolean = false; // Inicialmente visible
-  stpe5: boolean = false; // Inicialmente visible
-  stpe6: boolean = false; // Inicialmente visible
 
   constructor(public messageService: MessageService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cols = [
+      { field: 'id', header: 'id' },
+      { field: 'name', header: 'Nombre' },
+    ];
+
+    this.products = [
+      { id: '1', name: 'Deiby Me lo Chupa' },
+      { id: '6', name: 'Sebas' },
+    ];
+  }
 
   validarStpe(numero: number) {
     console.log(numero);
     numero == 1 ? (this.stpe1 = true) : (this.stpe1 = false);
     numero == 2 ? (this.stpe2 = true) : (this.stpe2 = false);
-    numero == 3 ? (this.stpe3 = true) : (this.stpe3 = false);
-    numero == 4 ? (this.stpe4 = true) : (this.stpe4 = false);
-    numero == 5 ? (this.stpe5 = true) : (this.stpe5 = false);
-    numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
   }
 
-  
+  selectFinca(products: Product) {
+    console.log(products.id);
+    localStorage.setItem('NombreFinca', products.name!);
+    (this.stpe1 = true) ? (this.stpe1 = false) : true;
+    (this.stpe2 = true) ? (this.stpe2 = false) : true;
+  }
 }

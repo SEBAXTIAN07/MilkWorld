@@ -7,8 +7,7 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
-    border: 3px solid #007bff;
-    /* Borde azul de 2 píxeles */
+    border: 3px solid #007bff; /* Borde azul de 2 píxeles */
 }
 
 .boton-redondo img {
@@ -16,11 +15,4 @@
     height: auto;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.colorTexto {
-    color: rgb(0, 183, 255);
-    font-weight: bold;
-
-
 }

@@ -25,6 +25,10 @@ import { FincaComponent } from './finca/finca.component';
 import { StepsModule } from 'primeng/steps';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { FooterComponent } from './footer/footer.component';
+import { RegistroInicialComponent } from './registro-inicial/registro-inicial.component';
+import {TableModule} from 'primeng/table';
+import { PotreroComponent } from './potrero/potrero.component';
+import { AnimalComponent } from './animal/animal.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,9 @@ import { FooterComponent } from './footer/footer.component';
     BotonesComponent,
     FincaComponent,
     FooterComponent,
+    RegistroInicialComponent,
+    PotreroComponent,
+    AnimalComponent,
   ],
 
   imports: [
@@ -56,7 +63,8 @@ import { FooterComponent } from './footer/footer.component';
     MessagesModule,
     MessageModule,
     StepsModule,
-    InputNumberModule
+    InputNumberModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent],
