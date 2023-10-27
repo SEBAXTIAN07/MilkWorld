@@ -19,22 +19,22 @@ interface City {
   providers: [MessageService],
 })
 export class RegisterComponent implements OnInit {
-  public form: FormGroup = this.formBuilder.group({
-    numero_documento: ['', [Validators.required]],
-    tipo_documento: ['', [Validators.required]],
-    nombres: ['', [Validators.required]],
-    apellidos: ['', [Validators.required]],
-  });
   cities: City[] | undefined;
   selectedCity: City | undefined;
   selectTipoDocumento: City | undefined;
   formularioVisible: boolean = true;
   spinnerVisible: boolean = false;
   messages: Message[] = [];
-
   crearPersona!: crearPersona;
   responseCrearPersona!: responseCrearPersona;
 
+  public form: FormGroup = this.formBuilder.group({
+    numero_documento: ['', [Validators.required]],
+    tipo_documento: ['', [Validators.required]],
+    nombres: ['', [Validators.required]],
+    apellidos: ['', [Validators.required]],
+  });
+  
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -98,7 +98,9 @@ export class RegisterComponent implements OnInit {
     try {
       this.mostrarOcultarSpinner();
       this.messages = [];
+      //TODO: Valida si el formulario esta Vacio
       if (this.form.valid) {
+        //TODO: Llena el objeto a enviar.
         this.selectTipoDocumento = this.form.get('tipo_documento')?.value;
         this.crearPersona.tipo_documento = this.selectTipoDocumento?.code!;
         this.crearPersona.numero_documento = parseInt(
@@ -106,17 +108,12 @@ export class RegisterComponent implements OnInit {
         );
         this.crearPersona.nombres = this.form.get('nombres')?.value;
         this.crearPersona.apellidos = this.form.get('apellidos')?.value;
-        console.log(this.crearPersona);
+        //TODO: Consume el Servicio
         this.service
           .registrarUsuario(this.crearPersona)
           .subscribe((response) => {
             this.mostrarOcultarSpinner();
             this.responseCrearPersona = JSON.parse(response);
-            console.log(response);
-            console.log(response.mensaje);
-            console.log(response.numeroTransaccion);
-            console.log(response);
-            console.log('P: ' + this.responseCrearPersona.mensaje);
             this.messages = [
               {
                 severity: 'success',

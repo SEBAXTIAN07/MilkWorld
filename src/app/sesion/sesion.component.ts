@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
+import { ServiceService } from '../Service/service.service';
+import { responseValidarUsuario } from '../models/responseValidarUsuario';
 
 interface City {
   name: string;
@@ -13,22 +15,26 @@ interface City {
   styleUrls: ['./sesion.component.css'],
 })
 export class SesionComponent {
-  public form: FormGroup = this.formBuilder.group({
-    nombres: ['', [Validators.required]],
-    apellidos: ['', [Validators.required]],
-    cedula: ['', [Validators.required]],
-    tipoDocumento: ['', [Validators.required]],
-  });
   spinnerVisible: boolean = false; // Inicialmente visible
   formularioVisible: boolean = true; // Inicialmente visible
   messages: Message[] = [];
   cities: City[] | undefined;
+  selectTipoDocumento: City | undefined;
+  responseValidarUsuario!: responseValidarUsuario;
+  public form: FormGroup = this.formBuilder.group({
+    cedula: ['', [Validators.required]],
+    tipoDocumento: ['', [Validators.required]],
+  });
 
-
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private service: ServiceService
+  ) {}
 
   ngOnInit(): void {
     this.cities = [
+      { name: '', code: '' },
       { name: 'CC', code: 'CC' },
       { name: 'NIT', code: 'NIT' },
       { name: 'PASAPORTE', code: 'PASAPORTE' },
@@ -40,17 +46,101 @@ export class SesionComponent {
     this.router.navigate(['/login']);
   }
 
-  mostrarSpinner() {
-    this.formularioVisible = !this.formularioVisible;
-    this.spinnerVisible = !this.spinnerVisible;
-    setTimeout(() => {
-      this.formularioVisible = !this.formularioVisible;
-      this.spinnerVisible = !this.spinnerVisible;
+  mostrarSpinner(valor: boolean) {
+    if (valor) {
+      this.formularioVisible = false;
+      this.spinnerVisible = true;
+    } else {
+      this.formularioVisible = true;
+      this.spinnerVisible = false;
+    }
+  }
+
+  validarUsuario() {
+    this.messages = [];
+    if (this.form.valid) {
+      this.mostrarSpinner(true);
+      this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;
+      console.log(this.form.get('tipoDocumento-')?.value);
+      this.service.validarUsuario(this.selectTipoDocumento?.name+this.form.get('cedula')?.value).subscribe((response) => {
+        this.responseValidarUsuario = response;
+        console.log(this.responseValidarUsuario.mensaje);
+        if (this.responseValidarUsuario.mensaje == '1') {
+          this.messages = [
+            {
+              severity: 'success',
+              summary: 'El Usuario Logeado',
+              detail: '',
+            },
+          ];
+          this.router.navigate(['/botones']);
+        } else {
+          this.messages = [
+            {
+              severity: 'info',
+              summary: 'El Usuario No esta Registrado',
+              detail: '',
+            },
+          ];
+        }
+        this.mostrarSpinner(false);
+      });
+    } else {
       this.messages = [
-        { severity: 'error', summary: 'Error Iniciando Sesion', detail: '' },
-        { severity: 'info', summary: 'El Usuario No se Encuentra Registrado', detail: '' },
-        { severity: 'warn', summary: 'Digite los Campos Requeridos', detail: '' },
+        {
+          severity: 'warn',
+          summary: 'Digite los Campos Requeridos',
+          detail: '',
+        },
       ];
-    }, 3000);
+    }
+
+    // this.mostrarOcultarSpinner();
+    // this.responseCrearPersona = JSON.parse(response);
+    // this.messages = [
+    //   {
+    //     severity: 'success',
+    //     summary: 'El Usuario ya se Registro Correctamente',
+    //     detail: '',
+    //   },
+    // ];
+    // if ((this.responseCrearPersona.mensaje = '1')) {
+    //   this.messages = [
+    //     {
+    //       severity: 'info',
+    //       summary: 'El Usuario ya se Encuentra Registrado',
+    //       detail: '',
+    //     },
+    //   ];
+    // } else {
+    //   this.messages = [
+    //     {
+    //       severity: 'success',
+    //       summary: 'El Usuario ya se Registro Correctamente',
+    //       detail: '',
+    //     },
+    //   ];
+    // }
+    // setTimeout(() => {
+    //   this.router.navigate(['/botones']);
+    // }, 3000);
+
+    // setTimeout(() => {
+    //   this.formularioVisible = !this.formularioVisible;
+    //   this.spinnerVisible = !this.spinnerVisible;
+    //   this.messages = [
+    //     { severity: 'error', summary: 'Error Iniciando Sesion', detail: '' },
+    //     {
+    //       severity: 'info',
+    //       summary: 'El Usuario No se Encuentra Registrado',
+    //       detail: '',
+    //     },
+    //     {
+    //       severity: 'warn',
+    //       summary: 'Digite los Campos Requeridos',
+    //       detail: '',
+    //     },
+    //   ];
+    // }, 3000);
   }
 }

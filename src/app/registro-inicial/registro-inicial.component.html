@@ -1,496 +1,513 @@
 <!-- <app-navbar></app-navbar> -->
 <br />
-<div class="card"></div>
-<div>
-  <div *ngIf="stpe1">
-    <div class="text-center">
-      <div class="text-center p-3 border-round-sm font-bold">
-        <button class="boton-redondo">
-          <img
-            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
-            alt="Imagen del botón"
+<app-spinner *ngIf="spinnerVariable"></app-spinner>
+<div *ngIf="formularioVariable">
+  <form [formGroup]="form">
+    <div>
+      <div *ngIf="stpe1">
+        <div class="text-center">
+          <div class="text-center p-3 border-round-sm font-bold">
+            <button class="boton-redondo">
+              <img
+                src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+                alt="Imagen del botón"
+              />
+            </button>
+          </div>
+          <hr />
+          <div>
+            <h2>Registrar Finca</h2>
+          </div>
+          <br />
+        </div>
+        <div>
+          <br />
+          <div class="field">
+            <label for="firstname1">Nombre de la Finca</label>
+            <input
+              id="firstname1"
+              type="text"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              formControlName="nombreFinca"
+            />
+          </div>
+          <div class="field">
+            <label for="lastname1">Numero de Celular</label>
+            <input
+              id="lastname1"
+              maxlength="10"
+              type="number"
+              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              formControlName="numeroTelefono"
+            />
+          </div>
+          <div class="field">
+            <label for="lastname1">Departamento</label>
+            <br />
+            <p-dropdown
+              [options]="departamentos"
+              optionLabel="nombreDepartamento"
+              (onChange)="visualizarMunicipio()"
+              formControlName="departamento"
+            ></p-dropdown>
+            <!-- <p-dropdown formControlName="city" [options]="cities" optionLabel="name"></p-dropdown> -->
+          </div>
+          <div class="field">
+            <label for="lastname1">Municipio</label>
+            <br />
+            <p-dropdown
+              [options]="municipios"
+              optionLabel="nombreMunicipio"
+              formControlName="municipio"
+              (onChange)="valida()"
+            ></p-dropdown>
+          </div>
+          <div class="flex justify-content-center flex-wrap">
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Volver"
+                class="p-button-outlined"
+                routerLink="/botones"
+              ></button>
+            </div>
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Siguiente"
+                class="p-button-outlined p-button-success"
+                (click)="validarStpe(2)"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="stpe2">
+        <div class="text-center">
+          <div class="text-center p-3 border-round-sm font-bold">
+            <button class="boton-redondo">
+              <img
+                src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+                alt="Imagen del botón"
+              />
+            </button>
+          </div>
+          <hr />
+          <div>
+            <h2>Registrar Finca</h2>
+          </div>
+          <br />
+        </div>
+        <div class="field">
+          <label for="lastname1">Nombre de la Vereda</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="nombreVereda"
           />
-        </button>
-      </div>
-      <hr />
-      <div>
-        <h2>Registrar Finca</h2>
-      </div>
-      <br />
-    </div>
-    <div>
-      <br />
-      <div class="field">
-        <label for="firstname1">Nombre de la Finca</label>
-        <input
-          id="firstname1"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Numero de Celular</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Departamento</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Municipio</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="flex justify-content-center flex-wrap">
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Volver"
-            class="p-button-outlined"
-            routerLink="/botones"
-          ></button>
         </div>
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Siguiente"
-            class="p-button-outlined p-button-success"
-            (click)="validarStpe(2)"
-          ></button>
+        <div class="field">
+          <label for="lastname1">Tipo de Ordeño</label>
+          <br />
+          <p-dropdown
+            [options]="cities"
+            formControlName="tipoOrdeño"
+            optionLabel="name"
+            class="w-full mb-3"
+          >
+          </p-dropdown>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="stpe2">
-    <div class="text-center">
-      <div class="text-center p-3 border-round-sm font-bold">
-        <button class="boton-redondo">
-          <img
-            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
-            alt="Imagen del botón"
+        <div class="field">
+          <label for="lastname1">N° de Ordeño Diario</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="numeroOrdenoDiario"
           />
-        </button>
+        </div>
+        <div class="flex justify-content-center flex-wrap">
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Volver"
+              class="p-button-outlined"
+              (click)="validarStpe(1)"
+            ></button>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Siguiente"
+              class="p-button-outlined p-button-success"
+              (click)="validarStpe(3)"
+            ></button>
+          </div>
+        </div>
       </div>
-      <hr />
-      <div>
-        <h2>Registrar Finca</h2>
-      </div>
-      <br />
-    </div>
-    <div class="field">
-      <label for="lastname1">N° de la Vereda</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Tipo de Ordeño</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">N° de Ordeño Diario</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Volver"
-          class="p-button-outlined"
-          (click)="validarStpe(1)"
-        ></button>
-      </div>
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Siguiente"
-          class="p-button-outlined p-button-success"
-          (click)="validarStpe(3)"
-        ></button>
-      </div>
-    </div>
-  </div>
 
-  <div *ngIf="stpe3">
-    <div class="text-center">
-      <div class="text-center p-3 border-round-sm font-bold">
-        <button class="boton-redondo">
-          <img
-            src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
-            alt="Imagen del botón"
+      <div *ngIf="stpe3">
+        <div class="text-center">
+          <div class="text-center p-3 border-round-sm font-bold">
+            <button class="boton-redondo">
+              <img
+                src="https://img.freepik.com/vector-premium/icono-cultivo-blanco_118813-9124.jpg"
+                alt="Imagen del botón"
+              />
+            </button>
+          </div>
+          <hr />
+          <div>
+            <h2>Registrar Finca</h2>
+          </div>
+          <br />
+        </div>
+        <div class="field">
+          <label for="lastname1">Area Total</label>
+          <br />
+          <p-inputNumber prefix="m: " formControlName="areaTotal">
+          </p-inputNumber>
+        </div>
+        <div class="field">
+          <label for="lastname1">¿Usa Suplemento?</label>
+          <br />
+          <p-dropdown
+            [options]="suplementos"
+            formControlName="tipoOrdeño"
+            optionLabel="name"
+            class="w-full mb-3"
+          >
+          </p-dropdown>
+        </div>
+        <br />
+
+        <div class="flex justify-content-center flex-wrap">
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Volver"
+              class="p-button-outlined"
+              (click)="validarStpe(2)"
+            ></button>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Siguiente"
+              class="p-button-outlined p-button-success"
+              (click)="validarStpe(4)"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="stpe4">
+      <div class="text-center">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <button class="boton-redondo">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
+              alt="Imagen del botón"
+            />
+          </button>
+        </div>
+        <hr />
+        <div>
+          <h2>Registrar Potrero</h2>
+        </div>
+        <br />
+      </div>
+      <div>
+        <br />
+        <div class="field">
+          <label for="firstname1">Nombre del Potrero</label>
+          <input
+            id="firstname1"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="nombrePotrero"
           />
-        </button>
+        </div>
+        <div class="field">
+          <label for="lastname1">Area del Potrero</label>
+          <br />
+          <p-inputNumber prefix="m: " formControlName="areaPotrero">
+          </p-inputNumber>
+        </div>
+        <div class="field">
+          <label for="lastname1">Capacidad Maxima Forraje</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="capacidadMaximaForraje"
+          />
+        </div>
+        <div class="field">
+          <label for="lastname1">Capacidad Maxima Agua</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="capacidadMaximaAgua"
+          />
+        </div>
+        <div class="flex justify-content-center flex-wrap">
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Volver"
+              class="p-button-outlined"
+              (click)="validarStpe(3)"
+            ></button>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Siguiente"
+              class="p-button-outlined p-button-success"
+              (click)="validarStpe(5)"
+            ></button>
+          </div>
+        </div>
       </div>
-      <hr />
+    </div>
+
+    <div *ngIf="stpe5">
+      <div class="text-center">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <button class="boton-redondo">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
+              alt="Imagen del botón"
+            />
+          </button>
+        </div>
+        <hr />
+        <div>
+          <h2>Registrar Potrero</h2>
+        </div>
+        <br />
+      </div>
       <div>
-        <h2>Registrar Finca</h2>
-      </div>
-      <br />
-    </div>
-    <div class="field">
-      <label for="lastname1">Area Total</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">¿Usa Suplemento?</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <br />
-
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Volver"
-          class="p-button-outlined"
-          (click)="validarStpe(2)"
-        ></button>
-      </div>
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Siguiente"
-          class="p-button-outlined p-button-success"
-          (click)="validarStpe(4)"
-        ></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="stpe4">
-  <div class="text-center">
-    <div class="text-center p-3 border-round-sm font-bold">
-      <button class="boton-redondo">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
-          alt="Imagen del botón"
-        />
-      </button>
-    </div>
-    <hr />
-    <div>
-      <h2>Registrar Potrero</h2>
-    </div>
-    <br />
-  </div>
-  <div>
-    <br />
-    <div class="field">
-      <label for="firstname1">Nombre del Potrero</label>
-      <input
-        id="firstname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Area del Potrero</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Capacidad Maxima Forraje</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Capacidad Maxima Agua</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Volver"
-          class="p-button-outlined"
-          (click)="validarStpe(3)"
-        ></button>
-      </div>
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Siguiente"
-          class="p-button-outlined p-button-success"
-          (click)="validarStpe(5)"
-        ></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="stpe5">
-  <div class="text-center">
-    <div class="text-center p-3 border-round-sm font-bold">
-      <button class="boton-redondo">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
-          alt="Imagen del botón"
-        />
-      </button>
-    </div>
-    <hr />
-    <div>
-      <h2>Registrar Potrero</h2>
-    </div>
-    <br />
-  </div>
-  <div>
-    <br />
-    <div class="field">
-      <label for="firstname1">Cupo Maximo de Animales</label>
-      <input
-        id="firstname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Tipo de Pasto</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Codigo Finca</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Capacidad Maxima Agua</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex-1 text-center align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <label for="lastname1">¿Desea Agregar Animales?</label>
-      </div>
-
-      <div class="flex justify-content-center flex-wrap">
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="No"
-            class="p-button-outlined"
-          ></button>
+        <br />
+        <div class="field">
+          <label for="firstname1">Cupo Maximo de Animales</label>
+          <input
+            id="firstname1"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="cupoMaximoAnimales"
+          />
         </div>
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Si"
-            class="p-button-outlined p-button-success"
-            (click)="validarStpe(6)"
-          ></button>
+        <div class="field">
+          <label for="lastname1">Tipo de Pasto</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="codigoPasto"
+          />
+        </div>
+        <div class="field">
+          <label for="lastname1">Codigo Finca</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="codigoFinca"
+          />
+        </div>
+
+        <div class="flex justify-content-center flex-wrap">
+          <div
+            class="flex-1 text-center align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <label for="lastname1">¿Desea Agregar Animales?</label>
+          </div>
+
+          <div class="flex justify-content-center flex-wrap">
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="No"
+                class="p-button-outlined"
+              ></button>
+            </div>
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Si"
+                class="p-button-outlined p-button-success"
+                (click)="validarStpe(6)"
+              ></button>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="flex justify-content-center flex-wrap">
+          <div class="flex justify-content-center flex-wrap">
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Volver"
+                class="p-button-outlined"
+                (click)="validarStpe(4)"
+              ></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <hr />
 
-    <div class="flex justify-content-center flex-wrap">
-      <div class="flex justify-content-center flex-wrap">
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Volver"
-            class="p-button-outlined"
-            (click)="validarStpe(4)"
-          ></button>
+    <div *ngIf="stpe6">
+      <div class="text-center">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <button class="boton-redondo">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4496/4496184.png"
+              alt="Imagen del botón"
+            />
+          </button>
         </div>
+        <hr />
+        <div>
+          <h2>Registrar Animal</h2>
+        </div>
+        <br />
+      </div>
+      <div>
+        <br />
+        <div class="field">
+          <label for="firstname1">Raza</label>
+          <br />
+          <p-dropdown
+            [options]="raza"
+            formControlName="raza"
+            optionLabel="name"
+            class="w-full mb-3"
+          >
+          </p-dropdown>
+        </div>
+        <div class="field">
+          <label for="lastname1">Numero Cotral</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="numeroCrotal"
+          />
+        </div>
+        <div class="field">
+          <label for="lastname1">Nombre Animal</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="nombreAnimal"
+          />
+        </div>
+        <div class="field">
+          <label for="lastname1">Fecha de Nacimiento</label>
+          <br />
+          <p-calendar formControlName="fechaNacimiento"></p-calendar>
+        </div>
+        <div class="field">
+          <label for="lastname1">Numero de Partos</label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="numeroPartos"
+          />
+        </div>
+
+        <div class="flex justify-content-center flex-wrap">
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Volver"
+              class="p-button-outlined"
+              (click)="validarStpe(5)"
+            ></button>
+          </div>
+          <div
+            class="flex align-items-center justify-content-center font-bold border-round m-2"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Crear"
+              class="p-button-outlined p-button-success"
+              (click)="registrarFincaInicial()"
+            ></button>
+          </div>
+        </div>
+
+        <!-- <app-footer></app-footer> -->
       </div>
     </div>
-  </div>
-</div>
-
-<div *ngIf="stpe6">
-  <div class="text-center">
-    <div class="text-center p-3 border-round-sm font-bold">
-      <button class="boton-redondo">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4496/4496184.png"
-          alt="Imagen del botón"
-        />
-      </button>
-    </div>
-    <hr />
-    <div>
-      <h2>Registrar Animal</h2>
-    </div>
-    <br />
-  </div>
-  <div>
-    <br />
-    <div class="field">
-      <label for="firstname1">Raza</label>
-      <input
-        id="firstname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Numero Corral</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Fecha de Nacimiento</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Numero de Partos</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Volver"
-          class="p-button-outlined"
-          (click)="validarStpe(5)"
-        ></button>
-      </div>
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Crear"
-          class="p-button-outlined p-button-success"
-          (click)="validarStpe(6)"
-        ></button>
-      </div>
-    </div>
-
-    <!-- <app-footer></app-footer> -->
-  </div>
+  </form>
 </div>

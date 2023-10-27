@@ -17,16 +17,16 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { BotonesComponent } from './botones/botones.component';
 import { FincaComponent } from './finca/finca.component';
 import { StepsModule } from 'primeng/steps';
-import {InputNumberModule} from 'primeng/inputnumber';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { FooterComponent } from './footer/footer.component';
 import { RegistroInicialComponent } from './registro-inicial/registro-inicial.component';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { PotreroComponent } from './potrero/potrero.component';
 import { AnimalComponent } from './animal/animal.component';
 import { TrasladoComponent } from './traslado/traslado.component';
@@ -34,7 +34,8 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { HidricaComponent } from './hidrica/hidrica.component';
 import { FieldsetModule } from 'primeng/fieldset';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CalendarModule } from 'primeng/calendar';
+import { PrimeNGConfig } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { HttpClientModule } from '@angular/common/http';
     InputNumberModule,
     TableModule,
     FieldsetModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
