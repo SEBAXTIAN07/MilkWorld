@@ -34,8 +34,8 @@ export class FincaComponent implements OnInit {
     ];
 
     this.products = [
-      { id: '1', name: 'Deiby Me lo Chupa' },
-      { id: '6', name: 'Sebas' },
+      { id: '1', name: 'Finca 1' },
+      { id: '6', name: 'Finca 2' },
     ];
   }
 

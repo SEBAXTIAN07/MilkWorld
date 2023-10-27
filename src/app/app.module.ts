@@ -29,6 +29,12 @@ import { RegistroInicialComponent } from './registro-inicial/registro-inicial.co
 import {TableModule} from 'primeng/table';
 import { PotreroComponent } from './potrero/potrero.component';
 import { AnimalComponent } from './animal/animal.component';
+import { TrasladoComponent } from './traslado/traslado.component';
+import { ActividadesComponent } from './actividades/actividades.component';
+import { HidricaComponent } from './hidrica/hidrica.component';
+import { FieldsetModule } from 'primeng/fieldset';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +50,9 @@ import { AnimalComponent } from './animal/animal.component';
     RegistroInicialComponent,
     PotreroComponent,
     AnimalComponent,
+    TrasladoComponent,
+    ActividadesComponent,
+    HidricaComponent,
   ],
 
   imports: [
@@ -64,7 +73,9 @@ import { AnimalComponent } from './animal/animal.component';
     MessageModule,
     StepsModule,
     InputNumberModule,
-    TableModule
+    TableModule,
+    FieldsetModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

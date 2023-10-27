@@ -1,0 +1,7 @@
+.bold-label {
+    font-weight: bold;
+    background: linear-gradient(to right, #0074E4, #00A3E0);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

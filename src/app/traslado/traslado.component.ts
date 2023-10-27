@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-animal',
-  templateUrl: './animal.component.html',
-  styleUrls: ['./animal.component.css'],
+  selector: 'app-traslado',
+  templateUrl: './traslado.component.html',
+  styleUrls: ['./traslado.component.css'],
   providers: [MessageService],
-
 })
-export class AnimalComponent {
+export class TrasladoComponent {
   stpe6: boolean = true; // Inicialmente visible
 
   constructor(public messageService: MessageService) {}
@@ -19,4 +18,5 @@ export class AnimalComponent {
     console.log(numero);
     numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
   }
+
 }

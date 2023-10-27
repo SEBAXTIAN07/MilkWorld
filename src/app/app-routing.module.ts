@@ -9,6 +9,9 @@ import { FincaComponent } from './finca/finca.component';
 import { RegistroInicialComponent } from './registro-inicial/registro-inicial.component';
 import { PotreroComponent } from './potrero/potrero.component';
 import { AnimalComponent } from './animal/animal.component';
+import { TrasladoComponent } from './traslado/traslado.component';
+import { ActividadesComponent } from './actividades/actividades.component';
+import { HidricaComponent } from './hidrica/hidrica.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'finca', component: FincaComponent },
   { path: 'potrero', component: PotreroComponent },
   { path: 'animal', component: AnimalComponent },
+  { path: 'traslado', component: TrasladoComponent },
+  { path: 'actividades', component: ActividadesComponent },
+  { path: 'huella-hidrica', component: HidricaComponent },
 ];
 
 @NgModule({
