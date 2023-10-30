@@ -1,7 +1,7 @@
 import { municipio } from './municipio';
 
 export interface departamentos {
-  codigoDepartamento: string;
+  codigoDepartamento: number;
   nombreDepartamento: number;
   listaMunicipios: [municipio];
 }

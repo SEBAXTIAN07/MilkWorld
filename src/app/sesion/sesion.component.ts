@@ -61,10 +61,9 @@ export class SesionComponent {
     if (this.form.valid) {
       this.mostrarSpinner(true);
       this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;
-      console.log(this.form.get('tipoDocumento-')?.value);
       this.service.validarUsuario(this.selectTipoDocumento?.name+this.form.get('cedula')?.value).subscribe((response) => {
         this.responseValidarUsuario = response;
-        console.log(this.responseValidarUsuario.mensaje);
+        console.log(this.responseValidarUsuario);
         if (this.responseValidarUsuario.mensaje == '1') {
           this.messages = [
             {
@@ -73,6 +72,7 @@ export class SesionComponent {
               detail: '',
             },
           ];
+          localStorage.setItem('idUsuario', this.selectTipoDocumento?.name+this.form.get('cedula')?.value);
           this.router.navigate(['/botones']);
         } else {
           this.messages = [

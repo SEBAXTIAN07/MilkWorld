@@ -1,5 +1,9 @@
 <!-- <app-navbar></app-navbar> -->
-<br />
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="false"
+></p-messages>
 <app-spinner *ngIf="spinnerVariable"></app-spinner>
 <div *ngIf="formularioVariable">
   <form [formGroup]="form">
@@ -47,6 +51,7 @@
             <p-dropdown
               [options]="departamentos"
               optionLabel="nombreDepartamento"
+              placeholder="Seleccione"
               (onChange)="visualizarMunicipio()"
               formControlName="departamento"
             ></p-dropdown>
@@ -57,9 +62,9 @@
             <br />
             <p-dropdown
               [options]="municipios"
+              placeholder="Seleccione"
               optionLabel="nombreMunicipio"
               formControlName="municipio"
-              (onChange)="valida()"
             ></p-dropdown>
           </div>
           <div class="flex justify-content-center flex-wrap">
@@ -84,11 +89,13 @@
                 type="button"
                 label="Siguiente"
                 class="p-button-outlined p-button-success"
-                (click)="validarStpe(2)"
+                (click)="abrilModal(2)"
               ></button>
             </div>
           </div>
         </div>
+
+       
       </div>
 
       <div *ngIf="stpe2">
@@ -121,8 +128,9 @@
           <label for="lastname1">Tipo de Ordeño</label>
           <br />
           <p-dropdown
-            [options]="cities"
-            formControlName="tipoOrdeño"
+            [options]="tipoOrdeno"
+            placeholder="Seleccione"
+            formControlName="tipoOrdeno"
             optionLabel="name"
             class="w-full mb-3"
           >
@@ -148,7 +156,7 @@
               type="button"
               label="Volver"
               class="p-button-outlined"
-              (click)="validarStpe(1)"
+              (click)="abrilModal(1)"
             ></button>
           </div>
           <div
@@ -193,7 +201,8 @@
           <br />
           <p-dropdown
             [options]="suplementos"
-            formControlName="tipoOrdeño"
+            formControlName="usoSuplemento"
+            placeholder="Seleccione"
             optionLabel="name"
             class="w-full mb-3"
           >
@@ -211,7 +220,7 @@
               type="button"
               label="Volver"
               class="p-button-outlined"
-              (click)="validarStpe(2)"
+              (click)="abrilModal(2)"
             ></button>
           </div>
           <div
@@ -265,23 +274,15 @@
         </div>
         <div class="field">
           <label for="lastname1">Capacidad Maxima Forraje</label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="number"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="capacidadMaximaForraje"
-          />
+          <br />
+          <p-inputNumber prefix="Kg: " formControlName="capacidadMaximaForraje">
+          </p-inputNumber>
         </div>
         <div class="field">
           <label for="lastname1">Capacidad Maxima Agua</label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="number"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="capacidadMaximaAgua"
-          />
+          <br />
+          <p-inputNumber prefix="L: " formControlName="capacidadMaximaAgua">
+          </p-inputNumber>
         </div>
         <div class="flex justify-content-center flex-wrap">
           <div
@@ -293,7 +294,7 @@
               type="button"
               label="Volver"
               class="p-button-outlined"
-              (click)="validarStpe(3)"
+              (click)="abrilModal(3)"
             ></button>
           </div>
           <div
@@ -406,7 +407,19 @@
                 type="button"
                 label="Volver"
                 class="p-button-outlined"
-                (click)="validarStpe(4)"
+                (click)="abrilModal(4)"
+              ></button>
+            </div>
+            <div
+              class="flex align-items-center justify-content-center font-bold border-round m-2"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                label="Crear"
+                class="p-button-outlined p-button-success"
+                (click)="registrarFincaInicial()"
               ></button>
             </div>
           </div>
@@ -489,7 +502,7 @@
               type="button"
               label="Volver"
               class="p-button-outlined"
-              (click)="validarStpe(5)"
+              (click)="abrilModal(5)"
             ></button>
           </div>
           <div

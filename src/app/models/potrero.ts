@@ -1,7 +1,6 @@
 import { animales } from './animales';
 
 export interface Potrero {
-  codigoPotrero: string;
   nombrePotrero: string;
   areaPotrero: number;
   capacidadMaximaForraje: number;
@@ -9,5 +8,5 @@ export interface Potrero {
   cupoMaximoAnimales: number;
   codigoPasto: number;
   codigoFinca: string;
-  animales: [animales];
+  animales?: [animales] ;
 }

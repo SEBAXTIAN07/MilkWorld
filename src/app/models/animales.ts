@@ -5,6 +5,5 @@ export interface animales {
   nombreAnimal: string;
   fechaNacimiento: string;
   numeroPartos: number;
-  codigoPotrero: string;
-  raza: [Raza];
+  raza: Raza;
 }
