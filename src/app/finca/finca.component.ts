@@ -60,8 +60,6 @@ export class FincaComponent implements OnInit {
       localStorage.getItem('infoUsuario')!
     );
     this.seleccionarFinca = this.responseValidarUsuario.listaResultado;
-    console.log(this.responseValidarUsuario.listaResultado);
-    console.log(this.seleccionarFinca);
 
     this.cols = [
       { field: 'id', header: 'id' },
@@ -75,13 +73,15 @@ export class FincaComponent implements OnInit {
   }
 
   validarStpe(numero: number) {
-    console.log(numero);
     numero == 1 ? (this.stpe1 = true) : (this.stpe1 = false);
     numero == 2 ? (this.stpe2 = true) : (this.stpe2 = false);
   }
 
   selectFinca(products: finca) {
-    console.log(products);
+    localStorage.setItem(
+      'infoFinca',
+      JSON.stringify(products)
+    );
     // localStorage.setItem('NombreFinca', products.name!);
     (this.stpe1 = true) ? (this.stpe1 = false) : true;
     (this.stpe2 = true) ? (this.stpe2 = false) : true;

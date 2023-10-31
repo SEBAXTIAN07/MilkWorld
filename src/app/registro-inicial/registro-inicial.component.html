@@ -393,6 +393,7 @@
                 type="button"
                 label="No"
                 class="p-button-outlined"
+                [disabled]=boton
               ></button>
             </div>
             <div
@@ -405,6 +406,7 @@
                 label="Si"
                 class="p-button-outlined p-button-success"
                 (click)="validarStpe(6)"
+                [disabled]=boton
               ></button>
             </div>
           </div>
@@ -423,6 +425,7 @@
                 label="Volver"
                 class="p-button-outlined"
                 (click)="abrilModal(4)"
+                [disabled]=boton
               ></button>
             </div>
             <div
@@ -435,6 +438,7 @@
                 label="Crear"
                 class="p-button-outlined p-button-success"
                 (click)="registrarFincaInicial()"
+                [disabled]=boton
               ></button>
             </div>
           </div>
@@ -522,6 +526,7 @@
               label="Volver"
               class="p-button-outlined"
               (click)="abrilModal(5)"
+              [disabled]=boton
             ></button>
           </div>
           <div
@@ -534,6 +539,7 @@
               label="Crear"
               class="p-button-outlined p-button-success"
               (click)="registrarFincaInicial()"
+              [disabled]=boton
             ></button>
           </div>
         </div>

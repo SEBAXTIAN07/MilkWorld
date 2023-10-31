@@ -68,7 +68,6 @@ export class SesionComponent {
         )
         .subscribe((response) => {
           this.responseValidarUsuario = response;
-          console.log(this.responseValidarUsuario);
           if (this.responseValidarUsuario.mensaje == '1') {
             this.messages = [
               {

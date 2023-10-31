@@ -16,7 +16,6 @@ export class AnimalComponent {
   ngOnInit() {}
  
   validarStpe(numero: number) {
-    console.log(numero);
     numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
   }
 }

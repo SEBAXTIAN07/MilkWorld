@@ -7,6 +7,7 @@ import { Message } from 'primeng/api';
 import { ServiceService } from '../Service/service.service';
 import { crearPersona } from '../models/crearPersona';
 import { responseCrearPersona } from '../models/responseCrearPersona';
+import { responseValidarUsuario } from '../models/responseValidarUsuario';
 
 interface City {
   name: string;
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
   messages: Message[] = [];
   crearPersona!: crearPersona;
   responseCrearPersona!: responseCrearPersona;
+  responseValidarUsuario!: responseValidarUsuario;
 
   public form: FormGroup = this.formBuilder.group({
     numero_documento: ['', [Validators.required]],
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
     nombres: ['', [Validators.required]],
     apellidos: ['', [Validators.required]],
   });
-  
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -58,7 +60,6 @@ export class RegisterComponent implements OnInit {
       apellidos: 'Forero Sanchez',
     };
 
-    console.log(this.crearPersona);
   }
 
   volverInicio() {
@@ -66,19 +67,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registroUsuario2() {
-    console.log('nombres: ' + this.form.get('nombres')?.value);
-    console.log('apellidos: ' + this.form.get('apellidos')?.value);
-    console.log('cedula: ' + this.form.get('cedula')?.value);
-    console.log(
-      'tipo_documento: ' +
-        JSON.stringify(this.form.get('tipo_documento')?.value)
-    );
-    console.log(
-      'tipo_documento: ' + this.form.get('tipo_documento.code')?.value
-    );
-
     this.selectTipoDocumento = this.form.get('tipo_documento')?.value;
-    console.log('Name2: ' + this.selectTipoDocumento?.name);
   }
 
   showSuccess() {
@@ -114,14 +103,7 @@ export class RegisterComponent implements OnInit {
           .subscribe((response) => {
             this.mostrarOcultarSpinner();
             this.responseCrearPersona = JSON.parse(response);
-            this.messages = [
-              {
-                severity: 'success',
-                summary: 'El Usuario ya se Registro Correctamente',
-                detail: '',
-              },
-            ];
-            if ((this.responseCrearPersona.mensaje = '1')) {
+            if (this.responseCrearPersona.mensaje == '1') {
               this.messages = [
                 {
                   severity: 'info',
@@ -138,6 +120,7 @@ export class RegisterComponent implements OnInit {
                 },
               ];
             }
+            this.validarUsuario();
             setTimeout(() => {
               this.router.navigate(['/botones']);
             }, 3000);
@@ -182,5 +165,36 @@ export class RegisterComponent implements OnInit {
     // }, 3000);
     // this.formularioVisible = !this.formularioVisible;
     // this.spinnerVisible = !this.spinnerVisible;
+  }
+
+  validarUsuario() {
+    this.service
+      .validarUsuario(
+        this.selectTipoDocumento?.name +
+          this.form.get('numero_documento')?.value
+      )
+      .subscribe((response) => {
+        this.responseValidarUsuario = response;
+        if (this.responseValidarUsuario.mensaje == '1') {
+          localStorage.setItem(
+            'idUsuario',
+            this.selectTipoDocumento?.name +
+              this.form.get('numero_documento')?.value
+          );
+          localStorage.setItem(
+            'infoUsuario',
+            JSON.stringify(this.responseValidarUsuario)
+          );
+          this.router.navigate(['/botones']);
+        } else {
+          this.messages = [
+            {
+              severity: 'info',
+              summary: 'El Usuario No esta Registrado',
+              detail: '',
+            },
+          ];
+        }
+      });
   }
 }

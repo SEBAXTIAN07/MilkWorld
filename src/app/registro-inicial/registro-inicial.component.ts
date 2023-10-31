@@ -12,6 +12,9 @@ import {
 import { municipio } from '../models/municipio';
 import { responseDepartamento } from '../models/responseDepartamento';
 import { finca } from '../models/finca';
+import { responseValidarUsuario } from '../models/responseValidarUsuario';
+import { responseCrearPersona } from '../models/responseCrearPersona';
+import { Router } from '@angular/router';
 
 interface Generica {
   name: string;
@@ -77,6 +80,8 @@ export class RegistroInicialComponent implements OnInit {
   seleccionartipoOrdeno!: Generica;
   seleccionartiSuplemento!: Generica;
   seleccionarRaza!: GenericaNumber;
+  responseCrearPersona!: responseCrearPersona;
+  boton: boolean = false;
 
   public form: FormGroup = this.formBuilder.group({
     id_persona: ['', [Validators.required]],
@@ -112,7 +117,7 @@ export class RegistroInicialComponent implements OnInit {
     public messageService: MessageService,
     private service: ServiceService,
     private formBuilder: FormBuilder,
-    private config: PrimeNGConfig
+    private router: Router
   ) {}
 
   get interests() {
@@ -121,7 +126,6 @@ export class RegistroInicialComponent implements OnInit {
 
   addInterest() {
     this.interests.push(this.formBuilder.control(''));
-    console.log(this.form.get('interest'));
   }
 
   removeInterest(index: number) {
@@ -264,6 +268,13 @@ export class RegistroInicialComponent implements OnInit {
     numero == 4 ? (this.stpe4 = true) : (this.stpe4 = false);
     numero == 5 ? (this.stpe5 = true) : (this.stpe5 = false);
     numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
+
+    if (numero == 5) {
+      this.form.get('fechaNacimiento')?.setValue(null);
+      this.form.get('numeroPartos')?.setValue(null);
+      this.form.get('nombreAnimal')?.setValue(null);
+      this.form.get('numeroCrotal')?.setValue(null);
+    }
   }
 
   visualizarMunicipio() {
@@ -299,10 +310,12 @@ export class RegistroInicialComponent implements OnInit {
       ];
       this.form.get('areaPotrero')?.setValue(0);
     }
-    }
+  }
 
   registrarFincaInicial() {
     //TODO:Validado
+    this.mostrarSpinner(true);
+    this.boton = true;
     this.seleccionarmunicipios = this.form.get('municipio')?.value;
     this.finca.id_persona = localStorage.getItem('idUsuario') ?? '';
     this.finca.codigoFinca = this.form.get('codigoFinca')?.value.toString();
@@ -347,17 +360,24 @@ export class RegistroInicialComponent implements OnInit {
         this.finca.potreros[0] &&
         this.finca.potreros[0].animales
       ) {
-        console.log('Validacion');
-        this.finca.potreros[0].animales[0].nombreAnimal =
-          this.form.get('nombreAnimal')?.value;
-        this.finca.potreros[0].animales[0].nombreAnimal =
-          this.form.get('nombreAnimal')?.value;
         this.finca.potreros[0].animales[0].nombreAnimal =
           this.form.get('nombreAnimal')?.value;
         this.finca.potreros[0].animales[0].numeroCrotal =
           this.form.get('numeroCrotal')?.value;
-        this.finca.potreros[0].animales[0].fechaNacimiento =
-          this.form.get('fechaNacimiento')?.value;
+
+        const fechaCompleta = this.form.get('fechaNacimiento')?.value;
+
+        if (fechaCompleta) {
+          const fecha = new Date(fechaCompleta);
+          const dia = fecha.getDate();
+          const mes = fecha.getMonth() + 1;
+          const año = fecha.getFullYear();
+          this.finca.potreros[0].animales[0].fechaNacimiento =
+            dia + '/' + mes + '/' + año;
+        } else {
+          console.log('La fecha es nula o no válida.');
+        }
+
         this.finca.potreros[0].animales[0].numeroPartos =
           this.form.get('numeroPartos')?.value;
         this.seleccionarRaza = this.form.get('raza')?.value;
@@ -369,29 +389,32 @@ export class RegistroInicialComponent implements OnInit {
       }
     }
     this.service.registrarFincaInicial(this.finca).subscribe((response) => {
-      console.log(response);
-      // this.responseValidarUsuario = response;
-      // console.log(this.responseValidarUsuario.mensaje);
-      // if (this.responseValidarUsuario.mensaje == '1') {
-      //   this.messages = [
-      //     {
-      //       severity: 'success',
-      //       summary: 'El Usuario Logeado',
-      //       detail: '',
-      //     },
-      //   ];
-        // this.router.navigate(['/botones']);
-      // } else {
-      //   this.messages = [
-      //     {
-      //       severity: 'info',
-      //       summary: 'El Usuario No esta Registrado',
-      //       detail: '',
-      //     },
-      //   ];
-      // }
-      // this.mostrarSpinner(false);
+      this.responseCrearPersona = JSON.parse(response);
+
+      if (this.responseCrearPersona.mensaje == '0') {
+        this.messages = [
+          {
+            severity: 'success',
+            summary: 'La Finca se Creo Correctamente',
+            detail: '',
+          },
+        ];
+        setTimeout(() => {
+          localStorage.removeItem('infoFinca');
+          this.router.navigate(['/botones']);
+        }, 3000);
+      } else {
+        this.messages = [
+          {
+            severity: 'info',
+            summary: 'La Finca ya se encuentra Creada',
+            detail: '',
+          },
+        ];
+        this.boton = false;
+      }
+
+      this.mostrarSpinner(false);
     });
-    console.log(this.finca);
   }
 }

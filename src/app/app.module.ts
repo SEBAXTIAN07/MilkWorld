@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CalendarModule } from 'primeng/calendar';
 import { PrimeNGConfig } from 'primeng/api';
 import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
     FieldsetModule,
     HttpClientModule,
     CalendarModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

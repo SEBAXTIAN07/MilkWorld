@@ -19,6 +19,14 @@ export class ServiceService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  validarUsuarioSistema() {
+    const infoUsuarioJSON = localStorage.getItem('infoUsuario');
+    if (infoUsuarioJSON == null) {
+      this.router.navigate(['/login']);
+    }
+    return 'OK';
+  }
+
   registrarUsuario(page: crearPersona): Observable<any> {
     let direction = this.url + 'Huella/crearPersona';
     return this.http.post<any>(direction, page, {
@@ -27,7 +35,6 @@ export class ServiceService {
   }
 
   validarUsuario(usuario: string): Observable<any> {
-    console.log(usuario);
     return this.http.get(this.url + 'Huella/listarFinca/' + usuario).pipe(
       catchError((err) => {
         if ([401, 403, 404].indexOf(err.status) !== 1) {
