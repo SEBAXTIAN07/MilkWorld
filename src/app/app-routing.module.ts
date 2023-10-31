@@ -12,6 +12,7 @@ import { AnimalComponent } from './animal/animal.component';
 import { TrasladoComponent } from './traslado/traslado.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { HidricaComponent } from './hidrica/hidrica.component';
+import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'traslado', component: TrasladoComponent },
   { path: 'actividades', component: ActividadesComponent },
   { path: 'huella-hidrica', component: HidricaComponent },
+  { path: 'error', component: ErrorpaginaComponent },
 ];
 
 @NgModule({

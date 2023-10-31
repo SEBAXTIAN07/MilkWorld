@@ -25,6 +25,7 @@ export class SesionComponent {
     cedula: ['', [Validators.required]],
     tipoDocumento: ['', [Validators.required]],
   });
+  errorMesage = '';
 
   constructor(
     private router: Router,
@@ -60,31 +61,42 @@ export class SesionComponent {
     this.messages = [];
     if (this.form.valid) {
       this.mostrarSpinner(true);
-      this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;
-      this.service.validarUsuario(this.selectTipoDocumento?.name+this.form.get('cedula')?.value).subscribe((response) => {
-        this.responseValidarUsuario = response;
-        console.log(this.responseValidarUsuario);
-        if (this.responseValidarUsuario.mensaje == '1') {
-          this.messages = [
-            {
-              severity: 'success',
-              summary: 'El Usuario Logeado',
-              detail: '',
-            },
-          ];
-          localStorage.setItem('idUsuario', this.selectTipoDocumento?.name+this.form.get('cedula')?.value);
-          this.router.navigate(['/botones']);
-        } else {
-          this.messages = [
-            {
-              severity: 'info',
-              summary: 'El Usuario No esta Registrado',
-              detail: '',
-            },
-          ];
-        }
-        this.mostrarSpinner(false);
-      });
+      this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;  
+      this.service
+        .validarUsuario(
+          this.selectTipoDocumento?.name + this.form.get('cedula')?.value
+        )
+        .subscribe((response) => {
+          this.responseValidarUsuario = response;
+          console.log(this.responseValidarUsuario);
+          if (this.responseValidarUsuario.mensaje == '1') {
+            this.messages = [
+              {
+                severity: 'success',
+                summary: 'El Usuario Logeado',
+                detail: '',
+              },
+            ];
+            localStorage.setItem(
+              'idUsuario',
+              this.selectTipoDocumento?.name + this.form.get('cedula')?.value
+            );
+            localStorage.setItem(
+              'infoUsuario',
+              JSON.stringify(this.responseValidarUsuario)
+            );
+            this.router.navigate(['/botones']);
+          } else {
+            this.messages = [
+              {
+                severity: 'info',
+                summary: 'El Usuario No esta Registrado',
+                detail: '',
+              },
+            ];
+          }
+          this.mostrarSpinner(false);
+        });
     } else {
       this.messages = [
         {

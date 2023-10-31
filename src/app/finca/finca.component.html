@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <br />
 <div class="card" *ngIf="stpe1">
-  <p-table [columns]="cols" [value]="products">
+  <p-table [columns]="cols" [value]="seleccionarFinca">
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         Listado de Fincas
@@ -15,13 +15,13 @@
         <th>Elegir</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-product>
+    <ng-template pTemplate="body" let-finca >
       <tr>
         <!-- <td>
           {{ product.id }}
         </td> -->
         <td>
-          {{ product.name }}
+          {{ finca.nombreFinca }}
         </td>
         <!-- <td>
           <button
@@ -40,7 +40,7 @@
             icon="pi pi-angle-double-right"
             class="p-button-rounded p-button-success"
             routerLink="/botones"
-            (click)="selectFinca(product)"
+            (click)="selectFinca(finca)"
           ></button>
         </td>
       </tr>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { responseValidarUsuario } from '../models/responseValidarUsuario';
+import { finca } from '../models/finca';
+import { responseListarFinca } from '../models/responseListarFinca';
 
 interface Column {
   field: string;
@@ -19,7 +22,32 @@ export interface Product {
 })
 export class FincaComponent implements OnInit {
   products!: Product[];
-
+  responseValidarUsuario!: responseListarFinca;
+  finca: finca = {
+    id_persona: '',
+    codigoFinca: '',
+    nombreFinca: '',
+    numeroTelefono: 0,
+    codigoDepartamento: 0,
+    codigoMunicipio: 0,
+    nombreVereda: '',
+    tipoOrdeno: '',
+    numeroOrdenoDiario: 0,
+    areaTotal: 0,
+    usoSuplemento: '',
+    potreros: [
+      {
+        nombrePotrero: '',
+        areaPotrero: 0,
+        capacidadMaximaForraje: 0,
+        capacidadMaximaAgua: 0,
+        cupoMaximoAnimales: 0,
+        codigoPasto: 0,
+        codigoFinca: '',
+      },
+    ],
+  };
+  seleccionarFinca = [this.finca];
   cols!: Column[];
   items: MenuItem[] = [];
   stpe1: boolean = true; // Inicialmente visible
@@ -28,6 +56,13 @@ export class FincaComponent implements OnInit {
   constructor(public messageService: MessageService) {}
 
   ngOnInit() {
+    this.responseValidarUsuario = JSON.parse(
+      localStorage.getItem('infoUsuario')!
+    );
+    this.seleccionarFinca = this.responseValidarUsuario.listaResultado;
+    console.log(this.responseValidarUsuario.listaResultado);
+    console.log(this.seleccionarFinca);
+
     this.cols = [
       { field: 'id', header: 'id' },
       { field: 'name', header: 'Nombre' },
@@ -45,9 +80,9 @@ export class FincaComponent implements OnInit {
     numero == 2 ? (this.stpe2 = true) : (this.stpe2 = false);
   }
 
-  selectFinca(products: Product) {
-    console.log(products.id);
-    localStorage.setItem('NombreFinca', products.name!);
+  selectFinca(products: finca) {
+    console.log(products);
+    // localStorage.setItem('NombreFinca', products.name!);
     (this.stpe1 = true) ? (this.stpe1 = false) : true;
     (this.stpe2 = true) ? (this.stpe2 = false) : true;
   }

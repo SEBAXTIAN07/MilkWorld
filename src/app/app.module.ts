@@ -36,6 +36,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { HttpClientModule } from '@angular/common/http';
 import { CalendarModule } from 'primeng/calendar';
 import { PrimeNGConfig } from 'primeng/api';
+import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PrimeNGConfig } from 'primeng/api';
     TrasladoComponent,
     ActividadesComponent,
     HidricaComponent,
+    ErrorpaginaComponent,
   ],
 
   imports: [

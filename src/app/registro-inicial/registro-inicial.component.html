@@ -33,16 +33,19 @@
               type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
               formControlName="nombreFinca"
+              onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+              maxlength="100"
             />
           </div>
           <div class="field">
             <label for="lastname1">Numero de Celular</label>
             <input
               id="lastname1"
-              maxlength="10"
-              type="number"
+              maxlength="3"
+              type="text"
               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
               formControlName="numeroTelefono"
+              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
             />
           </div>
           <div class="field">
@@ -89,13 +92,11 @@
                 type="button"
                 label="Siguiente"
                 class="p-button-outlined p-button-success"
-                (click)="abrilModal(2)"
+                (click)="validarStpe(2)"
               ></button>
             </div>
           </div>
         </div>
-
-       
       </div>
 
       <div *ngIf="stpe2">
@@ -118,10 +119,11 @@
           <label for="lastname1">Nombre de la Vereda</label>
           <input
             id="lastname1"
-            maxlength="10"
+            maxlength="100"
             type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="nombreVereda"
+            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
           />
         </div>
         <div class="field">
@@ -140,10 +142,11 @@
           <label for="lastname1">N° de Ordeño Diario</label>
           <input
             id="lastname1"
-            maxlength="10"
-            type="number"
+            maxlength="1"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="numeroOrdenoDiario"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
           />
         </div>
         <div class="flex justify-content-center flex-wrap">
@@ -264,12 +267,18 @@
             type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="nombrePotrero"
+            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+            maxlength="100"
           />
         </div>
         <div class="field">
           <label for="lastname1">Area del Potrero</label>
           <br />
-          <p-inputNumber prefix="m: " formControlName="areaPotrero">
+          <p-inputNumber
+            prefix="m: "
+            formControlName="areaPotrero"
+            (ngModelChange)="validarAreaTotal()"
+          >
           </p-inputNumber>
         </div>
         <div class="field">
@@ -335,9 +344,11 @@
           <label for="firstname1">Cupo Maximo de Animales</label>
           <input
             id="firstname1"
-            type="number"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="cupoMaximoAnimales"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+            maxlength="5"
           />
         </div>
         <div class="field">
@@ -345,19 +356,23 @@
           <input
             id="lastname1"
             maxlength="10"
-            type="number"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="codigoPasto"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+            maxlength="2"
           />
         </div>
         <div class="field">
-          <label for="lastname1">Codigo Finca</label>
+          <label for="lastname1">Codigo Finca(N° Unico)</label>
           <input
             id="lastname1"
             maxlength="10"
-            type="number"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="codigoFinca"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+            maxlength="10"
           />
         </div>
 
@@ -460,20 +475,22 @@
           <label for="lastname1">Numero Cotral</label>
           <input
             id="lastname1"
-            maxlength="10"
-            type="number"
+            maxlength="15"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="numeroCrotal"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
           />
         </div>
         <div class="field">
           <label for="lastname1">Nombre Animal</label>
           <input
             id="lastname1"
-            maxlength="10"
+            maxlength="100"
             type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="nombreAnimal"
+            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
           />
         </div>
         <div class="field">
@@ -486,9 +503,11 @@
           <input
             id="lastname1"
             maxlength="10"
-            type="number"
+            type="text"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
             formControlName="numeroPartos"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+            maxlength="1"
           />
         </div>
 

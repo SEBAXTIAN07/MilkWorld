@@ -283,6 +283,24 @@ export class RegistroInicialComponent implements OnInit {
     }
   }
 
+  validarAreaTotal() {
+    if (
+      this.form.get('areaTotal')?.value < this.form.get('areaPotrero')?.value
+    ) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary:
+            'El Area Total es de: ' +
+            this.form.get('areaTotal')?.value +
+            ' Valide el Area del Potrero',
+          detail: '',
+        },
+      ];
+      this.form.get('areaPotrero')?.setValue(0);
+    }
+    }
+
   registrarFincaInicial() {
     //TODO:Validado
     this.seleccionarmunicipios = this.form.get('municipio')?.value;
@@ -362,7 +380,7 @@ export class RegistroInicialComponent implements OnInit {
       //       detail: '',
       //     },
       //   ];
-      //   this.router.navigate(['/botones']);
+        // this.router.navigate(['/botones']);
       // } else {
       //   this.messages = [
       //     {
