@@ -11,6 +11,7 @@ import { finca } from '../models/finca';
 import { catchError } from 'rxjs/operators';
 import { throwError as ObservablethrowError } from 'rxjs';
 import { Router } from '@angular/router';
+import { crearPotrero } from '../models/crearPotrero';
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +44,13 @@ export class ServiceService {
         return throwError(err);
       })
     );
+  }
+
+  crearPotrero(page: crearPotrero): Observable<any> {
+    let direction = this.url + 'Huella/crearPotrero';
+    return this.http.post<any>(direction, page, {
+      responseType: 'text' as 'json',
+    });
   }
 
   consultarDepartamentoYMunicipio(): Observable<any> {

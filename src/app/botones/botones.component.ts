@@ -42,6 +42,7 @@ export class BotonesComponent implements OnInit {
     ],
   };
   seleccionarFinca = [this.finca];
+  seleccionarFincaObjeto = this.finca;
 
   ngOnInit(): void {
     this.service.validarUsuarioSistema();
@@ -63,6 +64,7 @@ export class BotonesComponent implements OnInit {
     const idUsuario: string | null = localStorage.getItem('idUsuario'); // Por ejemplo, una función que podría devolver un string o null
     if (idUsuario !== null) {
       this.service.validarUsuario(idUsuario).subscribe((response) => {
+        console.log(response);
         this.responseValidarUsuario = response;
         if (this.responseValidarUsuario.mensaje == '1') {
           setTimeout(() => {
@@ -74,6 +76,25 @@ export class BotonesComponent implements OnInit {
         }
         const infoUsuarioJSON = localStorage.getItem('infoFinca');
         if (infoUsuarioJSON) {
+          for (
+            let i = 0;
+            i < this.responseValidarUsuario.listaResultado.length;
+            i++
+          ) {
+            this.seleccionarFincaObjeto = JSON.parse(
+              localStorage.getItem('infoFinca')!
+            );
+            if (
+              this.responseValidarUsuario.listaResultado[i].codigoFinca ==
+              this.seleccionarFincaObjeto.codigoFinca
+            ) {
+              console.log(this.responseValidarUsuario.listaResultado[i]);
+              localStorage.setItem(
+                'infoFinca',
+                JSON.stringify(this.responseValidarUsuario.listaResultado[i])
+              );
+            }
+          }
           this.mostrarSpinner(false);
         } else {
           setTimeout(() => {
