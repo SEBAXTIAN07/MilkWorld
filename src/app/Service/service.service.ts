@@ -13,6 +13,7 @@ import { throwError as ObservablethrowError } from 'rxjs';
 import { Router } from '@angular/router';
 import { crearPotrero } from '../models/crearPotrero';
 import { animalesLista } from '../models/animalesLista';
+import { transaladarAnimal } from '../models/transaladarAnimal';
 @Injectable({
   providedIn: 'root',
 })
@@ -85,6 +86,22 @@ export class ServiceService {
 
   crearAnimal(page: animalesLista): Observable<any> {
     let direction = this.url + 'Huella/crearAnimal';
+    return this.http
+      .post<any>(direction, page, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(
+        catchError((err) => {
+          if ([401, 403, 404].indexOf(err.status) !== 1) {
+            this.router.navigateByUrl('/error');
+          }
+          return throwError(err);
+        })
+      );
+  }
+
+  trasladarAnimal(page: transaladarAnimal): Observable<any> {
+    let direction = this.url + 'Huella/transaladarAnimal';
     return this.http
       .post<any>(direction, page, {
         responseType: 'text' as 'json',

@@ -16,3 +16,20 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.bold-label {
+    font-weight: bold;
+    background: linear-gradient(to right, #0074E4, #00A3E0);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.text {
+    font-size: 28px;
+    font-family: helvetica;
+    font-weight: bold;
+    color: #71d90b;
+    text-transform: uppercase;
+}

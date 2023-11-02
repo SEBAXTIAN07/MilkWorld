@@ -1,91 +1,117 @@
-<div *ngIf="stpe6">
-  <div class="text-center">
-    <div class="text-center p-3 border-round-sm font-bold">
-      <button class="boton-redondo">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4083/4083045.png"
-          alt="Imagen del botón"
-        />
-      </button>
+<app-spinner *ngIf="spinnerVariable"></app-spinner>
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="false"
+></p-messages>
+<form [formGroup]="form" *ngIf="formularioVariable">
+  <div *ngIf="stpe6">
+    <div class="text-center">
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4083/4083045.png"
+            alt="Imagen del botón"
+          />
+        </button>
+      </div>
+      <hr />
+      <div>
+        <h2>Registrar Traslado</h2>
+      </div>
+      <br />
     </div>
-    <hr />
     <div>
-      <h2>Registrar Traslado</h2>
-    </div>
-    <br />
-  </div>
-  <div>
-    <br />
-    <div class="field">
-      <label for="firstname1">Peso Promedio</label>
-      <input
-        id="firstname1"
-        type="text"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Potrero Actual</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">Potrero Nuevo</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-      <label for="lastname1">N° Crotal</label>
-      <input
-        id="lastname1"
-        maxlength="10"
-        type="number"
-        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-      />
-    </div>
-    <div class="field">
-        <label for="lastname1">Observaciones</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-    
+      <div class="grid">
+        <div class="col-12 lg:col-4">
+          <div class="p-3 h-full">
+            <div
+              class="shadow-2 p-3 h-full flex flex-column surface-card"
+              style="border-radius: 6px"
+            >
+              <label for="lastname1" class="bold-label">
+                {{ fechaHoy | date : "dd/MM/yyyy" }}
+              </label>
+              <br />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Potrero Actual
+              </div>
+              <p-dropdown
+                [options]="seleccionarPotreroActual"
+                formControlName="PotreroActual"
+                optionLabel="nombrePotrero"
+                class="w-full mb-3"
+                placeholder="Seleccione"
+                (onChange)="validarPotreroNuevo()"
+              ></p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Potrero Nuevo
+              </div>
+              <p-dropdown
+                [options]="seleccionarPotreroNuevo"
+                formControlName="potreroNuevo"
+                optionLabel="nombrePotrero"
+                class="w-full mb-3"
+                placeholder="Seleccione"
+              ></p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Peso Promedio
+              </div>
+              <p-inputNumber
+                prefix="Kg: "
+                formControlName="pesoPromedio"
+              ></p-inputNumber>
+              <br />
 
-    <div class="flex justify-content-center flex-wrap">
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Cancelar"
-          class="p-button-outlined"
-          routerLink="/botones"
-        ></button>
-      </div>
-      <div
-        class="flex align-items-center justify-content-center font-bold border-round m-2"
-      >
-        <button
-          pButton
-          pRipple
-          type="button"
-          label="Crear"
-          class="p-button-outlined p-button-success"
-        ></button>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Nombre Animal
+              </div>
+              <p-dropdown
+                [options]="seleccionarAnimal"
+                formControlName="animal"
+                optionLabel="nombreAnimal"
+                class="w-full mb-3"
+                placeholder="Seleccione"
+              ></p-dropdown>
+              <br />
+              <div class="flex justify-content-center flex-wrap">
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Cancelar"
+                    class="p-button-outlined"
+                    routerLink="/botones"
+                  ></button>
+                </div>
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Crear"
+                    class="p-button-outlined p-button-success"
+                    (click)="realizarTraslado()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

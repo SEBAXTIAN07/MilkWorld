@@ -40,6 +40,7 @@ import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 import { PaginatorModule } from 'primeng/paginator';
 import {AccordionModule} from 'primeng/accordion';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
     CalendarModule,
     PaginatorModule,
     AccordionModule,
-    ScrollTopModule
+    ScrollTopModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent],
