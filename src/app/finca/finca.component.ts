@@ -17,7 +17,7 @@ export interface Product {
 @Component({
   selector: 'app-finca',
   templateUrl: './finca.component.html',
-  styleUrls: ['./finca.component.css'],
+  styleUrls: ['./finca.component.scss'],
   providers: [MessageService],
 })
 export class FincaComponent implements OnInit {

@@ -18,82 +18,99 @@
               />
             </button>
           </div>
-          <hr />
           <div>
             <h2>Registrar Finca</h2>
           </div>
-          <br />
         </div>
         <div>
-          <br />
-          <div class="field">
-            <label for="firstname1">Nombre de la Finca</label>
-            <input
-              id="firstname1"
-              type="text"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              formControlName="nombreFinca"
-              onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
-              maxlength="100"
-            />
-          </div>
-          <div class="field">
-            <label for="lastname1">Numero de Celular</label>
-            <input
-              id="lastname1"
-              maxlength="3"
-              type="text"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              formControlName="numeroTelefono"
-              onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-            />
-          </div>
-          <div class="field">
-            <label for="lastname1">Departamento</label>
-            <br />
-            <p-dropdown
-              [options]="departamentos"
-              optionLabel="nombreDepartamento"
-              placeholder="Seleccione"
-              (onChange)="visualizarMunicipio()"
-              formControlName="departamento"
-            ></p-dropdown>
-            <!-- <p-dropdown formControlName="city" [options]="cities" optionLabel="name"></p-dropdown> -->
-          </div>
-          <div class="field">
-            <label for="lastname1">Municipio</label>
-            <br />
-            <p-dropdown
-              [options]="municipios"
-              placeholder="Seleccione"
-              optionLabel="nombreMunicipio"
-              formControlName="municipio"
-            ></p-dropdown>
-          </div>
-          <div class="flex justify-content-center flex-wrap">
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Volver"
-                class="p-button-outlined"
-                routerLink="/botones"
-              ></button>
-            </div>
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Siguiente"
-                class="p-button-outlined p-button-success"
-                (click)="validarStpe(2)"
-              ></button>
+          <div class="grid">
+            <div class="col-12 lg:col-4">
+              <div class="p-3 h-full">
+                <div
+                  class="shadow-2 p-3 h-full flex flex-column surface-card"
+                  style="border-radius: 6px"
+                >
+                  <div
+                    class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                  >
+                    Nombre de la Finca
+                  </div>
+                  <input
+                    id="firstname1"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    formControlName="nombreFinca"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+                    maxlength="100"
+                  />
+                  <br />
+                  <div
+                    class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                  >
+                    Numero de Celular
+                  </div>
+                  <input
+                    id="lastname1"
+                    maxlength="3"
+                    type="text"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    formControlName="numeroTelefono"
+                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                  />
+                  <br />
+                  <div
+                    class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                  >
+                    Departamento
+                  </div>
+                  <p-dropdown
+                    [options]="departamentos"
+                    optionLabel="nombreDepartamento"
+                    placeholder="Seleccione"
+                    (onChange)="visualizarMunicipio()"
+                    formControlName="departamento"
+                  ></p-dropdown>
+                  <br />
+                  <div
+                    class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                  >
+                    Municipio
+                  </div>
+                  <p-dropdown
+                    [options]="municipios"
+                    placeholder="Seleccione"
+                    optionLabel="nombreMunicipio"
+                    formControlName="municipio"
+                  ></p-dropdown>
+                  <br />
+                  <div class="flex justify-content-center flex-wrap">
+                    <div
+                      class="flex align-items-center justify-content-center font-bold border-round m-2"
+                    >
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        label="Volver"
+                        class="p-button-outlined"
+                        routerLink="/botones"
+                      ></button>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center font-bold border-round m-2"
+                    >
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        label="Siguiente"
+                        class="p-button-outlined p-button-success"
+                        (click)="validarStpe(2)"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -113,66 +130,84 @@
           <div>
             <h2>Registrar Finca</h2>
           </div>
-          <br />
         </div>
-        <div class="field">
-          <label for="lastname1">Nombre de la Vereda</label>
-          <input
-            id="lastname1"
-            maxlength="100"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="nombreVereda"
-            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Tipo de Ordeño</label>
-          <br />
-          <p-dropdown
-            [options]="tipoOrdeno"
-            placeholder="Seleccione"
-            formControlName="tipoOrdeno"
-            optionLabel="name"
-            class="w-full mb-3"
-          >
-          </p-dropdown>
-        </div>
-        <div class="field">
-          <label for="lastname1">N° de Ordeño Diario</label>
-          <input
-            id="lastname1"
-            maxlength="1"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="numeroOrdenoDiario"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-          />
-        </div>
-        <div class="flex justify-content-center flex-wrap">
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Volver"
-              class="p-button-outlined"
-              (click)="abrilModal(1)"
-            ></button>
-          </div>
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Siguiente"
-              class="p-button-outlined p-button-success"
-              (click)="validarStpe(3)"
-            ></button>
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="p-3 h-full">
+              <div
+                class="shadow-2 p-3 h-full flex flex-column surface-card"
+                style="border-radius: 6px"
+              >
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Nombre de la Vereda
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="100"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="nombreVereda"
+                  onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Tipo de Ordeño
+                </div>
+                <p-dropdown
+                  [options]="tipoOrdeno"
+                  placeholder="Seleccione"
+                  formControlName="tipoOrdeno"
+                  optionLabel="name"
+                  class="w-full mb-3"
+                >
+                </p-dropdown>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  N° de Ordeño Diario
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="1"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="numeroOrdenoDiario"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                />
+                <br />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Volver"
+                      class="p-button-outlined"
+                      (click)="abrilModal(1)"
+                    ></button>
+                  </div>
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Siguiente"
+                      class="p-button-outlined p-button-success"
+                      (click)="validarStpe(3)"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -191,52 +226,64 @@
           <div>
             <h2>Registrar Finca</h2>
           </div>
-          <br />
         </div>
-        <div class="field">
-          <label for="lastname1">Area Total</label>
-          <br />
-          <p-inputNumber prefix="m: " formControlName="areaTotal">
-          </p-inputNumber>
-        </div>
-        <div class="field">
-          <label for="lastname1">¿Usa Suplemento?</label>
-          <br />
-          <p-dropdown
-            [options]="suplementos"
-            formControlName="usoSuplemento"
-            placeholder="Seleccione"
-            optionLabel="name"
-            class="w-full mb-3"
-          >
-          </p-dropdown>
-        </div>
-        <br />
-
-        <div class="flex justify-content-center flex-wrap">
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Volver"
-              class="p-button-outlined"
-              (click)="abrilModal(2)"
-            ></button>
-          </div>
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Siguiente"
-              class="p-button-outlined p-button-success"
-              (click)="validarStpe(4)"
-            ></button>
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="p-3 h-full">
+              <div
+                class="shadow-2 p-3 h-full flex flex-column surface-card"
+                style="border-radius: 6px"
+              >
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Area Total
+                </div>
+                <p-inputNumber prefix="m: " formControlName="areaTotal">
+                </p-inputNumber>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  ¿Usa Suplemento?
+                </div>
+                <p-dropdown
+                  [options]="suplementos"
+                  formControlName="usoSuplemento"
+                  placeholder="Seleccione"
+                  optionLabel="name"
+                  class="w-full mb-3"
+                >
+                </p-dropdown>
+                <br />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Volver"
+                      class="p-button-outlined"
+                      (click)="abrilModal(2)"
+                    ></button>
+                  </div>
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Siguiente"
+                      class="p-button-outlined p-button-success"
+                      (click)="validarStpe(4)"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -256,67 +303,91 @@
         <div>
           <h2>Registrar Potrero</h2>
         </div>
-        <br />
       </div>
       <div>
-        <br />
-        <div class="field">
-          <label for="firstname1">Nombre del Potrero</label>
-          <input
-            id="firstname1"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="nombrePotrero"
-            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
-            maxlength="100"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Area del Potrero</label>
-          <br />
-          <p-inputNumber
-            prefix="m: "
-            formControlName="areaPotrero"
-            (ngModelChange)="validarAreaTotal()"
-          >
-          </p-inputNumber>
-        </div>
-        <div class="field">
-          <label for="lastname1">Capacidad Maxima Forraje</label>
-          <br />
-          <p-inputNumber prefix="Kg: " formControlName="capacidadMaximaForraje">
-          </p-inputNumber>
-        </div>
-        <div class="field">
-          <label for="lastname1">Capacidad Maxima Agua</label>
-          <br />
-          <p-inputNumber prefix="L: " formControlName="capacidadMaximaAgua">
-          </p-inputNumber>
-        </div>
-        <div class="flex justify-content-center flex-wrap">
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Volver"
-              class="p-button-outlined"
-              (click)="abrilModal(3)"
-            ></button>
-          </div>
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Siguiente"
-              class="p-button-outlined p-button-success"
-              (click)="validarStpe(5)"
-            ></button>
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="p-3 h-full">
+              <div
+                class="shadow-2 p-3 h-full flex flex-column surface-card"
+                style="border-radius: 6px"
+              >
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Nombre del Potrero
+                </div>
+                <input
+                  id="firstname1"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="nombrePotrero"
+                  onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+                  maxlength="100"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Area del Potrero
+                </div>
+                <p-inputNumber
+                  prefix="m: "
+                  formControlName="areaPotrero"
+                  (ngModelChange)="validarAreaTotal()"
+                >
+                </p-inputNumber>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Capacidad Maxima Forraje
+                </div>
+                <p-inputNumber
+                  prefix="Kg: "
+                  formControlName="capacidadMaximaForraje"
+                >
+                </p-inputNumber>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Capacidad Maxima Agua
+                </div>
+                <p-inputNumber
+                  prefix="L: "
+                  formControlName="capacidadMaximaAgua"
+                >
+                </p-inputNumber>
+                <br />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Volver"
+                      class="p-button-outlined"
+                      (click)="abrilModal(3)"
+                    ></button>
+                  </div>
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Siguiente"
+                      class="p-button-outlined p-button-success"
+                      (click)="validarStpe(5)"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -336,113 +407,139 @@
         <div>
           <h2>Registrar Potrero</h2>
         </div>
-        <br />
       </div>
       <div>
-        <br />
-        <div class="field">
-          <label for="firstname1">Cupo Maximo de Animales</label>
-          <input
-            id="firstname1"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="cupoMaximoAnimales"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-            maxlength="5"
-          />
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="p-3 h-full">
+              <div
+                class="shadow-2 p-3 h-full flex flex-column surface-card"
+                style="border-radius: 6px"
+              >
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Cupo Maximo de Animales
+                </div>
+                <input
+                  id="firstname1"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="cupoMaximoAnimales"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                  maxlength="5"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Tipo de Pasto
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="10"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="codigoPasto"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                  maxlength="2"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Codigo Finca(N° Unico)
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="10"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="codigoFinca"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                  maxlength="10"
+                />
+                <br />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex-1 text-center align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <label for="lastname1">¿Desea Agregar Animales?</label>
+                  </div>
+
+                  <div class="flex justify-content-center flex-wrap">
+                    <div
+                      class="flex align-items-center justify-content-center font-bold border-round m-2"
+                    >
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        label="No"
+                        class="p-button-outlined"
+                        [disabled]="boton"
+                        (click)="registrarFincaInicial()"
+                      ></button>
+                    </div>
+                    <div
+                      class="flex align-items-center justify-content-center font-bold border-round m-2"
+                    >
+                      <button
+                        pButton
+                        pRipple
+                        type="button"
+                        label="Si"
+                        class="p-button-outlined p-button-success"
+                        (click)="validarStpe(6)"
+                        [disabled]="boton"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Volver"
+                      class="p-button-outlined"
+                      (click)="abrilModal(4)"
+                      [disabled]="boton"
+                    ></button>
+                  </div>
+                  <!-- <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Crear"
+                      class="p-button-outlined p-button-success"
+                      (click)="registrarFincaInicial()"
+                      [disabled]="boton"
+                    ></button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="field">
-          <label for="lastname1">Tipo de Pasto</label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="codigoPasto"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-            maxlength="2"
-          />
+          <label for="firstname1"></label>
         </div>
         <div class="field">
-          <label for="lastname1">Codigo Finca(N° Unico)</label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="codigoFinca"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-            maxlength="10"
-          />
+          <label for="lastname1"></label>
+        </div>
+        <div class="field">
+          <label for="lastname1"></label>
         </div>
 
-        <div class="flex justify-content-center flex-wrap">
-          <div
-            class="flex-1 text-center align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <label for="lastname1">¿Desea Agregar Animales?</label>
-          </div>
-
-          <div class="flex justify-content-center flex-wrap">
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="No"
-                class="p-button-outlined"
-                [disabled]=boton
-              ></button>
-            </div>
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Si"
-                class="p-button-outlined p-button-success"
-                (click)="validarStpe(6)"
-                [disabled]=boton
-              ></button>
-            </div>
-          </div>
-        </div>
-        <hr />
-
-        <div class="flex justify-content-center flex-wrap">
-          <div class="flex justify-content-center flex-wrap">
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Volver"
-                class="p-button-outlined"
-                (click)="abrilModal(4)"
-                [disabled]=boton
-              ></button>
-            </div>
-            <div
-              class="flex align-items-center justify-content-center font-bold border-round m-2"
-            >
-              <button
-                pButton
-                pRipple
-                type="button"
-                label="Crear"
-                class="p-button-outlined p-button-success"
-                (click)="registrarFincaInicial()"
-                [disabled]=boton
-              ></button>
-            </div>
-          </div>
-        </div>
+        <div class="flex justify-content-center flex-wrap"></div>
       </div>
     </div>
 
@@ -456,95 +553,113 @@
             />
           </button>
         </div>
-        <hr />
         <div>
           <h2>Registrar Animal</h2>
         </div>
-        <br />
       </div>
       <div>
-        <br />
-        <div class="field">
-          <label for="firstname1">Raza</label>
-          <br />
-          <p-dropdown
-            [options]="raza"
-            formControlName="raza"
-            optionLabel="name"
-            class="w-full mb-3"
-          >
-          </p-dropdown>
-        </div>
-        <div class="field">
-          <label for="lastname1">Numero Cotral</label>
-          <input
-            id="lastname1"
-            maxlength="15"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="numeroCrotal"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Nombre Animal</label>
-          <input
-            id="lastname1"
-            maxlength="100"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="nombreAnimal"
-            onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Fecha de Nacimiento</label>
-          <br />
-          <p-calendar formControlName="fechaNacimiento"></p-calendar>
-        </div>
-        <div class="field">
-          <label for="lastname1">Numero de Partos</label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-            formControlName="numeroPartos"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
-            maxlength="1"
-          />
-        </div>
-
-        <div class="flex justify-content-center flex-wrap">
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Volver"
-              class="p-button-outlined"
-              (click)="abrilModal(5)"
-              [disabled]=boton
-            ></button>
+        <div class="grid">
+          <div class="col-12 lg:col-4">
+            <div class="p-3 h-full">
+              <div
+                class="shadow-2 p-3 h-full flex flex-column surface-card"
+                style="border-radius: 6px"
+              >
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Raza
+                </div>
+                <p-dropdown
+                  [options]="raza"
+                  formControlName="raza"
+                  optionLabel="name"
+                  class="w-full mb-3"
+                >
+                </p-dropdown>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Numero Cotral
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="15"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="numeroCrotal"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Nombre Animal
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="100"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="nombreAnimal"
+                  onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+                />
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Fecha de Nacimiento
+                </div>
+                <p-calendar formControlName="fechaNacimiento"></p-calendar>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Numero de Partos
+                </div>
+                <input
+                  id="lastname1"
+                  maxlength="10"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  formControlName="numeroPartos"
+                  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                  maxlength="1"
+                />
+                <br />
+                <div class="flex justify-content-center flex-wrap">
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Volver"
+                      class="p-button-outlined"
+                      (click)="abrilModal(5)"
+                      [disabled]="boton"
+                    ></button>
+                  </div>
+                  <div
+                    class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      type="button"
+                      label="Crear"
+                      class="p-button-outlined p-button-success"
+                      (click)="registrarFincaInicial()"
+                      [disabled]="boton"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            class="flex align-items-center justify-content-center font-bold border-round m-2"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Crear"
-              class="p-button-outlined p-button-success"
-              (click)="registrarFincaInicial()"
-              [disabled]=boton
-            ></button>
-          </div>
         </div>
-
-        <!-- <app-footer></app-footer> -->
       </div>
     </div>
   </form>

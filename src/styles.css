@@ -3,26 +3,31 @@
 @import "primeflex/primeflex.css";
 @import url('https://fonts.googleapis.com/css2?family=Unlock&display=swap');
 @import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;500&family=Unlock&display=swap');
 
 h1 {
-    font-family: 'Unlock', cursive;
+    font-family: 'Poppins', cursive;
     text-align: center;
     color: rgb(0, 183, 255);
     font-size: 70px;
 }
 
 h2 {
-    font-family: 'Unlock', cursive;
+    font-family: 'Poppins', cursive;
     text-align: center;
     color: rgb(0, 183, 255);
-    font-size: 40px;
     margin: 0;
 }
 
 h3 {
-    font-family: 'Unlock', cursive;
+    font-family: 'Poppins', cursive;
     text-align: center;
     color: rgb(19, 122, 163);
     font-size: 20px;
     margin: 0;
+}
+
+
+div{
+    font-family: 'Poppins';
 }

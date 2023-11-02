@@ -313,6 +313,21 @@ export class RegistroInicialComponent implements OnInit {
   }
 
   registrarFincaInicial() {
+    if (
+      this.form.get('cupoMaximoAnimales')?.valid &&
+      this.form.get('codigoPasto')?.valid &&
+      this.form.get('codigoFinca')?.valid
+    ) {
+    } else {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide los Campos Requeridos',
+          detail: '',
+        },
+      ];
+      return;
+    }
     //TODO:Validado
     this.mostrarSpinner(true);
     this.boton = true;

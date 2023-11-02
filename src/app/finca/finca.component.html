@@ -1,7 +1,13 @@
 <app-navbar></app-navbar>
 <br />
+
 <div class="card" *ngIf="stpe1">
-  <p-table [columns]="cols" [value]="seleccionarFinca" [paginator]="true" [rows]="4" >
+  <p-table
+    [columns]="cols"
+    [value]="seleccionarFinca"
+    [paginator]="true"
+    [rows]="4"
+  >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         Listado de Fincas
@@ -15,7 +21,7 @@
         <th>Elegir</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-finca >
+    <ng-template pTemplate="body" let-finca>
       <tr>
         <!-- <td>
           {{ product.id }}
@@ -45,17 +51,12 @@
         </td>
       </tr>
     </ng-template>
-
-
   </p-table>
 </div>
 
 <div>
-  <div class="text-center">
-    <br />
-  </div>
+  <div class="text-center"></div>
   <div>
-    <br />
     <div class="field text-center">
       <label for="firstname1">¿Desea Crear una Nueva Finca?</label>
     </div>

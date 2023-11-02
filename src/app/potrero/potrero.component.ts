@@ -97,16 +97,28 @@ export class PotreroComponent {
   // }
 
   validarAreaTotal() {
-    const miArray = [
-      { valorASumar: 10 },
-      { valorASumar: 20 },
-      { valorASumar: 30 },
-    ];
     let suma = 0;
+    const areaTotalFinca = this.finca.areaTotal;
     this.seleccionarPotrero.forEach((objeto) => {
       suma += objeto.areaPotrero;
     });
-    console.log(suma);
+    const areaDisponible = this.finca.areaTotal - suma;
+    const areaCalculadaPotrero =
+      areaDisponible - this.form.get('areaPotrero')?.value;
+    if (areaCalculadaPotrero < 0) {
+      const miConstanteFormateada: string = new Intl.NumberFormat().format(
+        areaDisponible
+      );
+      this.messages = [
+        {
+          severity: 'info',
+          summary:
+            'El Area del Potrero Disponible es de: ' + miConstanteFormateada,
+          detail: '',
+        },
+      ];
+      this.form.get('areaPotrero')?.setValue(null);
+    }
   }
 
   registrarPotrero() {

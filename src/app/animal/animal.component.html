@@ -1,4 +1,11 @@
-<div *ngIf="stpe6">
+<app-spinner *ngIf="spinnerVariable"></app-spinner>
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="false"
+></p-messages>
+<form [formGroup]="form" autocomplete="nope" *ngIf="formularioVariable">
+  <div *ngIf="stpe6">
     <div class="text-center">
       <div class="text-center p-3 border-round-sm font-bold">
         <button class="boton-redondo">
@@ -8,75 +15,124 @@
           />
         </button>
       </div>
-      <hr />
+
       <div>
         <h2>Registrar Animal</h2>
       </div>
-      <br />
     </div>
     <div>
-      <br />
-      <div class="field">
-        <label for="firstname1">Raza</label>
-        <input
-          id="firstname1"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Numero Corral</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Fecha de Nacimiento</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-      <div class="field">
-        <label for="lastname1">Numero de Partos</label>
-        <input
-          id="lastname1"
-          maxlength="10"
-          type="number"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
-      </div>
-  
-      <div class="flex justify-content-center flex-wrap">
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Cancelar"
-            class="p-button-outlined"
-            routerLink="/botones"
-          ></button>
-        </div>
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Crear"
-            class="p-button-outlined p-button-success"
-          ></button>
+      <div class="grid">
+        <div class="col-12 lg:col-4">
+          <div class="p-3 h-full">
+            <div
+              class="shadow-2 p-3 h-full flex flex-column surface-card"
+              style="border-radius: 6px"
+            >
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Potrero
+              </div>
+              <p-dropdown
+                [options]="seleccionarPotrero"
+                formControlName="potrero"
+                optionLabel="nombrePotrero"
+                class="w-full mb-3"
+                onchange=""
+                placeholder="Seleccione"
+                (onChange)="validarCampos()"
+              >
+              </p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Raza
+              </div>
+              <p-dropdown
+                [options]="raza"
+                formControlName="raza"
+                optionLabel="nombreRaza"
+                class="w-full mb-3"
+                placeholder="Seleccione"
+              >
+              </p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Nombre Animal
+              </div>
+              <input
+                id="lastname1"
+                maxlength="100"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="nombreAnimal"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+              />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Numero Cotral
+              </div>
+              <input
+                id="lastname1"
+                maxlength="15"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="numeroCrotal"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+              />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Fecha de Nacimiento
+              </div>
+              <p-calendar formControlName="fechaNacimiento"></p-calendar>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Numero de Partos
+              </div>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="numeroPartos"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                maxlength="1"
+              />
+              <div class="flex justify-content-center flex-wrap">
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Cancelar"
+                    class="p-button-outlined"
+                    routerLink="/botones"
+                  ></button>
+                </div>
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                  *ngIf="botonCrear"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Crear"
+                    class="p-button-outlined p-button-success"
+                    (click)="crearAnimal()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+</form>

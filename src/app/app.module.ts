@@ -38,6 +38,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { PrimeNGConfig } from 'primeng/api';
 import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 import { PaginatorModule } from 'primeng/paginator';
+import {AccordionModule} from 'primeng/accordion';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { PaginatorModule } from 'primeng/paginator';
     FieldsetModule,
     HttpClientModule,
     CalendarModule,
-    PaginatorModule
+    PaginatorModule,
+    AccordionModule,
+    ScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent],
