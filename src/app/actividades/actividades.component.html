@@ -7,21 +7,23 @@
 <form [formGroup]="form">
   <div *ngIf="formularioVisible1">
     <div class="text-center">
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/2151/2151531.png"
-        alt="Image"
-        height="50"
-      />
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2151/2151531.png"
+            alt="Imagen del botón"
+          />
+        </button>
+      </div>
       <div>
         <h2>Actividades</h2>
       </div>
     </div>
     <div>
-      <!-- hr -->
       <div>
         <br />
         <div class="grid">
-          <div class="col-12 lg:col-4">
+          <div class="col-12">
             <div class="p-3 h-full">
               <div
                 class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -51,6 +53,21 @@
                   formControlName="tipoActividad"
                 />
                 <br />
+
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Fecha Inicial
+                </div>
+                <p-calendar formControlName="fechaInicial"></p-calendar>
+                <br />
+                <div
+                  class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+                >
+                  Fecha Final
+                </div>
+                <p-calendar formControlName="fechaFinal"></p-calendar>
+                <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
@@ -65,10 +82,18 @@
                   placeholder="Seleccione"
                   (onChange)="consultarActividad()"
                 ></p-dropdown>
-                <label for="lastname1" class="bold-label">
-                  {{ fechaHoy | date : "dd/MM/yyyy" }}</label
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
                 >
-                <br />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Cancelar"
+                    class="p-button-outlined"
+                    routerLink="/botones"
+                  ></button>
+                </div>
                 <!-- <div class="centro" *ngIf="formularioVisible2">
                     <button
                       pButton
@@ -392,6 +417,7 @@
           type="button"
           label="Guardar"
           class="p-button-outlined p-button-success"
+          (click)="registrarActiviad()"
         ></button>
       </div>
     </div>
@@ -418,4 +444,4 @@
   </div>
 </form>
 <br />
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

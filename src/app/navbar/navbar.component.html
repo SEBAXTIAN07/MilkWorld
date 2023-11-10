@@ -26,7 +26,7 @@
 
   <p-sidebar [(visible)]="sidebarVisible">
     <div class="grid">
-      <div class="col-12 ">
+      <div class="col-12">
         <div class="text-center p-3 border-round-sm font-bold">
           <h3>Finca</h3>
           <hr />
@@ -34,9 +34,24 @@
             pButton
             pRipple
             type="button"
+            label="Finca"
+            class="p-button-outlined p-button-info"
+            id="miBoton"
+            routerLink="/finca"
+          >
+            <img
+              src="https://cdn.icon-icons.com/icons2/1465/PNG/512/455cowface_100996.png"
+              alt="Ícono"
+            />
+          </button>
+          <button
+            pButton
+            pRipple
+            type="button"
             label="Potreros"
             class="p-button-outlined p-button-info"
             id="miBoton"
+            routerLink="/potrero"
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/13/13279.png"
@@ -45,7 +60,7 @@
           </button>
         </div>
       </div>
-      <div class="col-12 ">
+      <div class="col-12">
         <div class="text-center p-3 border-round-sm font-bold">
           <h3>Ganado</h3>
           <hr />
@@ -57,6 +72,7 @@
             class="p-button-outlined p-button-info"
             id="miBoton"
             style="margin-bottom: 5px"
+            routerLink="/animal"
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/4496/4496184.png"
@@ -72,6 +88,7 @@
             class="p-button-outlined p-button-info"
             id="miBoton"
             style="margin-bottom: 5px"
+            routerLink="/actividades"
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/2151/2151531.png"
@@ -82,12 +99,13 @@
             pButton
             pRipple
             type="button"
-            label="Registro Produccion"
+            label="Traslado"
             class="p-button-outlined p-button-info"
             id="miBoton"
+            routerLink="/traslado"
           >
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3394/3394010.png"
+              src="https://cdn-icons-png.flaticon.com/512/4083/4083045.png"
               alt="Ícono"
             />
           </button>
@@ -104,6 +122,7 @@
             label="Calculadora"
             class="p-button-outlined p-button-info"
             id="miBoton"
+            routerLink="/huella-hidrica"
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/1076/1076877.png"

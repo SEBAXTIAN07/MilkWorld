@@ -14,6 +14,7 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { HidricaComponent } from './hidrica/hidrica.component';
 import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'huella-hidrica', component: HidricaComponent },
   { path: 'error', component: ErrorpaginaComponent },
   { path: 'spinner', component: SpinnerComponent },
+  { path: 'configuraciones', component: ConfiguracionesComponent },
 ];
 
 @NgModule({

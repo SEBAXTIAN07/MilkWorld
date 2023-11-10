@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, Message, MessageService } from 'primeng/api';
 import { responseValidarUsuario } from '../models/responseValidarUsuario';
 import { finca } from '../models/finca';
 import { responseListarFinca } from '../models/responseListarFinca';
+import { ServiceService } from '../Service/service.service';
 
 interface Column {
   field: string;
@@ -23,6 +24,7 @@ export interface Product {
 export class FincaComponent implements OnInit {
   products!: Product[];
   responseValidarUsuario!: responseListarFinca;
+  messages: Message[] = [];
   finca: finca = {
     id_persona: '',
     codigoFinca: '',
@@ -53,9 +55,13 @@ export class FincaComponent implements OnInit {
   stpe1: boolean = true; // Inicialmente visible
   stpe2: boolean = false; // Inicialmente visible
 
-  constructor(public messageService: MessageService) {}
+  constructor(
+    public messageService: MessageService,
+    private service: ServiceService
+  ) {}
 
   ngOnInit() {
+    this.service.validarUsuarioSistema();
     this.responseValidarUsuario = JSON.parse(
       localStorage.getItem('infoUsuario')!
     );
@@ -70,6 +76,7 @@ export class FincaComponent implements OnInit {
       { id: '1', name: 'Finca 1' },
       { id: '6', name: 'Finca 2' },
     ];
+    this.validarFincaSeleccionada();
   }
 
   validarStpe(numero: number) {
@@ -78,12 +85,22 @@ export class FincaComponent implements OnInit {
   }
 
   selectFinca(products: finca) {
-    localStorage.setItem(
-      'infoFinca',
-      JSON.stringify(products)
-    );
+    localStorage.setItem('infoFinca', JSON.stringify(products));
     // localStorage.setItem('NombreFinca', products.name!);
     (this.stpe1 = true) ? (this.stpe1 = false) : true;
     (this.stpe2 = true) ? (this.stpe2 = false) : true;
+  }
+
+  validarFincaSeleccionada() {
+    if (localStorage.getItem('infoFinca')) {
+    } else {
+      this.messages = [
+        {
+          severity: 'info',
+          summary: 'Seleccione una Finca',
+          detail: '',
+        },
+      ];
+    }
   }
 }

@@ -2,3 +2,28 @@
 *:focus {
   outline: none;
 }
+
+.boton-redondo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #007bff; /* Borde azul de 2 píxeles */
+}
+
+.boton-redondo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+h2 {
+  font-size: 30px;
+}

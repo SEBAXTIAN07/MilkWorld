@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   NombreFinca!: string;
+  fechaHora!: Date;
 
   ngOnInit(): void {
     this.NombreFinca = localStorage.getItem('NombreFinca')!;
+    this.actualizarFechaHora();
+    setInterval(() => this.actualizarFechaHora(), 1000);
+  }
+
+  private actualizarFechaHora() {
+    this.fechaHora = new Date();
   }
 }

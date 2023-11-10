@@ -64,7 +64,6 @@ export class BotonesComponent implements OnInit {
     const idUsuario: string | null = localStorage.getItem('idUsuario'); // Por ejemplo, una función que podría devolver un string o null
     if (idUsuario !== null) {
       this.service.validarUsuario(idUsuario).subscribe((response) => {
-        console.log(response);
         this.responseValidarUsuario = response;
         if (this.responseValidarUsuario.mensaje == '1') {
           setTimeout(() => {
@@ -88,7 +87,6 @@ export class BotonesComponent implements OnInit {
               this.responseValidarUsuario.listaResultado[i].codigoFinca ==
               this.seleccionarFincaObjeto.codigoFinca
             ) {
-              console.log(this.responseValidarUsuario.listaResultado[i]);
               localStorage.setItem(
                 'infoFinca',
                 JSON.stringify(this.responseValidarUsuario.listaResultado[i])

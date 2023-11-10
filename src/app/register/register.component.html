@@ -7,7 +7,7 @@
       [closable]="false"
     ></p-messages>
   </div>
-  <div >
+  <div>
     <div class="text-center">
       <img
         src="https://cdn.icon-icons.com/icons2/1465/PNG/512/455cowface_100996.png"
@@ -30,76 +30,144 @@
       >
     </div>
     <div>
+      <div class="grid">
+        <div class="col-12">
+          <div class="p-3 h-full">
+            <div
+              class="shadow-2 p-3 h-full flex flex-column surface-card"
+              style="border-radius: 6px"
+            >
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Tipo Documento
+              </div>
+              <p-dropdown
+                [options]="cities"
+                formControlName="tipo_documento"
+                optionLabel="name"
+                class="w-full mb-3"
+              >
+              </p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Cedula
+              </div>
+              <input
+                id="Cedula"
+                maxlength="10"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="numero_documento"
+                placeholder="Digite su Documento"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+              />
+              <br />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Nombres
+              </div>
+              <input
+                id="Nombres"
+                maxlength="100"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="nombres"
+                placeholder="Digite su Nombre"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+              />
+              <br />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Apellidos
+              </div>
+              <input
+                id="Apellidos"
+                maxlength="100"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                formControlName="apellidos"
+                placeholder="Digite su Apellido"
+                onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode == 32)"
+              />
+              <br />
+              <div class="flex justify-content-center flex-wrap">
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Volver"
+                    class="p-button-outlined"
+                    routerLink="/"
+                  ></button>
+                </div>
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Siguiente"
+                    class="p-button-outlined p-button-success"
+                    (click)="registrarUsuario()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <br />
-      <label for="email1" class="block text-900 font-medium mb-2"
-        >Tipo Documento</label
-      >
-      <p-dropdown
-        [options]="cities"
-        formControlName="tipo_documento"
-        optionLabel="name"
-        class="w-full mb-3"
-      >
-      </p-dropdown>
+      <label for="email1" class="block text-900 font-medium mb-2"></label>
+
       <br />
       <br />
 
-      <label for="email1" class="block text-900 font-medium mb-2">Cedula</label>
-      <input
+      <label for="email1" class="block text-900 font-medium mb-2"></label>
+
+      <!-- <input
         id="email1"
         type="number"
         placeholder="Digite su Documento"
         pInputText
         class="w-full mb-3"
         formControlName="numero_documento"
+      /> -->
+      <br />
+      <br />
+      <label for="email1" class="block text-900 font-medium mb-2"></label>
 
-      />
-      <label for="email1" class="block text-900 font-medium mb-2">Nombres</label>
-      <input
+      <!-- <input
         id="email1"
         type="text"
         placeholder="Digite su Documento"
         pInputText
         class="w-full mb-3"
         formControlName="nombres"
+      /> -->
+      <br />
+      <br />
+      <label for="email1" class="block text-900 font-medium mb-2"></label>
 
-      />
-      <label for="email1" class="block text-900 font-medium mb-2">Apellidos</label>
-      <input
+      <!-- <input
         id="email1"
         type="text"
         placeholder="Digite su Documento"
         pInputText
         class="w-full mb-3"
         formControlName="apellidos"
-
-      />
-      <div class="flex justify-content-center flex-wrap">
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Volver"
-            class="p-button-outlined"
-            routerLink="/"
-          ></button>
-        </div>
-        <div
-          class="flex align-items-center justify-content-center font-bold border-round m-2"
-        >
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Siguiente"
-            class="p-button-outlined p-button-success"
-            (click)="registrarUsuario()"
-          ></button>
-        </div>
-      </div>
+      /> -->
+      <br />
+      <br />
     </div>
   </div>
+  <br />
+  <app-footer></app-footer>
 </form>

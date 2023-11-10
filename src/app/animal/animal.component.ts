@@ -32,6 +32,7 @@ export class AnimalComponent {
   responseGenerico!: responseGenerico;
   spinnerVariable: boolean = false; // Inicialmente visible
   formularioVariable: boolean = true; // Inicialmente visible
+  boton: boolean = false;
   animalesLista: animalesLista = {
     codigoPotrero: '',
     numeroCrotal: '',
@@ -77,11 +78,8 @@ export class AnimalComponent {
     fechaNacimiento: new FormControl<Date | null>(null),
     numeroPartos: ['', [Validators.required]],
     raza: ['', [Validators.required]],
-    codigoRaza: ['', [Validators.required]],
-    nombreRaza: ['', [Validators.required]],
-    interest: this.formBuilder.array([
-      this.formBuilder.control('', [Validators.required]),
-    ]),
+    // codigoRaza: ['', [Validators.required]],
+    // nombreRaza: ['', [Validators.required]],
   });
 
   constructor(
@@ -92,6 +90,7 @@ export class AnimalComponent {
   ) {}
 
   ngOnInit() {
+    this.service.validarUsuarioSistema();
     this.form.get('raza')?.disable();
     this.form.get('nombreAnimal')?.disable();
     this.form.get('numeroCrotal')?.disable();
@@ -127,10 +126,20 @@ export class AnimalComponent {
   }
 
   crearAnimal() {
+    if (!this.form.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide Los Campos',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     this.messages = [];
     this.mostrarSpinner(true);
     this.potreroSeleccionado = this.form.get('potrero')?.value;
-    console.log(this.potreroSeleccionado.codigoPotrero);
     this.animalesLista.codigoPotrero = this.potreroSeleccionado.codigoPotrero;
     this.animalesLista.numeroCrotal = this.form.get('numeroCrotal')?.value;
     this.animalesLista.nombreAnimal = this.form.get('nombreAnimal')?.value;
@@ -144,14 +153,14 @@ export class AnimalComponent {
       const dia = fecha.getDate();
       const mes = fecha.getMonth() + 1;
       const año = fecha.getFullYear();
-      this.animalesLista.fechaNacimiento = dia + '/' + mes + '/' + año;
+      this.animalesLista.fechaNacimiento = año + '-' + mes + '-' + dia;
     } else {
     }
     this.service.crearAnimal(this.animalesLista).subscribe((response) => {
       this.responseGenerico = JSON.parse(response);
-      console.log(this.responseGenerico);
 
       if (this.responseGenerico.mensaje == '0') {
+        this.boton = true;
         this.mostrarSpinner(false);
         this.messages = [
           {
@@ -160,6 +169,7 @@ export class AnimalComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => {
           this.router.navigate(['/botones']);
         }, 3000);
@@ -172,6 +182,7 @@ export class AnimalComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
   }

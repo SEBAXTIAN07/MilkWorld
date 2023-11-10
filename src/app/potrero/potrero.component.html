@@ -98,7 +98,7 @@
       </div>
       <div>
         <div class="grid">
-          <div class="col-12 lg:col-4">
+          <div class="col-12">
             <div class="p-3 h-full">
               <div
                 class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -203,7 +203,7 @@
       </div>
       <div>
         <div class="grid">
-          <div class="col-12 lg:col-4">
+          <div class="col-12">
             <div class="p-3 h-full">
               <div
                 class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -228,7 +228,13 @@
                 >
                   Tipo de Pasto
                 </div>
-                <input
+                <p-dropdown
+                  [options]="pasto"
+                  optionLabel="nombrePasto"
+                  placeholder="Seleccione"
+                  formControlName="codigoPasto"
+                ></p-dropdown>
+                <!-- <input
                   id="lastname1"
                   maxlength="10"
                   type="text"
@@ -236,7 +242,7 @@
                   formControlName="codigoPasto"
                   onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
                   maxlength="2"
-                />
+                /> -->
                 <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
@@ -264,6 +270,7 @@
                         type="button"
                         label="Volver"
                         class="p-button-outlined"
+                        [disabled]="boton"
                         (click)="abrilModal(4)"
                       ></button>
                     </div>
@@ -276,6 +283,7 @@
                         type="button"
                         label="Crear"
                         class="p-button-outlined p-button-success"
+                        [disabled]="boton"
                         (click)="registrarPotrero()"
                       ></button>
                     </div>
@@ -370,5 +378,7 @@
       </div>
     </div>
   </div> -->
+    <br />
   </form>
+  <app-footer></app-footer>
 </div>

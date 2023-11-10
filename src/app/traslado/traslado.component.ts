@@ -24,6 +24,7 @@ export class TrasladoComponent {
   messages: Message[] = [];
   spinnerVariable: boolean = false; // Inicialmente visible
   formularioVariable: boolean = true; // Inicialmente visible
+  boton: boolean = false;
   transaladarAnimal: transaladarAnimal = {
     fechaIngreso: '',
     pesoPromedio: '',
@@ -77,11 +78,11 @@ export class TrasladoComponent {
   }
 
   ngOnInit() {
+    this.service.validarUsuarioSistema();
     this.form.get('potreroNuevo')?.disable();
     this.form.get('animal')?.disable();
     this.finca = JSON.parse(localStorage.getItem('infoFinca')!);
     this.seleccionarPotreroActual = this.finca.potreros;
-    console.log(this.seleccionarPotreroActual);
   }
 
   validarStpe(numero: number) {
@@ -100,6 +101,7 @@ export class TrasladoComponent {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       this.form.get('potreroNuevo')?.disable();
       this.form.get('potreroNuevo')?.setValue(null);
       this.form.get('animal')?.disable();
@@ -108,13 +110,11 @@ export class TrasladoComponent {
       return;
     }
     this.form.get('animal')?.enable();
-    console.log(this.seleccionarAnimal);
     const validar = this.seleccionarPotreroActual.filter(
       (elemento) => elemento !== potreroCodigo
     );
     this.seleccionarPotreroNuevo = validar;
     this.form.get('potreroNuevo')?.enable();
-    console.log(validar);
   }
 
   realizarTraslado() {
@@ -126,6 +126,7 @@ export class TrasladoComponent {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       this.mostrarSpinner(true);
       const potreroCodigoActual = this.form.get('PotreroActual')?.value;
@@ -142,12 +143,11 @@ export class TrasladoComponent {
       this.service
         .trasladarAnimal(this.transaladarAnimal)
         .subscribe((response) => {
-          console.log(response);
           this.responseGenerico = JSON.parse(response);
-          console.log(this.responseGenerico.mensaje);
-          console.log(this.responseGenerico.mensaje == '0');
 
           if (this.responseGenerico.mensaje == '0') {
+            this.boton = true;
+
             this.mostrarSpinner(false);
             this.messages = [
               {
@@ -156,6 +156,7 @@ export class TrasladoComponent {
                 detail: '',
               },
             ];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setTimeout(() => {
               this.router.navigate(['/botones']);
             }, 3000);
@@ -168,6 +169,7 @@ export class TrasladoComponent {
                 detail: '',
               },
             ];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
     }

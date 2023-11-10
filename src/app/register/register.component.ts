@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.service.validarUsuarioSistema();
     this.cities = [
       { name: '', code: '' },
       { name: 'CC', code: 'CC' },
@@ -59,7 +60,6 @@ export class RegisterComponent implements OnInit {
       nombres: 'Sebastian',
       apellidos: 'Forero Sanchez',
     };
-
   }
 
   volverInicio() {
@@ -111,6 +111,7 @@ export class RegisterComponent implements OnInit {
                   detail: '',
                 },
               ];
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
               this.messages = [
                 {
@@ -119,6 +120,7 @@ export class RegisterComponent implements OnInit {
                   detail: '',
                 },
               ];
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             this.validarUsuario();
             setTimeout(() => {
@@ -133,6 +135,7 @@ export class RegisterComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       this.mostrarOcultarSpinner();
@@ -143,6 +146,7 @@ export class RegisterComponent implements OnInit {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     //TODO: Comienza el Servicio
 
@@ -194,6 +198,7 @@ export class RegisterComponent implements OnInit {
               detail: '',
             },
           ];
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
   }

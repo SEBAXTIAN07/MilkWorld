@@ -7,6 +7,8 @@ import { crearPotrero } from '../models/crearPotrero';
 import { ServiceService } from '../Service/service.service';
 import { responseGenerico } from '../models/responseGenerico';
 import { Router } from '@angular/router';
+import { pastoLista } from '../models/pastoLista';
+import { pasto } from '../models/pasto';
 export interface Product {
   id?: string;
   name?: string;
@@ -60,8 +62,12 @@ export class PotreroComponent {
   stpe4: boolean = false;
   stpe5: boolean = false;
   stpe6: boolean = false;
+  boton: boolean = false;
   spinnerVariable: boolean = false; // Inicialmente visible
   formularioVariable: boolean = true; // Inicialmente visible
+  pasto!: pasto[];
+  pastoSeleccionado!: pasto;
+  pastoLista!: pastoLista;
   crearPotrero: crearPotrero = {
     nombrePotrero: '',
     areaPotrero: 0,
@@ -84,9 +90,16 @@ export class PotreroComponent {
     this.service.validarUsuarioSistema();
     this.finca = JSON.parse(localStorage.getItem('infoFinca')!);
     this.seleccionarPotrero = this.finca.potreros;
-    console.log(this.finca);
     this.form.get('codigoFinca')?.setValue(this.finca.codigoFinca);
     this.form.get('codigoFinca')?.disable();
+    this.listarPasto();
+  }
+
+  listarPasto() {
+    this.service.listarPasto().subscribe((response) => {
+      this.pastoLista = response;
+      this.pasto = this.pastoLista.listaResultado;
+    });
   }
 
   // validarStpe(numero: number) {
@@ -117,6 +130,7 @@ export class PotreroComponent {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       this.form.get('areaPotrero')?.setValue(null);
     }
   }
@@ -133,14 +147,15 @@ export class PotreroComponent {
     )?.value;
     this.crearPotrero.cupoMaximoAnimales =
       this.form.get('cupoMaximoAnimales')?.value;
-    this.crearPotrero.codigoPasto = this.form.get('codigoPasto')?.value;
+    this.pastoSeleccionado = this.form.get('codigoPasto')?.value;
+    this.crearPotrero.codigoPasto = this.pastoSeleccionado.codigoPasto;
     this.crearPotrero.codigoFinca = this.finca.codigoFinca;
     this.form.get('codigoFinca')?.disable();
 
     this.service.crearPotrero(this.crearPotrero).subscribe((response) => {
       this.responseGenerico = JSON.parse(response);
-      console.log(this.responseGenerico);
       if (this.responseGenerico.mensaje == '0') {
+        this.boton = true;
         this.mostrarSpinner(false);
         this.messages = [
           {
@@ -149,6 +164,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => {
           this.router.navigate(['/botones']);
         }, 3000);
@@ -161,6 +177,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
   }

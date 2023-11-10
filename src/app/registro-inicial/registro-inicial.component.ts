@@ -15,6 +15,8 @@ import { finca } from '../models/finca';
 import { responseValidarUsuario } from '../models/responseValidarUsuario';
 import { responseCrearPersona } from '../models/responseCrearPersona';
 import { Router } from '@angular/router';
+import { pasto } from '../models/pasto';
+import { pastoLista } from '../models/pastoLista';
 
 interface Generica {
   name: string;
@@ -72,6 +74,9 @@ export class RegistroInicialComponent implements OnInit {
   formularioVariable: boolean = false; // Inicialmente visible
   municipioCampo: boolean = true; // Inicialmente visible
   departamentos!: departamentos[];
+  pasto!: pasto[];
+  pastoSeleccionado!: pasto;
+  pastoLista!: pastoLista;
   municipios: municipio[] = [];
   messages: Message[] = [];
   responseDepartamentos!: responseDepartamento;
@@ -133,6 +138,7 @@ export class RegistroInicialComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service.validarUsuarioSistema();
     this.tipoOrdeno = [
       { name: 'MECÁNICO', code: 'MECANICO' },
       { name: 'MOVÍLES', code: 'MOVILES' },
@@ -165,6 +171,14 @@ export class RegistroInicialComponent implements OnInit {
     });
     //TODO: Desarrollo
     // this.mostrarSpinner(false);
+    this.listarPasto();
+  }
+
+  listarPasto() {
+    this.service.listarPasto().subscribe((response) => {
+      this.pastoLista = response;
+      this.pasto = this.pastoLista.listaResultado;
+    });
   }
 
   validarStpe(numero: number) {
@@ -185,6 +199,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -203,6 +218,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -220,6 +236,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -239,6 +256,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -257,6 +275,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }
@@ -308,6 +327,7 @@ export class RegistroInicialComponent implements OnInit {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       this.form.get('areaPotrero')?.setValue(0);
     }
   }
@@ -326,6 +346,7 @@ export class RegistroInicialComponent implements OnInit {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     //TODO:Validado
@@ -355,7 +376,8 @@ export class RegistroInicialComponent implements OnInit {
     this.finca.potreros[0].capacidadMaximaAgua = this.form.get(
       'capacidadMaximaAgua'
     )?.value;
-    this.finca.potreros[0].codigoPasto = this.form.get('codigoPasto')?.value;
+    this.pastoSeleccionado = this.form.get('codigoPasto')?.value;
+    this.finca.potreros[0].codigoPasto = this.pastoSeleccionado.codigoPasto;
     this.finca.potreros[0].codigoFinca = this.form.get('codigoFinca')?.value;
     this.finca.potreros[0].cupoMaximoAnimales =
       this.form.get('cupoMaximoAnimales')?.value;
@@ -388,10 +410,8 @@ export class RegistroInicialComponent implements OnInit {
           const mes = fecha.getMonth() + 1;
           const año = fecha.getFullYear();
           this.finca.potreros[0].animales[0].fechaNacimiento =
-            dia + '/' + mes + '/' + año;
-        } else {
-          console.log('La fecha es nula o no válida.');
-        }
+            año + '-' + mes + '-' + dia;
+        } 
 
         this.finca.potreros[0].animales[0].numeroPartos =
           this.form.get('numeroPartos')?.value;
@@ -403,9 +423,9 @@ export class RegistroInicialComponent implements OnInit {
           this.seleccionarRaza.name;
       }
     }
+
     this.service.registrarFincaInicial(this.finca).subscribe((response) => {
       this.responseCrearPersona = JSON.parse(response);
-
       if (this.responseCrearPersona.mensaje == '0') {
         this.messages = [
           {
@@ -414,6 +434,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => {
           localStorage.removeItem('infoFinca');
           this.router.navigate(['/botones']);
@@ -426,6 +447,7 @@ export class RegistroInicialComponent implements OnInit {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         this.boton = false;
       }
 

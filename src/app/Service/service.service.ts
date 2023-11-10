@@ -14,11 +14,15 @@ import { Router } from '@angular/router';
 import { crearPotrero } from '../models/crearPotrero';
 import { animalesLista } from '../models/animalesLista';
 import { transaladarAnimal } from '../models/transaladarAnimal';
+import { crearActividades } from '../models/crearActividades';
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceService {
-  private url: string = 'http://192.168.0.17:8080/'; //ng serve --host 0.0.0.0
+  // private url: string = 'http://192.168.0.17:8080/'; //ng serve --host 0.0.0.0
+  // private url: string = 'http://localhost:8080/'; //ng serve --host 0.0.0.0
+  // private url: string = 'http://18.224.16.162/'; //ng serve --host 0.0.0.0
+  private url: string = 'http://192.168.0.20:8080/'; //ng serve --host 0.0.0.0
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -145,5 +149,57 @@ export class ServiceService {
 
   errorHandler(error: HttpErrorResponse) {
     return ObservablethrowError(error.message);
+  }
+
+  listarPasto(): Observable<any> {
+    return this.http.get(this.url + 'Huella/listarPastos').pipe(
+      catchError((err) => {
+        if ([401, 403, 404].indexOf(err.status) !== 1) {
+          this.router.navigateByUrl('/error');
+        }
+        return throwError(err);
+      })
+    );
+  }
+
+  registrarActividad(page: crearActividades): Observable<any> {
+    let direction = this.url + 'Huella/crearActividad';
+    return this.http
+      .post<any>(direction, page, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(
+        catchError((err) => {
+          if ([401, 403, 404].indexOf(err.status) !== 1) {
+            this.router.navigateByUrl('/error');
+          }
+          return throwError(err);
+        })
+      );
+  }
+
+  listarActividades(
+    fechaInicio: string,
+    codigoPotrero: string,
+    fechaFin: string
+  ): Observable<any> {
+    return this.http
+      .get(
+        this.url +
+          'Huella/ListarActividades/?fechaInicio=' +
+          fechaInicio +
+          '&codigoPotrero=' +
+          codigoPotrero +
+          '&fechafin=' +
+          fechaFin
+      )
+      .pipe(
+        catchError((err) => {
+          if ([401, 403, 404].indexOf(err.status) !== 1) {
+            this.router.navigateByUrl('/error');
+          }
+          return throwError(err);
+        })
+      );
   }
 }

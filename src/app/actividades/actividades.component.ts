@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem, Message, MessageService } from 'primeng/api';
 import { ServiceService } from '../Service/service.service';
 import { registroActividades } from '../models/registroActividades';
@@ -7,6 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finca } from '../models/finca';
 import { Potrero } from '../models/potrero';
 import { potreroCodigo } from '../models/potreroCodigo';
+import { crearActividades } from '../models/crearActividades';
+import { responseGenerico } from '../models/responseGenerico';
+import { Router } from '@angular/router';
 interface Column {
   field: string;
   header: string;
@@ -41,7 +44,32 @@ export class ActividadesComponent implements OnInit {
   advertenciaRegistroLeche: boolean = false;
   spinnerVisible: boolean = false;
   campoLeche: boolean = false;
+  responseGenerico!: responseGenerico;
   messages: Message[] = [];
+  crearActividades: crearActividades = {
+    codigoPotrero: '',
+    tipoActividad: '',
+    fechaInicio: '',
+    fechaFinal: '',
+    usuarioLoggeado: '',
+    actividadConsumo: {
+      totalPromedioAguaCalculadaSistema: 0,
+      totalPromedioLecheCalculadaSistema: 0,
+      totalPromedioForrajeCalculadaSistema: 0,
+      totalPromedioAgua: 0,
+      totalPromedioLeche: 0,
+      totalPromedioForraje: 0,
+      totalConsumoDirecto: 0,
+      totalConsumoServicio: 0,
+      totalConsumoIndirecto: 0,
+      totalAreaUsada: 0,
+      totalConsumoAguaProduccion: 0,
+      totalConsumoForrajeProduccion: 0,
+      totalHuellaVerde: 0,
+      totalHuellaAzul: 0,
+      totalHuellaHidrica: 0,
+    },
+  };
 
   public form: FormGroup = this.formBuilder.group({
     nombreFinca: ['', [Validators.required]],
@@ -60,6 +88,8 @@ export class ActividadesComponent implements OnInit {
     aguaGastada: ['', [Validators.required]],
     comidaGastada: ['', [Validators.required]],
     consumoServicio: ['', [Validators.required]],
+    fechaInicial: ['', [Validators.required]],
+    fechaFinal: ['', [Validators.required]],
   });
   finca: finca = {
     id_persona: '',
@@ -88,11 +118,13 @@ export class ActividadesComponent implements OnInit {
   constructor(
     private service: ServiceService,
     private formBuilder: FormBuilder,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private router: Router
   ) {
     this.fechaHoy = new Date();
   }
   ngOnInit(): void {
+    this.service.validarUsuarioSistema();
     this.form.get('totalAguaPromedio')?.disable();
     this.form.get('areaPotrero')?.disable();
     this.form.get('litrosAproximados')?.disable();
@@ -123,19 +155,16 @@ export class ActividadesComponent implements OnInit {
     this.campoLeche = false;
     this.spinnerVisible = true;
     this.consultaActividad = this.form.get('potrero')?.value;
-    console.log(this.consultaActividad.codigoPotrero);
     this.service
       .consultarActividad(this.consultaActividad.codigoPotrero)
       // .consultarActividad('6001f559-35ab-404b-a730-66d998ca0c7b')
       .subscribe((response) => {
-        console.log(response);
         this.form.get('nombreFinca')?.disable();
         this.registroActividades = response;
         this.form.get('nombrePotrero')?.setValue(this.finca.nombreFinca);
         this.seleccionarActividades =
           this.registroActividades.objeto.animalCalculadoDTOS;
 
-        console.log(this.registroActividades.objeto.animalCalculadoDTOS);
         if (this.registroActividades.objeto.animalCalculadoDTOS.length <= 0) {
           this.messages = [
             {
@@ -147,6 +176,7 @@ export class ActividadesComponent implements OnInit {
           this.formularioVisible1 = true;
           this.formularioVisible2 = false;
           this.spinnerVisible = false;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           const palabraABuscar = 'lactante';
           let palabraEncontrada = false;
@@ -166,9 +196,6 @@ export class ActividadesComponent implements OnInit {
 
           if (palabraEncontrada) {
             this.campoLeche = true;
-            console.log(
-              `La palabra "${palabraABuscar}" se encuentra en la lista de objetos.`
-            );
           }
           this.formularioVisible1 = true;
           this.formularioVisible2 = true;
@@ -205,7 +232,6 @@ export class ActividadesComponent implements OnInit {
     }
     const forrajemas5 =
       this.registroActividades.objeto.totalForrajePromedio + 5;
-    console.log(forrajemas5);
     if (forrajemas5 < this.form.get('totalForrajePromedio')?.value) {
       this.advertenciaHuellaVerde1 = true;
     } else {
@@ -241,5 +267,110 @@ export class ActividadesComponent implements OnInit {
       this.form.get('consumoIndirecto')?.value +
       this.form.get('consumoServicio')?.value;
     this.form.get('totalAguaPromedio')?.setValue(suma);
+  }
+
+  registrarActiviad() {
+    this.mostrarSpinner(true);
+    this.crearActividades.codigoPotrero = this.consultaActividad.codigoPotrero;
+    this.crearActividades.tipoActividad = this.form.get('tipoActividad')?.value;
+    const fechaInicio = this.form.get('fechaInicial')?.value;
+
+    if (fechaInicio) {
+      const fecha = new Date(fechaInicio);
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.crearActividades.fechaInicio = año + '-' + mes + '-' + dia;
+    }
+    const fechaFinal = this.form.get('fechaFinal')?.value;
+
+    if (fechaFinal) {
+      const fecha = new Date(fechaFinal);
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.crearActividades.fechaFinal = año + '-' + mes + '-' + dia;
+    }
+    const idUsuario: string | null = localStorage.getItem('idUsuario'); // Por ejemplo, una función que podría devolver un string o null
+    if (idUsuario !== null) {
+      this.crearActividades.usuarioLoggeado = idUsuario;
+    }
+    this.crearActividades.actividadConsumo.totalPromedioAguaCalculadaSistema =
+      this.registroActividades.objeto.totalAguaPromedio;
+    this.crearActividades.actividadConsumo.totalPromedioLecheCalculadaSistema =
+      this.registroActividades.objeto.totalLechePromedio;
+    this.crearActividades.actividadConsumo.totalPromedioForrajeCalculadaSistema =
+      this.registroActividades.objeto.totalForrajePromedio;
+    this.crearActividades.actividadConsumo.totalPromedioAgua =
+      this.form.get('totalAguaPromedio')?.value;
+    this.crearActividades.actividadConsumo.totalPromedioLeche =
+      this.form.get('lecheProducida')?.value;
+    this.crearActividades.actividadConsumo.totalPromedioForraje = this.form.get(
+      'totalForrajePromedio'
+    )?.value;
+    this.crearActividades.actividadConsumo.totalConsumoDirecto =
+      this.form.get('consumoDirecto')?.value;
+    this.crearActividades.actividadConsumo.totalConsumoServicio =
+      this.form.get('consumoServicio')?.value;
+    this.crearActividades.actividadConsumo.totalConsumoIndirecto =
+      this.form.get('consumoIndirecto')?.value;
+    this.crearActividades.actividadConsumo.totalAreaUsada =
+      this.form.get('areaPotrero')?.value; //Area Utilizada del Potrero
+    this.crearActividades.actividadConsumo.totalConsumoAguaProduccion =
+      this.form.get('aguaGastada')?.value;
+    this.crearActividades.actividadConsumo.totalConsumoForrajeProduccion =
+      this.form.get('comidaGastada')?.value;
+    this.crearActividades.actividadConsumo.totalHuellaVerde = this.form.get(
+      'totalForrajePromedio'
+    )?.value;
+    this.crearActividades.actividadConsumo.totalHuellaAzul =
+      this.form.get('totalAguaPromedio')?.value;
+    this.crearActividades.actividadConsumo.totalHuellaHidrica =
+      this.form.get('lecheProducida')?.value;
+    this.service
+      .registrarActividad(this.crearActividades)
+      .subscribe((response) => {
+        this.responseGenerico = JSON.parse(response);
+        if (this.responseGenerico.mensaje == '0') {
+          this.mostrarSpinner(false);
+          this.messages = [
+            {
+              severity: 'success',
+              summary: 'Actividad Creada Correctamente',
+              detail: '',
+            },
+          ];
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          this.form.reset();
+          this.formularioVisible1 = true;
+          this.formularioVisible2 = false;
+          this.formularioVisible3 = false;
+          this.campoLeche = false;
+          this.ngOnInit();
+          // setTimeout(() => {
+          //   this.router.navigate(['/actividades']);
+          // }, 3000);
+        } else {
+          this.mostrarSpinner(false);
+          this.messages = [
+            {
+              severity: 'info',
+              summary: 'Error Creando el registro',
+              detail: '',
+            },
+          ];
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+  }
+
+  mostrarSpinner(valor: boolean) {
+    if (valor) {
+      this.formularioVisible1 = false;
+      this.spinnerVisible = true;
+    } else {
+      this.formularioVisible1 = true;
+      this.spinnerVisible = false;
+    }
   }
 }

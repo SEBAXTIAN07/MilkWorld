@@ -1,78 +1,339 @@
-<div>
-  <div class="text-center">
-    <img
-      src="https://cdn-icons-png.flaticon.com/512/1076/1076877.png"
-      alt="Image"
-      height="50"
-    />
-    <div>
-      <h2>Huella Hidríca</h2>
-    </div>
-    <br />
-  </div>
+<app-spinner *ngIf="spinnerVisible"></app-spinner>
+
+<form [formGroup]="form" *ngIf="formularioVisible1">
+  <p-messages
+    [(value)]="messages"
+    [enableService]="false"
+    [closable]="false"
+  ></p-messages>
   <div>
-    <div>
-      <div class="text-center">
-        <div class="text-center p-3 border-round-sm font-bold"></div>
-        <hr />
-      </div>
-      <div>
-        <br />
-        <div class="field">
-          <label for="firstname1">Finca</label>
-          <input
-            [disabled]="true"
-            id="firstname1"
-            type="text"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    <div class="text-center">
+      <div class="text-center p-3 border-round-sm font-bold">
+        <button class="boton-redondo">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1076/1076877.png"
+            alt="Imagen del botón"
           />
+        </button>
+      </div>
+
+      <div>
+        <h2>Huella Hidríca</h2>
+      </div>
+      <br />
+    </div>
+    <div>
+      <div class="grid">
+        <div class="col-12 lg:col-4">
+          <div class="p-3 h-full">
+            <div
+              class="shadow-2 p-3 h-full flex flex-column surface-card"
+              style="border-radius: 6px"
+            >
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Potrero
+              </div>
+              <p-dropdown
+                [options]="seleccionarPotrero"
+                optionLabel="nombrePotrero"
+                class="w-full mb-3 text-2xl mb-5"
+                onchange=""
+                placeholder="Seleccione"
+                formControlName="potrero"
+              ></p-dropdown>
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Fecha Inicial
+              </div>
+              <p-calendar formControlName="fechaInicial"></p-calendar>
+              <br />
+              <div
+                class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+              >
+                Fecha Final
+              </div>
+              <p-calendar formControlName="fechaFinal"></p-calendar>
+              <br />
+              <div class="flex justify-content-center flex-wrap">
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Volver"
+                    class="p-button-outlined"
+                    routerLink="/botones"
+                  ></button>
+                </div>
+                <div
+                  class="flex align-items-center justify-content-center font-bold border-round m-2"
+                >
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Consultar"
+                    class="p-button-outlined p-button-success"
+                    (click)="listarActividades()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div *ngIf="formularioVisible2">
+    <div class="grid">
+      <div class="col-12 lg:col-4">
+        <div class="p-3 h-full">
+          <div
+            class="shadow-2 p-3 h-full flex flex-column surface-card text-center"
+            style="border-radius: 6px"
+          >
+            <div
+              class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
+            >
+              Total Suma
+            </div>
+            <br />
+            <label for="lastname1" class="bold-label"
+              >Cant. Agua Utilizada : L
+              {{
+                respuestaGenericaActividades.objeto.cantidadAguaUtilizada
+              }}</label
+            >
+            <br />
+            <label for="lastname1" class="bold-label"
+              >Cant. Forraje Consumido : Kg
+              {{
+                respuestaGenericaActividades.objeto.cantidadForrajeConsumido
+              }}</label
+            >
+            <br />
+            <label for="lastname1" class="bold-label"
+              >Cant. Leche Producida : L
+              {{
+                respuestaGenericaActividades.objeto.cantidadAguaUtilizada
+              }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let element of objetoActividades; let i = index">
+      <br />
+      <p-fieldset [toggleable]="true">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center text-primary">
+            <span class="pi pi-user mr-2"></span>
+            <span class="font-bold text-lg"
+              >Registro N° {{ element.numeroActividad }}</span
+            >
+          </div>
+        </ng-template>
         <div class="field">
-          <label for="lastname1">Potrero</label>
+          <label for="lastname1">Tipo de Actividad: </label>
           <input
             id="lastname1"
             maxlength="10"
             type="number"
+            [disabled]="true"
+            placeholder="{{ element.tipoActividad }}"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
           />
         </div>
         <div class="field">
-          <label for="lastname1">Fecha: </label>
-          {{ fechaHoy | date : "dd/MM/yyyy" }}
+          <label for="lastname1">Fecha Inicio: </label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            [disabled]="true"
+            placeholder="{{ element.fechaInicio }}"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
         </div>
-      </div>
+        <div class="field">
+          <label for="lastname1">Fecha Fin: </label>
+          <input
+            id="lastname1"
+            maxlength="10"
+            type="number"
+            [disabled]="true"
+            placeholder="{{ element.fechaFinal }}"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          />
+        </div>
+        <!-- <div class="field">
+      <label for="lastname1">Total Promedio Agua: </label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        [disabled]="true"
+        placeholder="{{ element.actividadConsumo.totalPromedioAgua }}"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
     </div>
-  </div>
-</div>
+    <div class="field">
+      <label for="lastname1">Total Promedio Leche: </label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        [disabled]="true"
+        placeholder="{{ element.actividadConsumo.totalPromedioLeche }}"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div> -->
 
-<div class="flex justify-content-center flex-wrap">
-    <div
-      class="flex align-items-center justify-content-center font-bold border-round m-2"
-    >
-      <button
-        pButton
-        pRipple
-        type="button"
-        label="Volver"
-        class="p-button-outlined"
-        routerLink="/botones"
-      ></button>
+        <p-accordion [multiple]="true">
+          <p-accordionTab header="Huella Azul">
+            <div class="field">
+              <label for="lastname1">Consumo Directo: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalPromedioLeche
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Consumo Indirecto: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalConsumoIndirecto
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Consumo Servicio: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalConsumoServicio
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Consumo Total: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalPromedioAgua
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Huella Verde">
+            <div class="field">
+              <label for="lastname1">Consumo Forraje: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="Kg: {{
+                  element.actividadConsumo.totalPromedioForraje
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Area Utilizada Potrero: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="mts: {{ element.actividadConsumo.totalAreaUsada }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Huella Hidrica">
+            <div class="field">
+              <label for="lastname1">Registro Leche: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalPromedioLeche
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Consumo Agua: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalConsumoAguaProduccion
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Consumo Forraje: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="L: {{
+                  element.actividadConsumo.totalConsumoForrajeProduccion
+                }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+        <!-- <div class="field">
+      <label for="lastname1" class="bold-label">Total Huella Hidrica :</label>
+      <input
+        id="lastname1"
+        maxlength="10"
+        type="number"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      />
+    </div> -->
+      </p-fieldset>
     </div>
-    <div
-      class="flex align-items-center justify-content-center font-bold border-round m-2"
-    >
-      <button
-        pButton
-        pRipple
-        type="button"
-        label="Consultar"
-        class="p-button-outlined p-button-success"
-      ></button>
-    </div>
+    <br />
   </div>
-  <br>
 
-<p-fieldset [toggleable]="true">
+  <!-- <p-fieldset [toggleable]="true">
   <ng-template pTemplate="header">
     <div class="flex align-items-center text-primary">
       <span class="pi pi-user mr-2"></span>
@@ -115,51 +376,7 @@
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
-</p-fieldset>
-<br>
-
-<p-fieldset [toggleable]="true">
-  <ng-template pTemplate="header">
-    <div class="flex align-items-center text-primary">
-      <span class="pi pi-user mr-2"></span>
-      <span class="font-bold text-lg">Actividad</span>
-    </div>
-  </ng-template>
-  <div class="field">
-    <label for="lastname1">Tipo de Actividad</label>
-    <input
-      id="lastname1"
-      maxlength="10"
-      type="number"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-  <div class="field">
-    <label for="lastname1">Total Agua</label>
-    <input
-      id="lastname1"
-      maxlength="10"
-      type="number"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-  <div class="field">
-    <label for="lastname1">Total Comida</label>
-    <input
-      id="lastname1"
-      maxlength="10"
-      type="number"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-  <div class="field">
-    <label for="lastname1" class="bold-label">Total Huella Hidrica :</label>
-    <input
-      id="lastname1"
-      maxlength="10"
-      type="number"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-</p-fieldset>
-
+</p-fieldset> -->
+  <br />
+  <app-footer></app-footer>
+</form>

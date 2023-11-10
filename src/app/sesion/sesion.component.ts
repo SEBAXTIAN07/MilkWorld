@@ -61,7 +61,7 @@ export class SesionComponent {
     this.messages = [];
     if (this.form.valid) {
       this.mostrarSpinner(true);
-      this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;  
+      this.selectTipoDocumento = this.form.get('tipoDocumento')?.value;
       this.service
         .validarUsuario(
           this.selectTipoDocumento?.name + this.form.get('cedula')?.value
@@ -76,6 +76,7 @@ export class SesionComponent {
                 detail: '',
               },
             ];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             localStorage.setItem(
               'idUsuario',
               this.selectTipoDocumento?.name + this.form.get('cedula')?.value
@@ -93,6 +94,7 @@ export class SesionComponent {
                 detail: '',
               },
             ];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
           this.mostrarSpinner(false);
         });
@@ -104,6 +106,7 @@ export class SesionComponent {
           detail: '',
         },
       ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // this.mostrarOcultarSpinner();

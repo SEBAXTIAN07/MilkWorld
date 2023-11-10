@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -38,9 +38,13 @@ import { CalendarModule } from 'primeng/calendar';
 import { PrimeNGConfig } from 'primeng/api';
 import { ErrorpaginaComponent } from './errorpagina/errorpagina.component';
 import { PaginatorModule } from 'primeng/paginator';
-import {AccordionModule} from 'primeng/accordion';
+import { AccordionModule } from 'primeng/accordion';
 import { ScrollTopModule } from 'primeng/scrolltop';
-import { ChartModule } from 'primeng/chart';
+import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -60,6 +64,7 @@ import { ChartModule } from 'primeng/chart';
     ActividadesComponent,
     HidricaComponent,
     ErrorpaginaComponent,
+    ConfiguracionesComponent,
   ],
 
   imports: [
@@ -87,9 +92,10 @@ import { ChartModule } from 'primeng/chart';
     PaginatorModule,
     AccordionModule,
     ScrollTopModule,
-    ChartModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-ES' }, // Ajustado a 'es-ES'
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,13 +1,17 @@
 <app-navbar></app-navbar>
-<br />
-
 <div class="card" *ngIf="stpe1">
+  <p-messages
+      [(value)]="messages"
+      [enableService]="false"
+      [closable]="false"
+    ></p-messages>
   <p-table
     [columns]="cols"
     [value]="seleccionarFinca"
     [paginator]="true"
     [rows]="4"
   >
+    
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         Listado de Fincas
@@ -72,6 +76,18 @@
             pButton
             pRipple
             type="button"
+            label="Volver"
+            class="p-button-outlined"
+            routerLink="/botones"
+          ></button>
+        </div>
+        <div
+          class="flex align-items-center justify-content-center font-bold border-round m-2"
+        >
+          <button
+            pButton
+            pRipple
+            type="button"
             label="Crear"
             class="p-button-outlined p-button-success"
             routerLink="/registro-inicial"
@@ -81,3 +97,7 @@
     </div>
   </div>
 </div>
+
+<br />
+<app-footer></app-footer>
+
