@@ -19,11 +19,11 @@ import { responseValidarUsuario } from '../models/responseValidarUsuario';
   providers: [MessageService],
 })
 export class TrasladoComponent {
-  stpe6: boolean = true; // Inicialmente visible
+  stpe6: boolean = true; 
   fechaHoy!: Date;
   messages: Message[] = [];
-  spinnerVariable: boolean = false; // Inicialmente visible
-  formularioVariable: boolean = true; // Inicialmente visible
+  spinnerVariable: boolean = false; 
+  formularioVariable: boolean = true; 
   boton: boolean = false;
   transaladarAnimal: transaladarAnimal = {
     fechaIngreso: '',

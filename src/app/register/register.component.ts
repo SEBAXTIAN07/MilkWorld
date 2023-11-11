@@ -87,9 +87,7 @@ export class RegisterComponent implements OnInit {
     try {
       this.mostrarOcultarSpinner();
       this.messages = [];
-      //TODO: Valida si el formulario esta Vacio
       if (this.form.valid) {
-        //TODO: Llena el objeto a enviar.
         this.selectTipoDocumento = this.form.get('tipo_documento')?.value;
         this.crearPersona.tipo_documento = this.selectTipoDocumento?.code!;
         this.crearPersona.numero_documento = parseInt(
@@ -97,7 +95,6 @@ export class RegisterComponent implements OnInit {
         );
         this.crearPersona.nombres = this.form.get('nombres')?.value;
         this.crearPersona.apellidos = this.form.get('apellidos')?.value;
-        //TODO: Consume el Servicio
         this.service
           .registrarUsuario(this.crearPersona)
           .subscribe((response) => {
@@ -148,27 +145,6 @@ export class RegisterComponent implements OnInit {
       ];
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    //TODO: Comienza el Servicio
-
-    // setTimeout(() => {
-    //   this.formularioVisible = !this.formularioVisible;
-    //   this.spinnerVisible = !this.spinnerVisible;
-    //   this.messages = [
-    //     { severity: 'error', summary: 'Error Creando el Usuario', detail: '' },
-    //     {
-    //       severity: 'info',
-    //       summary: 'El Usuario ya se Encuentra Registrado',
-    //       detail: '',
-    //     },
-    //     {
-    //       severity: 'warn',
-    //       summary: 'Digite los Campos Requeridos',
-    //       detail: '',
-    //     },
-    //   ];
-    // }, 3000);
-    // this.formularioVisible = !this.formularioVisible;
-    // this.spinnerVisible = !this.spinnerVisible;
   }
 
   validarUsuario() {

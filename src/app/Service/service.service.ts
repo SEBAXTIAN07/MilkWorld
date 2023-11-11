@@ -15,6 +15,7 @@ import { crearPotrero } from '../models/crearPotrero';
 import { animalesLista } from '../models/animalesLista';
 import { transaladarAnimal } from '../models/transaladarAnimal';
 import { crearActividades } from '../models/crearActividades';
+import { crearPasto } from '../models/crearPasto';
 @Injectable({
   providedIn: 'root',
 })
@@ -176,6 +177,33 @@ export class ServiceService {
           return throwError(err);
         })
       );
+  }
+
+  crearPasto(page: crearPasto): Observable<any> {
+    let direction = this.url + 'Huella/crearPasto';
+    return this.http
+      .post<any>(direction, page, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(
+        catchError((err) => {
+          if ([401, 403, 404].indexOf(err.status) !== 1) {
+            this.router.navigateByUrl('/error');
+          }
+          return throwError(err);
+        })
+      );
+  }
+
+  listarPastoPorID(page: number): Observable<any> {
+    return this.http.get(this.url + 'Huella/listarConfiguracion/' + page).pipe(
+      catchError((err) => {
+        if ([401, 403, 404].indexOf(err.status) !== 1) {
+          this.router.navigateByUrl('/error');
+        }
+        return throwError(err);
+      })
+    );
   }
 
   listarActividades(

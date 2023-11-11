@@ -8,32 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  // userLogged = this.authService.getUserLogged();
   disabled: boolean = false;
   sidebarVisible: boolean = false;
-
-  // constructor(private authService: ServiceService, private route: Router) {}
 
   ngOnInit(): void {
     this.traerdatos();
   }
 
-  traerdatos() {
-    // this.userLogged.subscribe((value) => {    
-    //   if (value?.email == undefined) {
-    //     this.disabled = true;        
-    //   } else {
-    //     this.disabled = false;       
-    //   }
-    // });
-  }
+  traerdatos() {}
 
-  login() {
-    // this.route.navigate(['login']);
-  }
+  login() {}
 
   logOut() {
-    // this.authService.logout();
     window.location.reload();
   }
 }

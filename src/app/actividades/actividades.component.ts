@@ -46,6 +46,8 @@ export class ActividadesComponent implements OnInit {
   campoLeche: boolean = false;
   responseGenerico!: responseGenerico;
   messages: Message[] = [];
+  forrajeMetro!: number;
+  AguaMetro!: number;
   crearActividades: crearActividades = {
     codigoPotrero: '',
     tipoActividad: '',
@@ -201,6 +203,16 @@ export class ActividadesComponent implements OnInit {
           this.formularioVisible2 = true;
           this.spinnerVisible = false;
         }
+        this.service
+          .listarPastoPorID(this.consultaActividad.codigoPasto)
+          .subscribe((response) => {
+            this.forrajeMetro =
+              response.objeto.configuracionConstantes[0].valor;
+            this.AguaMetro = response.objeto.configuracionConstantes[1].valor;
+            console.log(response);
+            console.log(this.forrajeMetro);
+            console.log(this.AguaMetro);
+          });
       });
   }
 
@@ -237,11 +249,11 @@ export class ActividadesComponent implements OnInit {
     } else {
       this.advertenciaHuellaVerde1 = false;
     }
-    const forrajeMetro = 5; //Kg por Metro(1)
+    const forrajeMetro = this.forrajeMetro; //Kg por Metro(1)
     const metrosPromedio =
       this.form.get('totalForrajePromedio')?.value / forrajeMetro;
     this.form.get('areaPotrero')?.setValue(metrosPromedio);
-    const LitrosAguaMetro = 6; //L por Metro(1)
+    const LitrosAguaMetro = this.AguaMetro; //L por Metro(1)
     const LitrosConsumido = metrosPromedio * LitrosAguaMetro;
     this.form.get('litrosAproximados')?.setValue(LitrosConsumido);
   }
@@ -291,7 +303,7 @@ export class ActividadesComponent implements OnInit {
       const año = fecha.getFullYear();
       this.crearActividades.fechaFinal = año + '-' + mes + '-' + dia;
     }
-    const idUsuario: string | null = localStorage.getItem('idUsuario'); // Por ejemplo, una función que podría devolver un string o null
+    const idUsuario: string | null = localStorage.getItem('idUsuario');
     if (idUsuario !== null) {
       this.crearActividades.usuarioLoggeado = idUsuario;
     }
@@ -347,9 +359,6 @@ export class ActividadesComponent implements OnInit {
           this.formularioVisible3 = false;
           this.campoLeche = false;
           this.ngOnInit();
-          // setTimeout(() => {
-          //   this.router.navigate(['/actividades']);
-          // }, 3000);
         } else {
           this.mostrarSpinner(false);
           this.messages = [

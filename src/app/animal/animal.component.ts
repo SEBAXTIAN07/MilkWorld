@@ -26,12 +26,12 @@ interface Generica {
 })
 export class AnimalComponent {
   messages: Message[] = [];
-  stpe6: boolean = true; // Inicialmente visible
-  botonCrear: boolean = false; // Inicialmente visible
+  stpe6: boolean = true; 
+  botonCrear: boolean = false; 
   raza: Generica[] | undefined;
   responseGenerico!: responseGenerico;
-  spinnerVariable: boolean = false; // Inicialmente visible
-  formularioVariable: boolean = true; // Inicialmente visible
+  spinnerVariable: boolean = false; 
+  formularioVariable: boolean = true; 
   boton: boolean = false;
   animalesLista: animalesLista = {
     codigoPotrero: '',
@@ -78,8 +78,6 @@ export class AnimalComponent {
     fechaNacimiento: new FormControl<Date | null>(null),
     numeroPartos: ['', [Validators.required]],
     raza: ['', [Validators.required]],
-    // codigoRaza: ['', [Validators.required]],
-    // nombreRaza: ['', [Validators.required]],
   });
 
   constructor(

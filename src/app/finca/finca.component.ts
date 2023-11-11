@@ -52,8 +52,8 @@ export class FincaComponent implements OnInit {
   seleccionarFinca = [this.finca];
   cols!: Column[];
   items: MenuItem[] = [];
-  stpe1: boolean = true; // Inicialmente visible
-  stpe2: boolean = false; // Inicialmente visible
+  stpe1: boolean = true; 
+  stpe2: boolean = false; 
 
   constructor(
     public messageService: MessageService,
@@ -86,7 +86,6 @@ export class FincaComponent implements OnInit {
 
   selectFinca(products: finca) {
     localStorage.setItem('infoFinca', JSON.stringify(products));
-    // localStorage.setItem('NombreFinca', products.name!);
     (this.stpe1 = true) ? (this.stpe1 = false) : true;
     (this.stpe2 = true) ? (this.stpe2 = false) : true;
   }

@@ -13,8 +13,8 @@ import { Message, MessageService } from 'primeng/api';
 })
 export class BotonesComponent implements OnInit {
   constructor(private router: Router, private service: ServiceService) {}
-  spinnerVisible: boolean = false; // Inicialmente visible
-  formularioVisible: boolean = true; // Inicialmente visible
+  spinnerVisible: boolean = false; 
+  formularioVisible: boolean = true; 
   responseValidarUsuario!: responseListarFinca;
   messages: Message[] = [];
   finca: finca = {
@@ -61,7 +61,7 @@ export class BotonesComponent implements OnInit {
 
   validarListadoFinca() {
     this.mostrarSpinner(true);
-    const idUsuario: string | null = localStorage.getItem('idUsuario'); // Por ejemplo, una función que podría devolver un string o null
+    const idUsuario: string | null = localStorage.getItem('idUsuario'); 
     if (idUsuario !== null) {
       this.service.validarUsuario(idUsuario).subscribe((response) => {
         this.responseValidarUsuario = response;

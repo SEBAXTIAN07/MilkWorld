@@ -1,17 +1,16 @@
 <app-navbar></app-navbar>
 <div class="card" *ngIf="stpe1">
   <p-messages
-      [(value)]="messages"
-      [enableService]="false"
-      [closable]="false"
-    ></p-messages>
+    [(value)]="messages"
+    [enableService]="false"
+    [closable]="false"
+  ></p-messages>
   <p-table
     [columns]="cols"
     [value]="seleccionarFinca"
     [paginator]="true"
     [rows]="4"
   >
-    
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         Listado de Fincas
@@ -19,29 +18,16 @@
     </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <!-- <th>Id</th> -->
         <th>Nombre</th>
-        <!-- <th>Borrar</th> -->
         <th>Elegir</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-finca>
       <tr>
-        <!-- <td>
-          {{ product.id }}
-        </td> -->
         <td>
           {{ finca.nombreFinca }}
         </td>
-        <!-- <td>
-          <button
-            pButton
-            pRipple
-            type="button"
-            icon="pi pi-times"
-            class="p-button-rounded p-button-danger"
-          ></button>
-        </td> -->
+
         <td>
           <button
             pButton
@@ -100,4 +86,3 @@
 
 <br />
 <app-footer></app-footer>
-

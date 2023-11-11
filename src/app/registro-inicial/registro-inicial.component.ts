@@ -64,15 +64,15 @@ export class RegistroInicialComponent implements OnInit {
   suplementos: Generica[] | undefined;
   raza: Generica[] | undefined;
   items: MenuItem[] = [];
-  stpe1: boolean = true; // Inicialmente visible
-  stpe2: boolean = false; // Inicialmente visible
-  stpe3: boolean = false; // Inicialmente visible
-  stpe4: boolean = false; // Inicialmente visible
-  stpe5: boolean = false; // Inicialmente visible
-  stpe6: boolean = false; // Inicialmente visible
-  spinnerVariable: boolean = false; // Inicialmente visible
-  formularioVariable: boolean = false; // Inicialmente visible
-  municipioCampo: boolean = true; // Inicialmente visible
+  stpe1: boolean = true; 
+  stpe2: boolean = false; 
+  stpe3: boolean = false; 
+  stpe4: boolean = false; 
+  stpe5: boolean = false; 
+  stpe6: boolean = false; 
+  spinnerVariable: boolean = false; 
+  formularioVariable: boolean = false; 
+  municipioCampo: boolean = true;
   departamentos!: departamentos[];
   pasto!: pasto[];
   pastoSeleccionado!: pasto;
@@ -163,14 +163,12 @@ export class RegistroInicialComponent implements OnInit {
 
     this.form.get('municipio')?.disable();
     this.mostrarSpinner(true);
-    //TODO: Produccion
     this.service.consultarDepartamentoYMunicipio().subscribe((response) => {
       this.responseDepartamentos = response;
       this.departamentos = this.responseDepartamentos.listaResultado;
       this.mostrarSpinner(false);
     });
-    //TODO: Desarrollo
-    // this.mostrarSpinner(false);
+
     this.listarPasto();
   }
 
@@ -349,7 +347,6 @@ export class RegistroInicialComponent implements OnInit {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    //TODO:Validado
     this.mostrarSpinner(true);
     this.boton = true;
     this.seleccionarmunicipios = this.form.get('municipio')?.value;

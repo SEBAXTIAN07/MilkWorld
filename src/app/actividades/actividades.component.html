@@ -94,60 +94,10 @@
                     routerLink="/botones"
                   ></button>
                 </div>
-                <!-- <div class="centro" *ngIf="formularioVisible2">
-                    <button
-                      pButton
-                      pRipple
-                      type="button"
-                      icon="pi pi-eye"
-                      class="p-button-rounded p-button-success"
-                      (click)="activarTabla()"
-                      pTooltip="Ver Informacion"
-                      tooltipPosition="bottom"
-                      placeholder="Bottom"
-                    ></button>
-                  </div> -->
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="field">
-            <label for="firstname1">Finca</label>
-            <input
-              id="firstname1"
-              type="text"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              formControlName="nombreFinca"
-            />
-          </div>
-          <div class="field">
-            <label for="lastname1"></label>
-            <input
-              id="lastname1"
-              maxlength="10"
-              type="text"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              formControlName="tipoActividad"
-            />
-          </div>
-          <div class="field">
-            <label for="lastname1">Potrero</label>
-            <br />
-            <p-dropdown
-              [options]="seleccionarPotrero"
-              formControlName="potrero"
-              optionLabel="nombrePotrero"
-              class="w-full mb-3"
-              onchange=""
-              placeholder="Seleccione"
-              (onChange)="consultarActividad()"
-            ></p-dropdown>
-          </div>
-          <div class="field">
-            <label for="lastname1">Fecha: </label>
-
-            {{ fechaHoy | date : "dd/MM/yyyy" }}
-          </div> -->
       </div>
     </div>
   </div>
@@ -165,12 +115,9 @@
         >
           <ng-template pTemplate="header" let-columns>
             <tr>
-              <!-- <th>Cod.</th> -->
               <th>Nombre</th>
               <th>Peso-Rango</th>
               <th>Etapa</th>
-              <!-- <th>Agua-Promedio</th> -->
-              <!-- <th>Forraje-Promedio</th> -->
             </tr>
           </ng-template>
           <ng-template
@@ -179,12 +126,6 @@
             styleClass="text-align: center;"
           >
             <tr>
-              <!-- <td>
-            {{ product.id }}
-          </td> -->
-              <!-- <td>
-                {{ actividades.codigoAnimal }}
-              </td> -->
               <td>
                 {{ actividades.nombreAnimal }}
               </td>
@@ -194,21 +135,6 @@
               <td>
                 {{ actividades.etapa }}
               </td>
-              <!-- <td>
-              {{ actividades.aguaPromedio }}
-            </td>
-            <td>
-              {{ actividades.forrajePromedio }}
-            </td> -->
-              <!-- <td>
-            <button
-              pButton
-              pRipple
-              type="button"
-              icon="pi pi-times"
-              class="p-button-rounded p-button-danger"
-            ></button>
-          </td> -->
             </tr>
           </ng-template>
         </p-table>
@@ -422,25 +348,6 @@
       </div>
     </div>
     <br />
-
-    <!-- <div class="field">
-      <label for="lastname1" class="bold-label"
-        >Total Agua Promedio &nbsp;&nbsp;&nbsp;:
-        {{ this.registroActividades.objeto.totalAguaPromedio }}</label
-      >
-    </div>
-    <div class="field">
-      <label for="lastname1" class="bold-label"
-        >Total Forraje Promedio :
-        {{ this.registroActividades.objeto.totalForrajePromedio }}</label
-      >
-    </div>
-    <div class="field">
-      <label for="lastname1" class="bold-label"
-        >Total Leche Promedio &nbsp;:
-        {{ this.registroActividades.objeto.totalLechePromedio }}</label
-      >
-    </div> -->
   </div>
 </form>
 <br />

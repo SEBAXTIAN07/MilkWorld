@@ -63,8 +63,8 @@ export class PotreroComponent {
   stpe5: boolean = false;
   stpe6: boolean = false;
   boton: boolean = false;
-  spinnerVariable: boolean = false; // Inicialmente visible
-  formularioVariable: boolean = true; // Inicialmente visible
+  spinnerVariable: boolean = false; 
+  formularioVariable: boolean = true; 
   pasto!: pasto[];
   pastoSeleccionado!: pasto;
   pastoLista!: pastoLista;
@@ -101,14 +101,6 @@ export class PotreroComponent {
       this.pasto = this.pastoLista.listaResultado;
     });
   }
-
-  // validarStpe(numero: number) {
-  //   numero == 1 ? (this.stpe1 = true) : (this.stpe1 = false);
-  //   numero == 4 ? (this.stpe4 = true) : (this.stpe4 = false);
-  //   numero == 5 ? (this.stpe5 = true) : (this.stpe5 = false);
-  //   numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
-  // }
-
   validarAreaTotal() {
     let suma = 0;
     const areaTotalFinca = this.finca.areaTotal;
