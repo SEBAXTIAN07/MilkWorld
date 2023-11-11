@@ -31,3 +31,7 @@ h3 {
 div{
     font-family: 'Poppins';
 }
+
+app-footer {
+    height: 60px; /* Ajusta según la altura de tu footer */
+  }
