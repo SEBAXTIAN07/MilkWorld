@@ -25,6 +25,7 @@ export class TrasladoComponent {
   spinnerVariable: boolean = false;
   formularioVariable: boolean = true;
   boton: boolean = false;
+  botonCrear: boolean = true;
   transaladarAnimal: transaladarAnimal = {
     fechaIngreso: '',
     pesoPromedio: '',
@@ -67,6 +68,7 @@ export class TrasladoComponent {
   seleccionarPotreroActual!: potreroCodigo[];
   seleccionarAnimal!: animalesLista[];
   responseGenerico!: responseValidarUsuario;
+  seleccionarPotreroVisualizar!: potreroCodigo;
 
   constructor(
     public messageService: MessageService,
@@ -81,6 +83,7 @@ export class TrasladoComponent {
     this.service.validarUsuarioSistema();
     this.form.get('potreroNuevo')?.disable();
     this.form.get('animal')?.disable();
+    this.form.get('pesoPromedio')?.disable();
     this.finca = JSON.parse(localStorage.getItem('infoFinca')!);
     this.seleccionarPotreroActual = this.finca.potreros;
   }
@@ -106,6 +109,8 @@ export class TrasladoComponent {
       this.form.get('potreroNuevo')?.setValue(null);
       this.form.get('animal')?.disable();
       this.form.get('animal')?.setValue(null);
+      this.form.get('pesoPromedio')?.disable();
+      this.form.get('pesoPromedio')?.setValue(0);
 
       return;
     }
@@ -115,6 +120,7 @@ export class TrasladoComponent {
     );
     this.seleccionarPotreroNuevo = validar;
     this.form.get('potreroNuevo')?.enable();
+    this.botonCrear = true;
   }
 
   validarEspacioPotrero() {
@@ -152,7 +158,7 @@ export class TrasladoComponent {
 
           if (this.responseGenerico.mensaje == '0') {
             this.boton = true;
-
+            this.botonCrear = true;
             this.mostrarSpinner(false);
             this.messages = [
               {
@@ -170,7 +176,7 @@ export class TrasladoComponent {
             this.messages = [
               {
                 severity: 'info',
-                summary: 'EL Numero de Cotral ya se Encuentra Registrado',
+                summary: 'El Número de Cotral ya se Encuentra Registrado',
                 detail: '',
               },
             ];
@@ -187,6 +193,45 @@ export class TrasladoComponent {
     } else {
       this.formularioVariable = true;
       this.spinnerVariable = false;
+    }
+  }
+
+  validarCapMaxAnimal() {
+    this.messages = [];
+    if (this.form.get('potreroNuevo')?.valid) {
+      this.seleccionarPotreroVisualizar = this.form.get('potreroNuevo')?.value;
+      console.log(this.seleccionarPotreroVisualizar);
+      console.log(this.seleccionarPotreroVisualizar.animales?.length);
+      if (
+        this.seleccionarPotreroVisualizar.animales?.length! <
+        this.seleccionarPotreroVisualizar.cupoMaximoAnimales
+      ) {
+        this.form.get('pesoPromedio')?.enable();
+        this.form.get('animal')?.enable();
+        this.botonCrear = false;
+      } else {
+        this.messages = [
+          {
+            severity: 'info',
+            summary:
+              'Capacidad Máxima de Animales (' +
+              this.seleccionarPotreroVisualizar.cupoMaximoAnimales +
+              ') del Potrero: (' +
+              this.seleccionarPotreroVisualizar.nombrePotrero +
+              ') Alcanzado',
+            detail: '',
+          },
+        ];
+        this.botonCrear = true;
+
+        this.form.get('pesoPromedio')?.disable();
+        this.form.get('animal')?.disable();
+        this.form.get('pesoPromedio')?.disable();
+        this.form.get('pesoPromedio')?.setValue(0);
+        this.form.get('potreroNuevo')?.reset();
+        this.ngOnInit;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   }
 }

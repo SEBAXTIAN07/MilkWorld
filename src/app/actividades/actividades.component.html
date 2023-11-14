@@ -59,14 +59,20 @@
                 >
                   Fecha Inicial
                 </div>
-                <p-calendar formControlName="fechaInicial" (onSelect)="validarFecha()"></p-calendar>
+                <p-calendar
+                  formControlName="fechaInicial"
+                  (onSelect)="validarFecha()"
+                ></p-calendar>
                 <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
                   Fecha Final
                 </div>
-                <p-calendar formControlName="fechaFinal" (onSelect)="validarFecha()"></p-calendar>
+                <p-calendar
+                  formControlName="fechaFinal"
+                  (onSelect)="validarFecha()"
+                ></p-calendar>
                 <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
@@ -105,7 +111,7 @@
     <p-accordion [multiple]="true">
       <p-accordionTab>
         <ng-template pTemplate="header">
-          <i class="pi pi-calculator"></i> &nbsp;Informacion Potrero
+          <i class="pi pi-calculator"></i> &nbsp;Información Potrero
         </ng-template>
         <p-table
           [columns]="cols"
@@ -154,7 +160,7 @@
                   ><strong
                     ><p-message
                       severity="warn"
-                      text="Limite de Agua Alcanzado"
+                      text="Límite de Agua Alcanzado"
                       styleClass="mr-2"
                     ></p-message></strong
                 ></span>
@@ -162,7 +168,7 @@
                   ><strong
                     ><p-message
                       severity="warn"
-                      text="Limite Minimo de Agua"
+                      text="Límite Mínimo de Agua"
                       styleClass="mr-2"
                     ></p-message></strong
                 ></span>
@@ -234,7 +240,7 @@
                   ><strong
                     ><p-message
                       severity="warn"
-                      text="Limite Maximo de Forraje Alcanzado"
+                      text="Límite Máximo de Forraje Alcanzado"
                       styleClass="mr-2"
                     ></p-message></strong
                 ></span>
@@ -242,7 +248,7 @@
                   ><strong
                     ><p-message
                       severity="warn"
-                      text="Limite Minimo de Forraje"
+                      text="Límite Mínimo de Forraje"
                       styleClass="mr-2"
                     ></p-message></strong
                 ></span>
@@ -260,7 +266,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Area Utilizada Potrero:
+                  Área Utilizada Potrero:
                 </div>
                 <p-inputNumber prefix="mts: " formControlName="areaPotrero">
                 </p-inputNumber>
@@ -279,7 +285,7 @@
       </p-accordionTab>
       <p-accordionTab *ngIf="campoLeche">
         <ng-template pTemplate="header">
-          <i class="pi pi-dollar"></i> &nbsp;Registro Produccion
+          <i class="pi pi-dollar"></i> &nbsp;Registro Producción
         </ng-template>
         <div class="grid">
           <div class="col-12">

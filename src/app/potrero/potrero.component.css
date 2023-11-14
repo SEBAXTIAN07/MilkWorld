@@ -20,3 +20,14 @@
 h2 {
     font-size: 40px;
 }
+
+::ng-deep .p-datatable tbody td,
+::ng-deep .p-datatable tbody th {
+  text-align: center; /* Centra el texto horizontalmente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+}
+
+::ng-deep .p-datatable thead th {
+  text-align: center; /* Centra el texto horizontalmente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+}

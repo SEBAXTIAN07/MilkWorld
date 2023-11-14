@@ -16,7 +16,9 @@
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th>Nombre</th>
-          <th>Elegir</th>
+          <th>Max. Animal</th>
+          <th>Área (mts)</th>
+          <th>Eliminar</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
@@ -25,13 +27,19 @@
             {{ product.nombrePotrero }}
           </td>
           <td>
+            {{ product.cupoMaximoAnimales }}
+          </td>
+          <td>
+            {{ formatearNumeroConPuntos(product.areaPotrero) }}
+          </td>
+          <td>
             <button
               pButton
               pRipple
               type="button"
-              icon="pi pi-angle-double-right"
-              class="p-button-rounded p-button-success"
-              routerLink="/botones"
+              icon="pi pi-times"
+              class="p-button-rounded p-button-danger"
+              (click)="eliminarPotrero(product.codigoPotrero)"
             ></button>
           </td>
         </tr>
@@ -44,7 +52,7 @@
       <div>
         <br />
         <div class="field text-center">
-          <label for="firstname1">¿Desea Crear una Nuevo Potrero?</label>
+          <label for="firstname1">¿Desea Crear un Nuevo Potrero?</label>
         </div>
 
         <div class="flex justify-content-center flex-wrap">
@@ -121,7 +129,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Area del Potrero
+                  Área del Potrero
                 </div>
                 <p-inputNumber
                   prefix="m: "
@@ -133,7 +141,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Capacidad Maxima Forraje
+                  Capacidad Máxima Forraje
                 </div>
                 <p-inputNumber
                   prefix="Kg: "
@@ -144,7 +152,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Capacidad Maxima Agua
+                  Capacidad Máxima Agua
                 </div>
                 <p-inputNumber
                   prefix="L: "
@@ -212,7 +220,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Cupo Maximo de Animales
+                  Cupo Máximo de Animales
                 </div>
                 <input
                   id="firstname1"
@@ -239,7 +247,7 @@
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
-                  Codigo Finca (N° Unico)
+                  Código Finca (N° Único)
                 </div>
                 <input
                   id="lastname1"

@@ -13,6 +13,8 @@ import { responseGenerico } from '../models/responseGenerico';
 import { animalesLista } from '../models/animalesLista';
 import { potreroCodigo } from '../models/potreroCodigo';
 import { Router } from '@angular/router';
+import { animales } from '../models/animales';
+import { responseListarFinca } from '../models/responseListarFinca';
 
 interface Generica {
   nombreRaza: string;
@@ -21,12 +23,15 @@ interface Generica {
 @Component({
   selector: 'app-animal',
   templateUrl: './animal.component.html',
-  styleUrls: ['./animal.component.css'],
+  styleUrls: ['./animal.component.scss'],
   providers: [MessageService],
 })
 export class AnimalComponent {
+  rowIndex: number = 0;
   messages: Message[] = [];
-  stpe6: boolean = true;
+  stpe6: boolean = false;
+  Tabla: boolean = false;
+  Seleccion: boolean = true;
   botonCrear: boolean = false;
   raza: Generica[] | undefined;
   responseGenerico!: responseGenerico;
@@ -44,7 +49,11 @@ export class AnimalComponent {
       nombreRaza: '',
     },
   };
+
   seleccionarPotrero!: [Potrero];
+  seleccionarPotreroVisualizar!: potreroCodigo;
+  seleccionarAnimalesVisualizar!: animales[];
+  responseValidarUsuario!: responseListarFinca;
   potreroSeleccionado!: potreroCodigo;
   finca: finca = {
     id_persona: '',
@@ -70,10 +79,12 @@ export class AnimalComponent {
       },
     ],
   };
+  seleccionarFincaObjeto = this.finca;
 
   public form: FormGroup = this.formBuilder.group({
     nombreAnimal: ['', [Validators.required]],
     potrero: ['', [Validators.required]],
+    potreroVisualizar: [''],
     numeroCrotal: ['', [Validators.required]],
     fechaNacimiento: new FormControl<Date | null>(null),
     numeroPartos: ['', [Validators.required]],
@@ -109,17 +120,86 @@ export class AnimalComponent {
   }
 
   validarStpe(numero: number) {
-    numero == 6 ? (this.stpe6 = true) : (this.stpe6 = false);
+    this.messages = [];
+    if (numero == 6) {
+      this.stpe6 = true;
+      this.Seleccion = false;
+      return;
+    }
+    this.stpe6 = false;
+    this.Seleccion = true;
   }
 
   validarCampos() {
     if (this.form.get('potrero')?.valid) {
-      this.botonCrear = true;
-      this.form.get('raza')?.enable();
-      this.form.get('nombreAnimal')?.enable();
-      this.form.get('numeroCrotal')?.enable();
-      this.form.get('fechaNacimiento')?.enable();
-      this.form.get('numeroPartos')?.enable();
+      this.validarCapMaxAnimal();
+    }
+  }
+
+  listarAnimales() {
+    this.Tabla = false;
+    this.messages = [];
+    if (this.form.get('potreroVisualizar')?.valid) {
+      this.seleccionarPotreroVisualizar =
+        this.form.get('potreroVisualizar')?.value;
+      if (this.seleccionarPotreroVisualizar.animales?.length! <= 0) {
+        this.messages = [
+          {
+            severity: 'info',
+            summary: 'El Potrero No Cuenta con Animales',
+            detail: '',
+          },
+        ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      this.seleccionarAnimalesVisualizar =
+        this.seleccionarPotreroVisualizar.animales!;
+      this.Tabla = true;
+
+      console.log(this.seleccionarPotreroVisualizar.animales);
+    }
+  }
+
+  validarCapMaxAnimal() {
+    this.messages = [];
+    if (this.form.get('potrero')?.valid) {
+      this.seleccionarPotreroVisualizar = this.form.get('potrero')?.value;
+      console.log(this.seleccionarPotreroVisualizar);
+      console.log(this.seleccionarPotreroVisualizar.animales?.length);
+      if (
+        this.seleccionarPotreroVisualizar.animales?.length! <
+        this.seleccionarPotreroVisualizar.cupoMaximoAnimales
+      ) {
+        this.botonCrear = true;
+        this.form.get('raza')?.enable();
+        this.form.get('nombreAnimal')?.enable();
+        this.form.get('numeroCrotal')?.enable();
+        this.form.get('fechaNacimiento')?.enable();
+        this.form.get('numeroPartos')?.enable();
+      } else {
+        this.messages = [
+          {
+            severity: 'info',
+            summary:
+              'Capacidad Máxima de Animales (' +
+              this.seleccionarPotreroVisualizar.cupoMaximoAnimales +
+              ') del Potrero: (' +
+              this.seleccionarPotreroVisualizar.nombrePotrero +
+              ') Alcanzado',
+            detail: '',
+          },
+        ];
+        this.botonCrear = false;
+        this.form.get('raza')?.disable();
+        this.form.get('nombreAnimal')?.disable();
+        this.form.get('numeroCrotal')?.disable();
+        this.form.get('fechaNacimiento')?.disable();
+        this.form.get('numeroPartos')?.disable();
+        this.form.get('potrero')?.reset();
+        this.ngOnInit;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   }
 
@@ -167,15 +247,13 @@ export class AnimalComponent {
           },
         ];
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => {
-          this.router.navigate(['/botones']);
-        }, 3000);
+        this.actualizarInformacion();
       } else {
         this.mostrarSpinner(false);
         this.messages = [
           {
             severity: 'info',
-            summary: 'EL Numero de Cotral ya se Encuentra Registrado',
+            summary: 'El Número de Cotral ya se Encuentra Registrado',
             detail: '',
           },
         ];
@@ -224,6 +302,83 @@ export class AnimalComponent {
     } else {
       this.formularioVariable = true;
       this.spinnerVariable = false;
+    }
+  }
+
+  eliminarAnimal(id: string) {
+    console.log(id);
+    this.service.eliminarAnimal(id).subscribe((response) => {
+      this.responseGenerico = response;
+      if (this.responseGenerico.mensaje == '0') {
+        this.boton = true;
+        this.mostrarSpinner(false);
+        this.boton = true;
+        this.messages = [
+          {
+            severity: 'success',
+            summary: 'Animal Eliminado Correctamente',
+            detail: '',
+          },
+        ];
+        this.form.get('potreroVisualizar')?.disable();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.actualizarInformacion();
+      } else {
+        this.mostrarSpinner(false);
+        this.messages = [
+          {
+            severity: 'info',
+            summary: 'El Animal No se Encuentra Registrado',
+            detail: '',
+          },
+        ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  actualizarInformacion() {
+    this.mostrarSpinner(true);
+    const idUsuario: string | null = localStorage.getItem('idUsuario');
+    if (idUsuario !== null) {
+      this.service.validarUsuario(idUsuario).subscribe((response) => {
+        this.responseValidarUsuario = response;
+        if (this.responseValidarUsuario.mensaje == '1') {
+          setTimeout(() => {
+            localStorage.setItem(
+              'infoUsuario',
+              JSON.stringify(this.responseValidarUsuario)
+            );
+          }, 1000);
+        }
+        const infoUsuarioJSON = localStorage.getItem('infoFinca');
+        if (infoUsuarioJSON) {
+          for (
+            let i = 0;
+            i < this.responseValidarUsuario.listaResultado.length;
+            i++
+          ) {
+            this.seleccionarFincaObjeto = JSON.parse(
+              localStorage.getItem('infoFinca')!
+            );
+            if (
+              this.responseValidarUsuario.listaResultado[i].codigoFinca ==
+              this.seleccionarFincaObjeto.codigoFinca
+            ) {
+              localStorage.setItem(
+                'infoFinca',
+                JSON.stringify(this.responseValidarUsuario.listaResultado[i])
+              );
+            }
+          }
+        }
+        this.mostrarSpinner(false);
+        this.ngOnInit();
+        this.Tabla = false;
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      });
     }
   }
 }

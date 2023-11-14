@@ -72,7 +72,7 @@ export class SesionComponent {
             this.messages = [
               {
                 severity: 'success',
-                summary: 'El Usuario Logeado',
+                summary: 'Iniciado Sesión',
                 detail: '',
               },
             ];
@@ -90,7 +90,7 @@ export class SesionComponent {
             this.messages = [
               {
                 severity: 'info',
-                summary: 'El Usuario No esta Registrado',
+                summary: 'El Usuario No está Registrado',
                 detail: '',
               },
             ];

@@ -1,0 +1,66 @@
+.boton-redondo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #007bff;
+  /* Borde azul de 2 píxeles */
+}
+
+.boton-redondo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+.boton-redondo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #007bff; /* Borde azul de 2 píxeles */
+}
+
+.boton-redondo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+::ng-deep .p-datatable tbody td,
+::ng-deep .p-datatable tbody th {
+  text-align: center; /* Centra el texto horizontalmente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+}
+
+::ng-deep .p-datatable thead th {
+  text-align: center; /* Centra el texto horizontalmente */
+  vertical-align: middle; /* Centra el texto verticalmente */
+}
+
+.contenedor-p-table {
+  overflow-x: auto;
+}
+
+.color-par {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+  }
+  
+  /* Define estilos para filas con índice impar */
+  .color-impar {
+    background-color: #ae0000; /* Color de fondo para filas impares */
+  }

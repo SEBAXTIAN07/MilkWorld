@@ -319,9 +319,9 @@ export class RegistroInicialComponent implements OnInit {
         {
           severity: 'warn',
           summary:
-            'El Area Total es de: ' +
+            'El Área Total es de: ' +
             this.form.get('areaTotal')?.value +
-            ' Valide el Area del Potrero',
+            ' Valide el Área del Potrero',
           detail: '',
         },
       ];
@@ -427,7 +427,7 @@ export class RegistroInicialComponent implements OnInit {
         this.messages = [
           {
             severity: 'success',
-            summary: 'La Finca se Creo Correctamente',
+            summary: 'La Finca se Creó Correctamente',
             detail: '',
           },
         ];

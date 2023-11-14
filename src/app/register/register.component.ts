@@ -113,7 +113,7 @@ export class RegisterComponent implements OnInit {
               this.messages = [
                 {
                   severity: 'success',
-                  summary: 'El Usuario ya se Registro Correctamente',
+                  summary: 'El Usuario ya se Registró Correctamente',
                   detail: '',
                 },
               ];
@@ -170,7 +170,7 @@ export class RegisterComponent implements OnInit {
           this.messages = [
             {
               severity: 'info',
-              summary: 'El Usuario No esta Registrado',
+              summary: 'El Usuario No está Registrado',
               detail: '',
             },
           ];

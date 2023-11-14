@@ -424,7 +424,7 @@ export class ActividadesComponent implements OnInit {
           this.messages = [
             {
               severity: 'info',
-              summary: 'Error Creando el registro',
+              summary: 'Error Creando el Registro',
               detail: '',
             },
           ];

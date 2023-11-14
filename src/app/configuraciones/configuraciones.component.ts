@@ -88,7 +88,7 @@ export class ConfiguracionesComponent implements OnInit {
         this.messages = [
           {
             severity: 'info',
-            summary: 'EL Tipo de Pasto ya se Encuentra Registrado',
+            summary: 'El Tipo de Pasto ya se Encuentra Registrado',
             detail: '',
           },
         ];

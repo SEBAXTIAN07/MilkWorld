@@ -63,8 +63,8 @@ export class PotreroComponent {
   stpe5: boolean = false;
   stpe6: boolean = false;
   boton: boolean = false;
-  spinnerVariable: boolean = false; 
-  formularioVariable: boolean = true; 
+  spinnerVariable: boolean = false;
+  formularioVariable: boolean = true;
   pasto!: pasto[];
   pastoSeleccionado!: pasto;
   pastoLista!: pastoLista;
@@ -118,7 +118,7 @@ export class PotreroComponent {
         {
           severity: 'info',
           summary:
-            'El Area del Potrero Disponible es de: ' + miConstanteFormateada,
+            'El Área del Potrero Disponible es de: ' + miConstanteFormateada,
           detail: '',
         },
       ];
@@ -290,5 +290,16 @@ export class PotreroComponent {
       this.formularioVariable = true;
       this.spinnerVariable = false;
     }
+  }
+
+  eliminarPotrero(id: string) {
+    console.log('Codigo : ' + id);
+    this.service.eliminarPotrero(id).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  formatearNumeroConPuntos(numero: number): string {
+    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 }
