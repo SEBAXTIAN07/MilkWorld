@@ -1,17 +1,20 @@
 <div class="bg-bluegray-900">
   <div class="text-center">
-    <div class="font-bold text-white">🐾 ¡Bienvenid@! 🌾</div>
+    <div class="grid">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <span class="blanco">MILK</span> &nbsp;<span class="azul">WORLD</span>
+      </div>
+      <div class="col-3"></div>
+    </div>
     <br />
-    <div class=" font-bold text-white">
+    <div class="font-bold text-white">
       {{ fechaHora | date : "fullDate" }} - {{ fechaHora | date : "shortTime" }}
     </div>
-    <p></p>
-
     <a class="">
       <a class="text-white" href="#"
         ><span class="underline font-bold">Cerrar Sesion</span></a
       >
     </a>
-    
   </div>
 </div>

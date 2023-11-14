@@ -24,3 +24,28 @@
 
 
 }
+
+
+.blanco {
+    color: white;
+    font-family: 'Poppins', cursive;
+    font-size: 30px;
+    padding: 0;
+    /* o también puedes usar padding: 0px; */
+
+}
+
+.azul {
+    color: rgb(0, 183, 255);
+    font-family: 'Poppins', cursive;
+    font-size: 30px;
+    /* o también puedes usar padding: 0px; */
+
+}
+
+.col-3 {
+    padding: 0;
+}
+.col-6 {
+    padding: 0;
+}

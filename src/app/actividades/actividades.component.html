@@ -59,14 +59,14 @@
                 >
                   Fecha Inicial
                 </div>
-                <p-calendar formControlName="fechaInicial"></p-calendar>
+                <p-calendar formControlName="fechaInicial" (onSelect)="validarFecha()"></p-calendar>
                 <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
                 >
                   Fecha Final
                 </div>
-                <p-calendar formControlName="fechaFinal"></p-calendar>
+                <p-calendar formControlName="fechaFinal" (onSelect)="validarFecha()"></p-calendar>
                 <br />
                 <div
                   class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"

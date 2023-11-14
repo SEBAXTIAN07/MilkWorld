@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.validarUsuarioSistema();
+    // this.service.validarUsuarioSistema();
     this.cities = [
       { name: '', code: '' },
       { name: 'CC', code: 'CC' },

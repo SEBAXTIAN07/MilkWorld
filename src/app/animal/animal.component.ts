@@ -26,12 +26,12 @@ interface Generica {
 })
 export class AnimalComponent {
   messages: Message[] = [];
-  stpe6: boolean = true; 
-  botonCrear: boolean = false; 
+  stpe6: boolean = true;
+  botonCrear: boolean = false;
   raza: Generica[] | undefined;
   responseGenerico!: responseGenerico;
-  spinnerVariable: boolean = false; 
-  formularioVariable: boolean = true; 
+  spinnerVariable: boolean = false;
+  formularioVariable: boolean = true;
   boton: boolean = false;
   animalesLista: animalesLista = {
     codigoPotrero: '',
@@ -152,7 +152,6 @@ export class AnimalComponent {
       const mes = fecha.getMonth() + 1;
       const año = fecha.getFullYear();
       this.animalesLista.fechaNacimiento = año + '-' + mes + '-' + dia;
-    } else {
     }
     this.service.crearAnimal(this.animalesLista).subscribe((response) => {
       this.responseGenerico = JSON.parse(response);
@@ -183,6 +182,39 @@ export class AnimalComponent {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
+  }
+
+  validaFechaNacimiento() {
+    this.messages = [];
+    const fechaCompleta = this.form.get('fechaNacimiento')?.value;
+
+    if (fechaCompleta) {
+      const fecha = new Date(fechaCompleta);
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.animalesLista.fechaNacimiento = año + '-' + mes + '-' + dia;
+    }
+
+    const fechaHoy: Date = new Date();
+
+    const fechaSeleccionadaInicial: Date = new Date(
+      this.animalesLista.fechaNacimiento
+    );
+
+    if (fechaSeleccionadaInicial > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha Inicial Seleccionada es Posterior al Día de Hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaNacimiento')?.reset();
+      this.animalesLista.fechaNacimiento = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
   }
 
   mostrarSpinner(valor: boolean) {

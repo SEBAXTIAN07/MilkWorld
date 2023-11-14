@@ -19,11 +19,11 @@ import { responseValidarUsuario } from '../models/responseValidarUsuario';
   providers: [MessageService],
 })
 export class TrasladoComponent {
-  stpe6: boolean = true; 
+  stpe6: boolean = true;
   fechaHoy!: Date;
   messages: Message[] = [];
-  spinnerVariable: boolean = false; 
-  formularioVariable: boolean = true; 
+  spinnerVariable: boolean = false;
+  formularioVariable: boolean = true;
   boton: boolean = false;
   transaladarAnimal: transaladarAnimal = {
     fechaIngreso: '',
@@ -115,6 +115,11 @@ export class TrasladoComponent {
     );
     this.seleccionarPotreroNuevo = validar;
     this.form.get('potreroNuevo')?.enable();
+  }
+
+  validarEspacioPotrero() {
+    const potreroCodigoNuevo = this.form.get('potreroNuevo')?.value;
+    console.log(potreroCodigoNuevo);
   }
 
   realizarTraslado() {

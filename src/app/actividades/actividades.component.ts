@@ -150,6 +150,7 @@ export class ActividadesComponent implements OnInit {
   }
 
   consultarActividad() {
+    this.resetCampos();
     this.messages = [];
     this.formularioVisible1 = false;
     this.formularioVisible2 = false;
@@ -209,11 +210,26 @@ export class ActividadesComponent implements OnInit {
             this.forrajeMetro =
               response.objeto.configuracionConstantes[0].valor;
             this.AguaMetro = response.objeto.configuracionConstantes[1].valor;
-            console.log(response);
-            console.log(this.forrajeMetro);
-            console.log(this.AguaMetro);
           });
       });
+  }
+
+  resetCampos() {
+    this.form.get('consumoDirecto')?.setValue(0);
+    this.form.get('consumoIndirecto')?.setValue(0);
+    this.form.get('consumoServicio')?.setValue(0);
+    this.form.get('totalAguaPromedio')?.setValue(0);
+    this.form.get('totalForrajePromedio')?.setValue(0);
+    this.form.get('areaPotrero')?.setValue(0);
+    this.form.get('litrosAproximados')?.setValue(0);
+    this.form.get('lecheProducida')?.setValue(0);
+    this.form.get('aguaGastada')?.setValue(0);
+    this.form.get('comidaGastada')?.setValue(0);
+    this.advertenciaHuellaVerde1 = false;
+    this.advertenciaHuellaVerde2 = false;
+    this.advertenciaHuellaAzul1 = false;
+    this.advertenciaHuellaAzul2 = false;
+    this.advertenciaRegistroLeche = false;
   }
 
   validarHuellaAzul() {
@@ -282,6 +298,50 @@ export class ActividadesComponent implements OnInit {
   }
 
   registrarActiviad() {
+    if (this.form.get('consumoDirecto')?.value <= 0) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'El Consumo Directo no Puede Ser 0',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (this.form.get('totalForrajePromedio')?.value <= 0) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'El Consumo Forraje no Puede Ser 0',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (!this.form.get('fechaInicial')?.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide la Fecha Inicial',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (!this.form.get('fechaFinal')?.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide la Fecha Final',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     this.mostrarSpinner(true);
     this.crearActividades.codigoPotrero = this.consultaActividad.codigoPotrero;
     this.crearActividades.tipoActividad = this.form.get('tipoActividad')?.value;
@@ -380,6 +440,80 @@ export class ActividadesComponent implements OnInit {
     } else {
       this.formularioVisible1 = true;
       this.spinnerVisible = false;
+    }
+  }
+
+  validarFecha() {
+    this.messages = [];
+    const fechaInicio = this.form.get('fechaInicial')?.value;
+    const fechaI = new Date(fechaInicio);
+
+    if (fechaInicio) {
+      const dia = fechaI.getDate();
+      const mes = fechaI.getMonth() + 1;
+      const año = fechaI.getFullYear();
+      this.crearActividades.fechaInicio = año + '-' + mes + '-' + dia;
+    }
+    const fechaFinal = this.form.get('fechaFinal')?.value;
+
+    const fecha = new Date(fechaFinal);
+    if (fechaFinal) {
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.crearActividades.fechaFinal = año + '-' + mes + '-' + dia;
+    }
+
+    const fechaHoy: Date = new Date();
+
+    const fechaSeleccionadaInicial: Date = new Date(
+      this.crearActividades.fechaInicio
+    );
+    const fechaSeleccionadaFinal: Date = new Date(
+      this.crearActividades.fechaFinal
+    );
+
+    if (fechaSeleccionadaInicial > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha Inicial Seleccionada es Posterior al Día de Hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaInicial')?.reset();
+      this.crearActividades.fechaInicio = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (fechaSeleccionadaFinal > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La fecha Final seleccionada es posterior al día de hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaFinal')?.reset();
+      this.crearActividades.fechaFinal = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const fechaInicioV: Date = new Date(this.crearActividades.fechaInicio);
+    const fechaFinV: Date = new Date(this.crearActividades.fechaFinal);
+
+    if (fechaInicioV > fechaFinV) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha de Inicio es Mayor que la Fecha Fin.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaFinal')?.reset();
+      this.crearActividades.fechaFinal = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 }
