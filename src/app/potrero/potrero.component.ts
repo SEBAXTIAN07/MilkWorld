@@ -9,6 +9,7 @@ import { responseGenerico } from '../models/responseGenerico';
 import { Router } from '@angular/router';
 import { pastoLista } from '../models/pastoLista';
 import { pasto } from '../models/pasto';
+import { responseListarFinca } from '../models/responseListarFinca';
 export interface Product {
   id?: string;
   name?: string;
@@ -45,6 +46,7 @@ export class PotreroComponent {
       },
     ],
   };
+  seleccionarFincaObjeto = this.finca;
   public form: FormGroup = this.formBuilder.group({
     codigoFinca: ['', [Validators.required]],
     nombrePotrero: ['', [Validators.required]],
@@ -55,6 +57,7 @@ export class PotreroComponent {
     codigoPasto: ['', [Validators.required]],
   });
   responseGenerico!: responseGenerico;
+  responseValidarUsuario!: responseListarFinca;
   seleccionarPotrero!: [Potrero];
   products!: Product[];
   items: MenuItem[] = [];
@@ -331,16 +334,58 @@ export class PotreroComponent {
             detail: '',
           },
         ];
-        this.boton = true;
+        // this.boton = true;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => {
-          this.router.navigate(['/botones']);
-        }, 3000);
+        this.actualizarInformacion();
       }
     });
   }
 
   formatearNumeroConPuntos(numero: number): string {
     return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  actualizarInformacion() {
+    this.mostrarSpinner(true);
+    const idUsuario: string | null = localStorage.getItem('idUsuario');
+    if (idUsuario !== null) {
+      this.service.validarUsuario(idUsuario).subscribe((response) => {
+        this.responseValidarUsuario = response;
+        if (this.responseValidarUsuario.mensaje == '1') {
+          setTimeout(() => {
+            localStorage.setItem(
+              'infoUsuario',
+              JSON.stringify(this.responseValidarUsuario)
+            );
+          }, 1000);
+        }
+        const infoUsuarioJSON = localStorage.getItem('infoFinca');
+        if (infoUsuarioJSON) {
+          for (
+            let i = 0;
+            i < this.responseValidarUsuario.listaResultado.length;
+            i++
+          ) {
+            this.seleccionarFincaObjeto = JSON.parse(
+              localStorage.getItem('infoFinca')!
+            );
+            if (
+              this.responseValidarUsuario.listaResultado[i].codigoFinca ==
+              this.seleccionarFincaObjeto.codigoFinca
+            ) {
+              localStorage.setItem(
+                'infoFinca',
+                JSON.stringify(this.responseValidarUsuario.listaResultado[i])
+              );
+            }
+          }
+        }
+        this.mostrarSpinner(false);
+        this.ngOnInit();
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
+      });
+    }
   }
 }
