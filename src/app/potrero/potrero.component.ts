@@ -293,9 +293,50 @@ export class PotreroComponent {
   }
 
   eliminarPotrero(id: string) {
+    this.mostrarSpinner(true);
     console.log('Codigo : ' + id);
     this.service.eliminarPotrero(id).subscribe((response) => {
-      console.log(response);
+      this.responseGenerico = response;
+      console.log(this.responseGenerico.mensaje);
+      this.mostrarSpinner(false);
+      if (this.responseGenerico.mensaje == '2') {
+        this.messages = [
+          {
+            severity: 'info',
+            summary:
+              'El Potrero Contiene Animales Por Favor Eliminarlos para Poder Continuar ',
+            detail: '',
+          },
+        ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (this.responseGenerico.mensaje == '1') {
+        this.messages = [
+          {
+            severity: 'info',
+            summary:
+              'El Potrero no Existe en la BD, Contacte con el Administrador: ',
+            detail: '',
+          },
+        ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (this.responseGenerico.mensaje == '0') {
+        this.messages = [
+          {
+            severity: 'success',
+            summary: 'El Potrero fue Eliminado Correctamente',
+            detail: '',
+          },
+        ];
+        this.boton = true;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          this.router.navigate(['/botones']);
+        }, 3000);
+      }
     });
   }
 

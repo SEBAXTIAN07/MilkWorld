@@ -2,11 +2,17 @@
   [(value)]="messages"
   [enableService]="false"
   [closable]="false"
+  *ngIf="stpe5"
 ></p-messages>
 <app-spinner *ngIf="spinnerVariable"></app-spinner>
 <div *ngIf="formularioVariable">
   <app-navbar *ngIf="stpe1"></app-navbar>
   <div class="card" *ngIf="stpe1">
+    <p-messages
+      [(value)]="messages"
+      [enableService]="false"
+      [closable]="false"
+    ></p-messages>
     <p-table [value]="seleccionarPotrero" [paginator]="true" [rows]="4">
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -39,6 +45,7 @@
               type="button"
               icon="pi pi-times"
               class="p-button-rounded p-button-danger"
+              [disabled]="boton"
               (click)="eliminarPotrero(product.codigoPotrero)"
             ></button>
           </td>
@@ -69,6 +76,7 @@
                 label="Volver"
                 class="p-button-outlined"
                 routerLink="/botones"
+                [disabled]="boton"
               ></button>
             </div>
             <div
@@ -80,6 +88,7 @@
                 type="button"
                 label="Crear"
                 class="p-button-outlined p-button-success"
+                [disabled]="boton"
                 (click)="abrilModal(4)"
               ></button>
             </div>

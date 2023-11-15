@@ -31,6 +31,17 @@ export class ServiceService {
     const infoUsuarioJSON = localStorage.getItem('infoUsuario');
     if (infoUsuarioJSON == null) {
       this.router.navigate(['/login']);
+      return;
+    }
+    const idUsuario = localStorage.getItem('idUsuario');
+    if (idUsuario == null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    const infoFinca = localStorage.getItem('infoFinca');
+    if (infoFinca == null) {
+      this.router.navigate(['/finca']);
+      return;
     }
     return 'OK';
   }
