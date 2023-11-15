@@ -48,14 +48,20 @@
               >
                 Fecha Inicial
               </div>
-              <p-calendar formControlName="fechaInicial"></p-calendar>
+              <p-calendar
+                formControlName="fechaInicial"
+                (onSelect)="validarFecha()"
+              ></p-calendar>
               <br />
               <div
                 class="text-900 font-medium text-xl mb-2 font-bold text-blue-600"
               >
                 Fecha Final
               </div>
-              <p-calendar formControlName="fechaFinal"></p-calendar>
+              <p-calendar
+                formControlName="fechaFinal"
+                (onSelect)="validarFecha()"
+              ></p-calendar>
               <br />
               <div class="flex justify-content-center flex-wrap">
                 <div
@@ -106,24 +112,21 @@
             </div>
             <br />
             <label for="lastname1" class="bold-label"
-              >Cant. Agua Utilizada : 
-              {{
-                respuestaGenericaActividades.objeto.cantidadAguaUtilizada
-              }} L</label
+              >Cant. Agua Utilizada :
+              {{ respuestaGenericaActividades.objeto.cantidadAguaUtilizada }}
+              L</label
             >
             <br />
             <label for="lastname1" class="bold-label"
-              >Cant. Forraje Consumido : 
-              {{
-                respuestaGenericaActividades.objeto.cantidadForrajeConsumido
-              }} Kg</label
+              >Cant. Forraje Consumido :
+              {{ respuestaGenericaActividades.objeto.cantidadForrajeConsumido }}
+              Kg</label
             >
             <br />
             <label for="lastname1" class="bold-label"
-              >Cant. Leche Producida : 
-              {{
-                respuestaGenericaActividades.objeto.cantidadLecheProducida
-              }} L</label
+              >Cant. Leche Producida :
+              {{ respuestaGenericaActividades.objeto.cantidadLecheProducida }}
+              L</label
             >
           </div>
         </div>
@@ -172,7 +175,7 @@
             placeholder="{{ element.fechaFinal }}"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
           />
-        </div>    
+        </div>
 
         <p-accordion [multiple]="true">
           <p-accordionTab header="Huella Azul">
@@ -297,7 +300,6 @@
             </div>
           </p-accordionTab>
         </p-accordion>
-       
       </p-fieldset>
     </div>
     <br />

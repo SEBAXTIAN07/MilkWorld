@@ -164,4 +164,74 @@ export class HidricaComponent implements OnInit {
       this.spinnerVisible = false;
     }
   }
+
+  validarFecha() {
+    this.messages = [];
+    const fechaInicio = this.form.get('fechaInicial')?.value;
+    const fechaI = new Date(fechaInicio);
+
+    if (fechaInicio) {
+      const dia = fechaI.getDate();
+      const mes = fechaI.getMonth() + 1;
+      const año = fechaI.getFullYear();
+      this.fechaInicioAjustado = año + '-' + mes + '-' + dia;
+    }
+    const fechaFinal = this.form.get('fechaFinal')?.value;
+
+    const fecha = new Date(fechaFinal);
+    if (fechaFinal) {
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.fechaFinalAjustado = año + '-' + mes + '-' + dia;
+    }
+
+    const fechaHoy: Date = new Date();
+
+    const fechaSeleccionadaInicial: Date = new Date(this.fechaInicioAjustado);
+    const fechaSeleccionadaFinal: Date = new Date(this.fechaFinalAjustado);
+
+    if (fechaSeleccionadaInicial > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha Inicial Seleccionada es Posterior al Día de Hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaInicial')?.reset();
+      this.fechaInicioAjustado = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (fechaSeleccionadaFinal > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La fecha Final seleccionada es posterior al día de hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaFinal')?.reset();
+      this.fechaFinalAjustado = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const fechaInicioV: Date = new Date(this.fechaInicioAjustado);
+    const fechaFinV: Date = new Date(this.fechaFinalAjustado);
+
+    if (fechaInicioV > fechaFinV) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha de Inicio es Mayor que la Fecha Fin.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaFinal')?.reset();
+      this.fechaFinalAjustado = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 }
