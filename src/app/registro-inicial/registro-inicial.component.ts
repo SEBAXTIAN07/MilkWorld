@@ -64,14 +64,14 @@ export class RegistroInicialComponent implements OnInit {
   suplementos: Generica[] | undefined;
   raza: Generica[] | undefined;
   items: MenuItem[] = [];
-  stpe1: boolean = true; 
-  stpe2: boolean = false; 
-  stpe3: boolean = false; 
-  stpe4: boolean = false; 
-  stpe5: boolean = false; 
-  stpe6: boolean = false; 
-  spinnerVariable: boolean = false; 
-  formularioVariable: boolean = false; 
+  stpe1: boolean = true;
+  stpe2: boolean = false;
+  stpe3: boolean = false;
+  stpe4: boolean = false;
+  stpe5: boolean = false;
+  stpe6: boolean = false;
+  spinnerVariable: boolean = false;
+  formularioVariable: boolean = false;
   municipioCampo: boolean = true;
   departamentos!: departamentos[];
   pasto!: pasto[];
@@ -87,6 +87,7 @@ export class RegistroInicialComponent implements OnInit {
   seleccionarRaza!: GenericaNumber;
   responseCrearPersona!: responseCrearPersona;
   boton: boolean = false;
+  validarFecha = '';
 
   public form: FormGroup = this.formBuilder.group({
     id_persona: ['', [Validators.required]],
@@ -320,13 +321,34 @@ export class RegistroInicialComponent implements OnInit {
           severity: 'warn',
           summary:
             'El Área Total es de: ' +
-            this.form.get('areaTotal')?.value +
-            ' Valide el Área del Potrero',
+            this.formatearNumeroConPuntos(this.form.get('areaTotal')?.value) +
+            ' mts Valide el Área del Potrero',
           detail: '',
         },
       ];
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.form.get('areaPotrero')?.setValue(0);
+    }
+  }
+
+  registroFincaInicialAnimales() {
+    if (
+      this.form.get('raza')?.valid &&
+      this.form.get('numeroCrotal')?.valid &&
+      this.form.get('nombreAnimal')?.valid &&
+      this.form.get('fechaNacimiento')?.valid &&
+      this.form.get('numeroPartos')?.valid
+    ) {
+      this.registrarFincaInicial();
+    } else {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide los Campos Requeridos',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -408,7 +430,7 @@ export class RegistroInicialComponent implements OnInit {
           const año = fecha.getFullYear();
           this.finca.potreros[0].animales[0].fechaNacimiento =
             año + '-' + mes + '-' + dia;
-        } 
+        }
 
         this.finca.potreros[0].animales[0].numeroPartos =
           this.form.get('numeroPartos')?.value;
@@ -450,5 +472,40 @@ export class RegistroInicialComponent implements OnInit {
 
       this.mostrarSpinner(false);
     });
+  }
+
+  formatearNumeroConPuntos(numero: number): string {
+    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  validaFechaNacimiento() {
+    this.messages = [];
+    const fechaCompleta = this.form.get('fechaNacimiento')?.value;
+    const ValidarFecha = '';
+    if (fechaCompleta) {
+      const fecha = new Date(fechaCompleta);
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1;
+      const año = fecha.getFullYear();
+      this.validarFecha = año + '-' + mes + '-' + dia;
+    }
+
+    const fechaHoy: Date = new Date();
+
+    const fechaSeleccionadaInicial: Date = new Date(this.validarFecha);
+
+    if (fechaSeleccionadaInicial > fechaHoy) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'La Fecha Inicial Seleccionada es Posterior al Día de Hoy.',
+          detail: '',
+        },
+      ];
+      this.form.get('fechaNacimiento')?.reset();
+      this.validarFecha = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
   }
 }
