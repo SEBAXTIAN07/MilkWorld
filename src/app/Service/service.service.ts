@@ -21,9 +21,9 @@ import { crearPasto } from '../models/crearPasto';
 })
 export class ServiceService {
   // private url: string = 'http://192.168.0.17:8080/'; //ng serve --host 0.0.0.0
-  private url: string = 'http://localhost:8080/'; //ng serve --host 0.0.0.0
+  // private url: string = 'http://localhost:8080/'; //ng serve --host 0.0.0.0
   // private url: string = 'http://18.224.16.162/'; //ng serve --host 0.0.0.0
-  // private url: string = 'http://192.168.0.20:8080/'; //ng serve --host 0.0.0.0
+  private url: string = 'http://192.168.0.20:8080/'; //ng serve --host 0.0.0.0
 
   constructor(private http: HttpClient, private router: Router) {}
 

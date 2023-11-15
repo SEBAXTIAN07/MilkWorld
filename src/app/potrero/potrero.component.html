@@ -1,18 +1,18 @@
-<p-messages
-  [(value)]="messages"
-  [enableService]="false"
-  [closable]="false"
-  *ngIf="stpe5"
-></p-messages>
 <app-spinner *ngIf="spinnerVariable"></app-spinner>
 <div *ngIf="formularioVariable">
   <app-navbar *ngIf="stpe1"></app-navbar>
+  <p-messages
+    [(value)]="messages"
+    [enableService]="false"
+    [closable]="false"
+    *ngIf="formularioVariable"
+  ></p-messages>
   <div class="card" *ngIf="stpe1">
-    <p-messages
+    <!-- <p-messages
       [(value)]="messages"
       [enableService]="false"
       [closable]="false"
-    ></p-messages>
+    ></p-messages> -->
     <p-table [value]="seleccionarPotrero" [paginator]="true" [rows]="4">
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
@@ -115,7 +115,8 @@
       </div>
       <div>
         <div class="grid">
-          <div class="col-12">
+          <div class="col-12 md:col-3"></div>
+          <div class="col-12 md:col-6">
             <div class="p-3 h-full">
               <div
                 class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -199,6 +200,7 @@
             </div>
           </div>
         </div>
+        <div class="col-12 md:col-3"></div>
       </div>
     </div>
 
@@ -220,7 +222,8 @@
       </div>
       <div>
         <div class="grid">
-          <div class="col-12">
+          <div class="col-12 md:col-3"></div>
+          <div class="col-12 md:col-6">
             <div class="p-3 h-full">
               <div
                 class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -301,6 +304,7 @@
               </div>
             </div>
           </div>
+          <div class="col-12 md:col-3"></div>
         </div>
       </div>
     </div>

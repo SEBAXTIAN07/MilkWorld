@@ -195,6 +195,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -213,6 +214,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -230,6 +232,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -249,6 +252,7 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -267,11 +271,12 @@ export class PotreroComponent {
             detail: '',
           },
         ];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   }
-
   abrilModal(numero: number) {
+    this.messages=[];
     numero == 1 ? (this.stpe1 = true) : (this.stpe1 = false);
     numero == 4 ? (this.stpe4 = true) : (this.stpe4 = false);
     numero == 5 ? (this.stpe5 = true) : (this.stpe5 = false);

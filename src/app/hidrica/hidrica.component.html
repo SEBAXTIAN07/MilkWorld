@@ -24,7 +24,8 @@
     </div>
     <div>
       <div class="grid">
-        <div class="col-12 lg:col-4">
+        <div class="col-12 md:col-3"></div>
+        <div class="col-12 md:col-6">
           <div class="p-3 h-full">
             <div
               class="shadow-2 p-3 h-full flex flex-column surface-card"
@@ -92,6 +93,7 @@
             </div>
           </div>
         </div>
+        <div class="col-12 md:col-3"></div>
       </div>
     </div>
   </div>
@@ -99,7 +101,8 @@
 
   <div *ngIf="formularioVisible2">
     <div class="grid">
-      <div class="col-12 lg:col-4">
+      <div class="col-12 md:col-3"></div>
+      <div class="col-12 md:col-6">
         <div class="p-3 h-full">
           <div
             class="shadow-2 p-3 h-full flex flex-column surface-card text-center"
@@ -131,176 +134,185 @@
           </div>
         </div>
       </div>
+      <div class="col-12 md:col-3"></div>
     </div>
     <div *ngFor="let element of objetoActividades; let i = index">
       <br />
-      <p-fieldset [toggleable]="true">
-        <ng-template pTemplate="header">
-          <div class="flex align-items-center text-primary">
-            <span class="pi pi-user mr-2"></span>
-            <span class="font-bold text-lg"
-              >Registro N° {{ element.numeroActividad }}</span
-            >
-          </div>
-        </ng-template>
-        <div class="field">
-          <label for="lastname1">Tipo de Actividad: </label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="number"
-            [disabled]="true"
-            placeholder="{{ element.tipoActividad }}"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Fecha Inicio: </label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="number"
-            [disabled]="true"
-            placeholder="{{ element.fechaInicio }}"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-          />
-        </div>
-        <div class="field">
-          <label for="lastname1">Fecha, Fin: </label>
-          <input
-            id="lastname1"
-            maxlength="10"
-            type="number"
-            [disabled]="true"
-            placeholder="{{ element.fechaFinal }}"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-          />
-        </div>
+      <div class="grid">
+        <div class="col-12 md:col-3"></div>
+        <div class="col-12 md:col-6"> 
+          <p-fieldset [toggleable]="true">
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center text-primary">
+                <span class="pi pi-user mr-2"></span>
+                <span class="font-bold text-lg"
+                  >Registro N° {{ element.numeroActividad }}</span
+                >
+              </div>
+            </ng-template>
+            <div class="field">
+              <label for="lastname1">Tipo de Actividad: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="{{ element.tipoActividad }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Fecha Inicio: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="{{ element.fechaInicio }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
+            <div class="field">
+              <label for="lastname1">Fecha, Fin: </label>
+              <input
+                id="lastname1"
+                maxlength="10"
+                type="number"
+                [disabled]="true"
+                placeholder="{{ element.fechaFinal }}"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+              />
+            </div>
 
-        <p-accordion [multiple]="true">
-          <p-accordionTab header="Huella Azul">
-            <div class="field">
-              <label for="lastname1">Consumo Directo: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalPromedioLeche
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Consumo Indirecto: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalConsumoIndirecto
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Consumo Servicio: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalConsumoServicio
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Consumo Total: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalPromedioAgua
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-          </p-accordionTab>
-          <p-accordionTab header="Huella Verde">
-            <div class="field">
-              <label for="lastname1">Consumo Forraje: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="Kg: {{
-                  element.actividadConsumo.totalPromedioForraje
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Área Utilizada Potrero: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="mts: {{ element.actividadConsumo.totalAreaUsada }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-          </p-accordionTab>
-          <p-accordionTab header="Huella Hidrica">
-            <div class="field">
-              <label for="lastname1">Registro Leche: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalPromedioLeche
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Consumo Agua: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalConsumoAguaProduccion
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-            <div class="field">
-              <label for="lastname1">Consumo Forraje: </label>
-              <input
-                id="lastname1"
-                maxlength="10"
-                type="number"
-                [disabled]="true"
-                placeholder="L: {{
-                  element.actividadConsumo.totalConsumoForrajeProduccion
-                }}"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-              />
-            </div>
-          </p-accordionTab>
-        </p-accordion>
-      </p-fieldset>
+            <p-accordion [multiple]="true">
+              <p-accordionTab header="Huella Azul">
+                <div class="field">
+                  <label for="lastname1">Consumo Directo: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalPromedioLeche
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Consumo Indirecto: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalConsumoIndirecto
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Consumo Servicio: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalConsumoServicio
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Consumo Total: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalPromedioAgua
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="Huella Verde">
+                <div class="field">
+                  <label for="lastname1">Consumo Forraje: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="Kg: {{
+                      element.actividadConsumo.totalPromedioForraje
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Área Utilizada Potrero: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="mts: {{
+                      element.actividadConsumo.totalAreaUsada
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+              </p-accordionTab>
+              <p-accordionTab header="Huella Hidrica">
+                <div class="field">
+                  <label for="lastname1">Registro Leche: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalPromedioLeche
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Consumo Agua: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalConsumoAguaProduccion
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+                <div class="field">
+                  <label for="lastname1">Consumo Forraje: </label>
+                  <input
+                    id="lastname1"
+                    maxlength="10"
+                    type="number"
+                    [disabled]="true"
+                    placeholder="L: {{
+                      element.actividadConsumo.totalConsumoForrajeProduccion
+                    }}"
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  />
+                </div>
+              </p-accordionTab>
+            </p-accordion>
+          </p-fieldset>
+        </div>
+        <div class="col-12 md:col-3"></div>
+      </div>
     </div>
     <br />
   </div>
