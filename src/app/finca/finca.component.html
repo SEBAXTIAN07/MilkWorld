@@ -19,6 +19,7 @@
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th>Nombre</th>
+        <th>Área (mts)</th>
         <th>Elegir</th>
       </tr>
     </ng-template>
@@ -26,6 +27,9 @@
       <tr>
         <td>
           {{ finca.nombreFinca }}
+        </td>
+        <td>
+          {{ formatearNumeroConPuntos(finca.areaTotal) }}
         </td>
 
         <td>
