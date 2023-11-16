@@ -4,6 +4,7 @@ import { responseValidarUsuario } from '../models/responseValidarUsuario';
 import { finca } from '../models/finca';
 import { responseListarFinca } from '../models/responseListarFinca';
 import { ServiceService } from '../Service/service.service';
+import { Router } from '@angular/router';
 
 interface Column {
   field: string;
@@ -25,6 +26,7 @@ export class FincaComponent implements OnInit {
   products!: Product[];
   responseValidarUsuario!: responseListarFinca;
   messages: Message[] = [];
+  spinnerVisible: boolean = false;
   finca: finca = {
     id_persona: '',
     codigoFinca: '',
@@ -52,12 +54,13 @@ export class FincaComponent implements OnInit {
   seleccionarFinca = [this.finca];
   cols!: Column[];
   items: MenuItem[] = [];
-  stpe1: boolean = true; 
-  stpe2: boolean = false; 
+  stpe1: boolean = true;
+  stpe2: boolean = false;
 
   constructor(
     public messageService: MessageService,
-    private service: ServiceService
+    private service: ServiceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -85,7 +88,11 @@ export class FincaComponent implements OnInit {
   }
 
   selectFinca(products: finca) {
+    this.mostrarSpinner(true);
     localStorage.setItem('infoFinca', JSON.stringify(products));
+    setTimeout(() => {
+      this.router.navigate(['/botones']);
+    }, 1000);
     (this.stpe1 = true) ? (this.stpe1 = false) : true;
     (this.stpe2 = true) ? (this.stpe2 = false) : true;
   }
@@ -102,8 +109,18 @@ export class FincaComponent implements OnInit {
       ];
     }
   }
-  
+
   formatearNumeroConPuntos(numero: number): string {
     return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  mostrarSpinner(valor: boolean) {
+    if (valor) {
+      this.stpe1 = false;
+      this.spinnerVisible = true;
+    } else {
+      this.stpe1 = true;
+      this.spinnerVisible = false;
+    }
   }
 }

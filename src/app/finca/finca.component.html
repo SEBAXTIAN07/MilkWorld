@@ -1,5 +1,6 @@
-<app-navbar></app-navbar>
+<app-spinner *ngIf="spinnerVisible"></app-spinner>
 <div class="card" *ngIf="stpe1">
+  <app-navbar></app-navbar>
   <p-messages
     [(value)]="messages"
     [enableService]="false"
@@ -39,7 +40,6 @@
             type="button"
             icon="pi pi-angle-double-right"
             class="p-button-rounded p-button-success"
-            routerLink="/botones"
             (click)="selectFinca(finca)"
           ></button>
         </td>

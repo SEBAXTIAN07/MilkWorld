@@ -139,6 +139,7 @@ export class RegistroInicialComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mostrarSpinner(true);
     this.service.validarUsuarioSistemaFinca();
     this.tipoOrdeno = [
       { name: 'MECÁNICO', code: 'MECANICO' },
@@ -163,7 +164,6 @@ export class RegistroInicialComponent implements OnInit {
     ];
 
     this.form.get('municipio')?.disable();
-    this.mostrarSpinner(true);
     this.service.consultarDepartamentoYMunicipio().subscribe((response) => {
       this.responseDepartamentos = response;
       this.departamentos = this.responseDepartamentos.listaResultado;
