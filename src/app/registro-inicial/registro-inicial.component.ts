@@ -139,7 +139,7 @@ export class RegistroInicialComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.validarUsuarioSistema();
+    this.service.validarUsuarioSistemaFinca();
     this.tipoOrdeno = [
       { name: 'MECÁNICO', code: 'MECANICO' },
       { name: 'MOVÍLES', code: 'MOVILES' },
