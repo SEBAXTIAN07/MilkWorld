@@ -61,7 +61,7 @@ export class FincaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.service.validarUsuarioSistema();
+    this.service.validarUsuarioSistemaFinca();
     this.responseValidarUsuario = JSON.parse(
       localStorage.getItem('infoUsuario')!
     );

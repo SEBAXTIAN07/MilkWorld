@@ -46,6 +46,20 @@ export class ServiceService {
     return 'OK';
   }
 
+  validarUsuarioSistemaFinca() {
+    const infoUsuarioJSON = localStorage.getItem('infoUsuario');
+    if (infoUsuarioJSON == null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    const idUsuario = localStorage.getItem('idUsuario');
+    if (idUsuario == null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    return 'OK';
+  }
+
   registrarUsuario(page: crearPersona): Observable<any> {
     let direction = this.url + 'Huella/crearPersona';
     return this.http
