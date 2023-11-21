@@ -204,16 +204,56 @@ export class AnimalComponent {
   }
 
   crearAnimal() {
-    if (!this.form.valid) {
+    console.log(this.form);
+    if (!this.form.get('potrero')?.valid) {
       this.messages = [
         {
           severity: 'warn',
-          summary: 'Valide Los Campos',
+          summary: 'Valide el Campo Potrero',
           detail: '',
         },
       ];
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
+    }
+    if (!this.form.get('raza')?.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide el Campo Raza',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (!this.form.get('numeroCrotal')?.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide el Campo N° del Cotral',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (!this.form.get('numeroPartos')?.valid) {
+      this.messages = [
+        {
+          severity: 'warn',
+          summary: 'Valide el Campo Numero de Partos',
+          detail: '',
+        },
+      ];
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (!this.form.get('nombreAnimal')?.valid) {
+      this.form
+        .get('nombreAnimal')
+        ?.setValue(this.form.get('numeroCrotal')?.value);
     }
     this.messages = [];
     this.mostrarSpinner(true);

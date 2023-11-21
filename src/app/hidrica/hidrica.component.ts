@@ -81,18 +81,19 @@ export class HidricaComponent implements OnInit {
     this.mostrarSpinner(true);
     this.formularioVisible2 = false;
 
-    if (!this.form.valid) {
-      this.messages = [
-        {
-          severity: 'warn',
-          summary: 'Valide Los Campos',
-          detail: '',
-        },
-      ];
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      this.mostrarSpinner(false);
-      return;
-    }
+    // if (!this.form.valid) {
+    //   this.messages = [
+    //     {
+    //       severity: 'warn',
+    //       summary: 'Valide Los Campos',
+    //       detail: '',
+    //     },
+    //   ];
+    //   window.scrollTo({ top: 0, behavior: 'smooth' });
+    //   this.mostrarSpinner(false);
+    //   return;
+    // }
+
 
     const potrero = this.form.get('potrero')?.value;
     const fechaInicio = this.form.get('fechaInicial')?.value;
